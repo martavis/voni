@@ -1,0 +1,32 @@
+@import '../../assets/css/variables.scss';
+
+nav {
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        flex: 1;
+    }
+    .page-links {
+        display: flex;
+        align-items: center;
+
+        a {
+            font-size: 1.125em;
+            font-weight: 300;
+            color: $white;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:not(:first-of-type) {
+                margin-left: 26px;
+            }
+        }
+        .search-site {
+            margin-left: 26px;
+            cursor: pointer;
+        }
+    }
+}

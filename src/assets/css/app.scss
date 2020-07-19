@@ -1,0 +1,53 @@
+@import './variables.scss';
+
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('https://storage.googleapis.com/voni-assets/fonts/bahnschrift.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Skirmisher';
+    src: url('https://storage.googleapis.com/voni-assets/fonts/skirmisher3dital.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Skirmisher';
+    src: url('https://storage.googleapis.com/voni-assets/fonts/skirmishercondital.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-height: 100vh;
+	font-family: 'Skirmisher';
+	background: $brandGradient;
+	background-repeat: no-repeat;
+	color: $white;
+	position: relative;
+
+	p, button {
+		font-family: 'Bahnschrift';
+	}
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		background: url('https://storage.googleapis.com/voni-assets/img/bg-dots.png');
+		background-repeat: repeat;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+	.page {
+		max-width: 1366px;
+		margin: 0 auto;
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+}

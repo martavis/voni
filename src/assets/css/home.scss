@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+.home {
+    .welcome {
+        display: flex;
+        align-items: center;
+
+        .model-roll {
+            width: 400px;
+            height: 580px;
+            background-image: url('https://storage.googleapis.com/voni-assets/img/model-frame.svg?t=3232');
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 80%;
+            }
+        }
+        .welcome-message {
+            flex: 1;
+            margin-left: 150px;
+
+            h1 {
+                font-size: 5em;
+                text-transform: uppercase;
+                margin: 0;
+
+                span {
+                    font-weight: 300;
+                }
+            }
+            p {
+                font-size: 1.125em;
+                line-height: 1.4375;
+                margin-bottom: 50px;
+            }
+            a {
+                font-size: 2em;
+                font-weight: 300;
+                color: $white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
