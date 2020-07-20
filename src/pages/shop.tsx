@@ -2,8 +2,8 @@ import React from 'react';
 
 export default () => {
 	return (
-		<div>
-			Shop Page
+		<div className="shop page">
+			<h1 className="page-title">Products</h1>
 		</div>
 	)
 };

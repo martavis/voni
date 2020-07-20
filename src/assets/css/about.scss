@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+.about {
+    h2 {
+        letter-spacing: 1.5px;
+    }
+    .need-help {
+        margin-top: 100px;
+        text-align: center;
+        
+        a {
+            color: $white;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 2em;
+        }
+    }
+}

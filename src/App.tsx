@@ -21,6 +21,9 @@ function App() {
 					</Router>
 				</React.Suspense>
 			</div>
+			<footer>
+				<p>{new Date().getFullYear()} &trade; Voni Aesthetics - All Rights Reserved</p>
+			</footer>
 		</Root>
 	)
 };
