@@ -3,6 +3,7 @@
 .home {
     .welcome {
         display: flex;
+        justify-content: center;
         align-items: center;
 
         .model-roll {
@@ -20,7 +21,6 @@
             }
         }
         .welcome-message {
-            flex: 1;
             margin-left: 150px;
 
             h1 {
@@ -65,6 +65,7 @@
         }
         .video-wrapper {
             display: flex;
+            justify-content: center;
 
             .video {
                 position: relative;
@@ -110,6 +111,25 @@
                 margin: 0;
                 font-size: 3.75em;
             }
+        }
+    }
+    .featured-items {
+        margin-top: 150px;
+        
+        h2 {
+            margin-bottom: 75px;
+            font-weight: 300;
+            font-size: 4.0625em;
+            text-align: center;
+        }
+        .item-grid {
+            padding-top: 75px;
+            padding-bottom: 75px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 40px;
+            row-gap: 50px;
+            box-sizing: border-box;
         }
     }
 }

@@ -1,14 +1,40 @@
-import axios from 'axios'
-import path from 'path'
-// import { Post } from './types'
+import path from 'path';
 
-// Typescript support in static.config.js is not yet supported, but is coming in a future update!
+import ApolloClient from 'apollo-client';
+import fetch from 'isomorphic-fetch'; 
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+
+import { 
+    GET_FEATURED_COLLECTION,
+    GET_ALL_PRODUCTS
+} from './gql';
+
+export const gqlClient = new ApolloClient({
+    link: new HttpLink({ uri: process.env.VENDURE_API_URL, fetch: fetch }),
+    cache: new InMemoryCache(),
+});
 
 export default {
     entry: path.join(__dirname, 'src', 'index.tsx'),
     getRoutes: async () => {
-        const { data: storeItems } /* :{ data: Post[] } */ = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        const {data: { collection }} = await gqlClient.query({
+            query: GET_FEATURED_COLLECTION,
+            fetchPolicy: 'no-cache'
+        });
+        
+        const {data: { products }} = await gqlClient.query({
+            query: GET_ALL_PRODUCTS,
+            fetchPolicy: 'no-cache'
+        });
+
         return [
+            {
+                path: '/',
+                getData: () => ({
+                    collection
+                })
+            },
             {
                 path: '/about',
             },
@@ -21,15 +47,15 @@ export default {
             {
                 path: '/shop',
                 getData: () => ({
-                    storeItems,
+                    products
                 }),
-                children: storeItems.map((item /* : Post */) => ({
-                    path: `/shop/${item.slug}`,
-                    template: 'src/containers/StoreItem',
+                children: products.items.map((product) => ({
+                    path: `/product/${product.slug}`,
+                    template: 'src/pages/product',
                     getData: () => ({
-                        item,
+                        product
                     }),
-                })),
+                }))
             },
         ]
     },

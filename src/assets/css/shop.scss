@@ -1,0 +1,15 @@
+@import './variables.scss';
+
+.items {
+    margin-top: 150px;
+    
+    .item-grid {
+        padding-top: 75px;
+        padding-bottom: 75px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 40px;
+        row-gap: 50px;
+        box-sizing: border-box;
+    }
+}

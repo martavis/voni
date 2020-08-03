@@ -1,13 +1,19 @@
 import React, { useState, useEffect, createRef } from 'react';
+import { useRouteData } from 'react-static';
 import { Link } from '@reach/router';
+import { Collection, Product } from 'types/vendure';
 
 import '../assets/css/home.scss';
+
+import ProductComponent from 'components/Product';
 
 export default () => {
 	const [imageNum] = useState(1);
 	const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 	const videoRef = createRef<HTMLVideoElement>();
 
+	const { collection: { productVariants } }: { collection: Collection } = useRouteData();
+	
 	useEffect(() => {
 		['pause', 'ended'].forEach(evt => 
 			videoRef.current.addEventListener(evt, () => {
@@ -61,6 +67,14 @@ export default () => {
 						<h3>Download Now!</h3>
 					</a>
 				</div>
+			</section>
+			<section className="featured-items">
+				<h2>New Arrivals</h2>
+				<div className="item-grid section-custom-border">{
+					productVariants.items.map(({ product }: { product: Product }) => (
+						<ProductComponent product={product} />
+					))
+				}</div>
 			</section>
 		</div>
 	);
