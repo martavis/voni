@@ -21,6 +21,8 @@ const ProductComponent = ({ product }: Props) => {
             <div className="product-component">
                 <div className="visual">
                     <div className="image-overflow">
+                        <div className="corner-clip top"></div>
+                        <div className="corner-clip bottom"></div>
                         <div className="product-image" style={{ backgroundImage: `url('${image}')` }}></div>
                     </div>
                 </div>
