@@ -14,8 +14,8 @@ export default () => {
 			<h1 className="page-title">Products</h1>
 			<section className="items">
 				<div className="item-grid section-custom-border">{
-					products.items.map((item: Product) => (
-						<ProductComponent product={item} />
+					products.items.map((item: Product, i: number) => (
+						<ProductComponent key={i} product={item} />
 					))
 				}</div>
 			</section>

@@ -1,7 +1,5 @@
 import gql from 'graphql-tag';
 
-
-
 export const GET_ALL_COLLECTIONS = gql`
     query {
         collections {
@@ -204,8 +202,76 @@ export const GET_ALL_PRODUCTS = gql`
                     priceWithTax
                     priceIncludesTax
                 }
+                optionGroups {
+                    options {
+                        name
+                    }
+                }
             }
             totalItems
         }
     }
+`;
+
+const CART_FRAGMENT = gql`
+    fragment Cart on Order {
+        id
+        code
+        state
+        active
+        lines {
+            id
+            featuredAsset {
+                source
+            }
+            unitPrice
+            unitPriceWithTax
+            quantity
+            totalPrice
+            productVariant {
+                id
+                name
+            }
+            adjustments {
+                amount
+                description
+                adjustmentSource
+                type
+            }
+        }
+        subTotal
+        subTotalBeforeTax
+        totalBeforeTax
+        shipping
+        shippingMethod {
+            id
+            code
+            description
+        }
+        total
+        adjustments {
+            amount
+            description
+            adjustmentSource
+            type
+        }
+    }
+`;
+
+export const ADD_TO_CART = gql`
+    mutation addToCart($productVariantId: ID!, $quantity: Int!) {
+        cart: addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
+            ...Cart
+        }
+    }
+    ${CART_FRAGMENT}
+`;
+
+export const SUBSCRIBE_TO_CART = gql`
+    subscription {
+        cart: activeOrder {
+            ...Cart
+        }
+    }
+    ${CART_FRAGMENT}
 `;

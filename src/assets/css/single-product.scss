@@ -1,0 +1,61 @@
+@import '../assets/css/variables.scss';
+
+.single-product {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    column-gap: 50px;
+
+    .images {
+        
+    }
+    .details {
+        .product-title {
+            margin-bottom: 0;
+            font-size: 3.25em;
+        }
+        .product-price {
+            margin: 0;
+            font-size: 3.5em;
+        }
+        .product-options {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+
+            .option {
+                padding: 12px;
+                border: 1px solid $white;
+                font-family: 'Bahnschrift';
+                font-size: 1.125em;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                background: none;
+                transition: 0.08s ease-in;
+                z-index: 1;
+
+                &:not(:last-of-type) {
+                    margin-right: 16px;
+                }
+                &:hover, &.active {
+                    color: $black;
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    background: $white;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    top: 100%;
+                    z-index: -1;
+                    transition: top 0.09s ease-in;
+                }
+                &:hover::before, &.active::before {
+                    top: 0;
+                }
+            }
+
+        }
+    }
+}

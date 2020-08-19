@@ -71,8 +71,8 @@ export default () => {
 			<section className="featured-items">
 				<h2>New Arrivals</h2>
 				<div className="item-grid section-custom-border">{
-					productVariants.items.map(({ product }: { product: Product }) => (
-						<ProductComponent product={product} />
+					productVariants.items.map(({ product }: { product: Product }, i: number) => (
+						<ProductComponent key={i} product={product} />
 					))
 				}</div>
 			</section>

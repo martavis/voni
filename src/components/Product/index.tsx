@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { Product } from 'types/vendure';
+import { formatPrice } from 'utils/functions';
 
 import './Product.scss';
 
@@ -9,10 +10,7 @@ type Props = {
 };
 
 const ProductComponent = ({ product }: Props) => {
-    console.log(product)
-    const priceStr = product.variants[0].price.toString(); // get first
-    const cents = priceStr.substr(-2);
-    let price = priceStr.substring(0, priceStr.lastIndexOf(cents)) + `.${cents}`;
+    let price = formatPrice(product.variants[0].price); // default to first variant
     price = product.variants.length > 1 ? `From $${price}` : `$${price}`;
     const image = product.featuredAsset.source.replace(/\\/gi, '/'); // because for some reason on the admin UI there are backslashes on the images🙄 
 
