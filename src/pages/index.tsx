@@ -12,7 +12,7 @@ export default () => {
 	const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 	const videoRef = createRef<HTMLVideoElement>();
 
-	const { collection: { productVariants } }: { collection: Collection } = useRouteData();
+	const { collection }: { collection: Collection } = useRouteData();
 	
 	useEffect(() => {
 		['pause', 'ended'].forEach(evt => 
@@ -71,7 +71,7 @@ export default () => {
 			<section className="featured-items">
 				<h2>New Arrivals</h2>
 				<div className="item-grid section-custom-border">{
-					productVariants.items.map(({ product }: { product: Product }, i: number) => (
+					collection && collection.productVariants.items.map(({ product }: { product: Product }, i: number) => (
 						<ProductComponent key={i} product={product} />
 					))
 				}</div>
