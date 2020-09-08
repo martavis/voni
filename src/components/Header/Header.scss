@@ -61,6 +61,23 @@ nav {
         }
         .cart-display {
             margin-left: 26px;
+            position: relative;
+
+            .cart-count {
+                width: 24px;
+                height: 24px;
+                border-radius: 12px;
+                background-color: $greenBright;
+                color: $black;
+                font-family: 'Bahnschrift';
+                font-size: 0.875em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: -12px;
+                right: -12px;
+            }
         }
     }
 }

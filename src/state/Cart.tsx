@@ -11,7 +11,7 @@ type InitialStateType = {
 };
 
 const initialState = {
-    cart: null as null,
+    cart: JSON.parse(localStorage.getItem('cart')) || null,
     setCart: () => {}
 };
 
@@ -22,6 +22,7 @@ const actions = {
 const reducer = (state: any, action: any) => {
     switch (action.type) {
         case actions.SET_CART:
+            localStorage.setItem('cart', JSON.stringify(action.cart));
             return { ...state, cart: action.cart };
         default:
             return state;

@@ -1,0 +1,52 @@
+@import '../../assets/css/variables.scss';
+
+.item-counter-component {
+    width: 150px;
+    height: 46px;
+    box-shadow: 0px 0px 2px 0px $white;
+    
+    .counter-text, .count-modifier {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .counter-text {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        span {
+            font-family: 'Bahnschrift';
+            font-size: 1.125em;
+        }
+        .count-modifier {
+            width: 46px;
+            height: 100%;
+            box-shadow: 0px 0px 1px 1px $white;
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+            background-color: transparent;
+            transition: background-color .15s ease;
+            user-select: none;
+            
+            &.add {
+                left: 0;
+            }
+            &.subtract {
+                right: 0;
+            }
+            img {
+                width: 18px;
+                transition: filter .15s ease;
+            }
+            &:hover {
+                background-color: $white;
+
+                img {
+                    filter: invert(1);
+                }
+            }
+        }
+    }
+}

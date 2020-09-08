@@ -266,12 +266,3 @@ export const ADD_TO_CART = gql`
     }
     ${CART_FRAGMENT}
 `;
-
-export const SUBSCRIBE_TO_CART = gql`
-    subscription {
-        cart: activeOrder {
-            ...Cart
-        }
-    }
-    ${CART_FRAGMENT}
-`;

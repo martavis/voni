@@ -2,11 +2,24 @@
 
 .single-product {
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 400px auto;
     column-gap: 50px;
 
     .images {
-        
+        display: grid;
+        grid-template-columns: 90px auto;
+        column-gap: 30px;
+
+        &[data-has-secondary="false"] {
+            display: block;
+        }
+        .enlarged {
+            height: 450px;
+
+            .visual {
+                height: 100%;
+            }
+        }
     }
     .details {
         .product-title {
@@ -17,45 +30,69 @@
             margin: 0;
             font-size: 3.5em;
         }
-        .product-options {
+        .product-actions {
             margin-top: 20px;
             display: flex;
             align-items: center;
 
-            .option {
-                padding: 12px;
-                border: 1px solid $white;
-                font-family: 'Bahnschrift';
-                font-size: 1.125em;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
-                background: none;
-                transition: 0.08s ease-in;
-                z-index: 1;
+            & > *:not(:last-child) {
+                margin-right: 100px;
+            }
+            .quantity {
+                display: flex;
+                align-items: center;
 
-                &:not(:last-of-type) {
-                    margin-right: 16px;
-                }
-                &:hover, &.active {
-                    color: $black;
-                }
-                &::before {
-                    content: '';
-                    position: absolute;
-                    background: $white;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    top: 100%;
-                    z-index: -1;
-                    transition: top 0.09s ease-in;
-                }
-                &:hover::before, &.active::before {
-                    top: 0;
+                & > span {
+                    font-family: 'Bahnschrift';
+                    font-size: 1.375em;
+                    margin-right: 15px;
                 }
             }
+            .product-options {
+                display: flex;
+                align-items: center;
+    
+                .option {
+                    padding: 12px;
+                    border: 1px solid $white;
+                    font-family: 'Bahnschrift';
+                    font-size: 1.125em;
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden;
+                    background: none;
+                    transition: 0.08s ease-in;
+                    z-index: 1;
+    
+                    &:not(:last-of-type) {
+                        margin-right: 16px;
+                    }
+                    &:hover, &.active {
+                        color: $black;
+                    }
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        background: $white;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        top: 100%;
+                        z-index: -1;
+                        transition: top 0.09s ease-in;
+                    }
+                    &:hover::before, &.active::before {
+                        top: 0;
+                    }
+                }
+            }
+        }
+        .product-desc {
+            margin-top: 50px;
 
+            p {
+                font-size: 1.25em;
+            }
         }
     }
 }
