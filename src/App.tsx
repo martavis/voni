@@ -6,11 +6,12 @@ import CartProvider from 'state/Cart';
 import gqlClient from './gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
+import Checkout from 'containers/Checkout/index';
 
 import './assets/styles/app.scss';
 
-// Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(['cart']);
+// non-static routes
+addPrefetchExcludes(['cart', 'checkout/*']);
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 						<React.Suspense fallback={<em>Loading...</em>}>
 							<Router>
 								<Cart path="cart" />
+								<Checkout path="checkout/*" />
 								<Routes default />
 							</Router>
 						</React.Suspense>

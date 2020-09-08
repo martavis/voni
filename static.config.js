@@ -27,15 +27,6 @@ export default {
                 })
             },
             {
-                path: '/about',
-            },
-            {
-                path: '/contact',
-            },
-            {
-                path: '/ambassador',
-            },
-            {
                 path: '/shop',
                 getData: () => ({
                     products

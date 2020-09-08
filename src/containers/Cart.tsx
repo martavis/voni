@@ -79,7 +79,7 @@ const Cart: DF = () => {
 				)
 			}</div>
 			<div className="total">
-				<div className="total-title">Total Price</div>
+				<div className="total-title">Items Subtotal</div>
 				<div className="price-text" title={`$${formatPrice(cart.total)}`}>${formatPrice(cart.total)}</div>
 			</div>
 			<div className="cart-actions">
