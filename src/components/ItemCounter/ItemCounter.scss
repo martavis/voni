@@ -1,9 +1,9 @@
-@import '../../assets/css/variables.scss';
+@import '../../assets/styles/variables.scss';
 
 .item-counter-component {
     width: 150px;
     height: 46px;
-    box-shadow: 0px 0px 2px 0px $white;
+    box-shadow: 0px 0px 2px 0px $white inset;
     
     .counter-text, .count-modifier {
         display: flex;
@@ -22,7 +22,7 @@
         .count-modifier {
             width: 46px;
             height: 100%;
-            box-shadow: 0px 0px 1px 1px $white;
+            box-shadow: 0px 0px 1px 1px $white inset;
             position: absolute;
             top: 0;
             cursor: pointer;

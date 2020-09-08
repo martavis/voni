@@ -3,15 +3,14 @@ import React from 'react';
 import './ProductImage.scss';
 
 type Props = {
-    src: string
+    src: string,
+    isSmall?: boolean
 };
 
-const ProductImage = ({ src }: Props) => {
+const ProductImage = ({ src, isSmall }: Props) => {
     return (
-        <div className="visual">
+        <div className="visual" data-small={isSmall}>
             <div className="image-overflow">
-                <div className="corner-clip top"></div>
-                <div className="corner-clip bottom"></div>
                 <div className="product-image" style={{ backgroundImage: `url('${src.replace(/\\/gi, '/')}')` }}></div>
             </div>
         </div>

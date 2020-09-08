@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouteData } from 'react-static';
 import { Product, ProductList } from 'types/vendure';
 
-import '../assets/css/shop.scss';
+import '../assets/styles/shop.scss';
 
 import ProductComponent from 'components/Product';
 

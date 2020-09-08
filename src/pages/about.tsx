@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-import '../assets/css/about.scss';
+import '../assets/styles/about.scss';
 
 export default () => (
     <div className="about page">

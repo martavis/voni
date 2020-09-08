@@ -1,0 +1,109 @@
+@import './variables.scss';
+
+.cart-container {
+    .cart-summary {
+        .cart-table {
+            margin-top: 50px;
+            
+            .headers, .cart-items .item {
+                padding: 25px 40px;
+                display: grid;
+                grid-template-columns: auto 200px 250px 150px;
+                align-items: center;
+                border-bottom: 1px solid $white;
+            }
+            .header-name {
+                text-transform: uppercase;
+
+                &:nth-of-type(3) {
+                    padding-left: 74px;
+                }
+                &:last-of-type {
+                    text-align: right;
+                }
+            }
+            .header-name, .item-price, .item-total {
+                font-family: 'Bahnschrift';
+                font-size: 1.125em;
+            }
+            
+            .cart-items {
+                .item {
+                    .item-image-name {
+                        display: flex;
+                        align-items: center;
+
+                        p {
+                            margin-left: 55px;
+                            font-size: 1.25em;
+                        }
+                    }
+                    .item-total {
+                        text-align: right;
+                    }
+                    .item-quantity {
+                        padding-left: 40px;
+                    }
+                }
+            }
+        }
+        .sell-action {
+            margin-top: 50px;
+            text-align: center;
+
+            p {
+                font-size: 1.5em;
+            }
+            a {
+                padding: 15px 20px;
+                font-size: 1.25em;
+                color: $black;
+                background-color: $white;
+            }    
+        }
+    }
+    .total {
+        margin-top: 35px;
+    }
+    .cart-actions {
+        margin-top: 50px;
+    }
+    .total, .cart-actions {
+        padding-left: 40px;
+        padding-right: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .total-title {
+            font-size: 2.5em;
+        }
+        .price-text {
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        a {
+            padding: 15px 20px;
+            font-family: 'Bahnschrift';
+            text-transform: uppercase;
+            color: $white;
+            background-color: $black;
+            box-shadow: 0px 0px 1px 1px $white inset;
+            transition: all .15s ease;
+            
+            &.checkout {
+                color: $black;
+                background-color: $white;
+            }
+            &:hover {
+                color: $black;
+                background-color: $white;
+
+                &.checkout {
+                    color: $white;
+                    background-color: $black;
+                }
+            }
+        }    
+    }
+}

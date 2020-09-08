@@ -266,3 +266,12 @@ export const ADD_TO_CART = gql`
     }
     ${CART_FRAGMENT}
 `;
+
+export const ADJUST_ITEM_QUANTITY = gql`
+    mutation adjustItemQuantity($orderLineId: ID!, $quantity: Int) {
+        cart: adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
+            ...Cart
+        }
+    }
+    ${CART_FRAGMENT}
+`;

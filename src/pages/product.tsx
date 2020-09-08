@@ -6,17 +6,16 @@ import { CartContext } from 'state/Cart';
 import { formatPrice } from 'utils/functions';
 import { ADD_TO_CART } from 'utils/gql';
 
-import '../assets/css/single-product.scss';
+import '../assets/styles/single-product.scss';
 
 import ItemCounter from 'components/ItemCounter';
 import ProductImage from 'components/ProductImage';
 
 const SingleProductPage = ({ product }: { product: Product }) => {
 	const [quantity, setQuantity] = useState<number>(1);
-	// const { product }: { product: Product } = useRouteData();
 	const [selectedVariant, setSelectedVariant] = useState(0);
 	const [selectedVariantImage] = useState(0);
-	const { setCart } = useContext(CartContext);
+	const { setCart }: { setCart: Function } = useContext(CartContext);
 	const [addToCart] = useMutation(ADD_TO_CART, {
 		onCompleted: (data) => {
 			if (data) {
@@ -24,6 +23,10 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 			} else {
 				console.log('nope');
 			}
+		},
+		onError: (error) => {
+			console.error(error);
+			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
 		}
 	});
 	

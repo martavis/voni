@@ -3,7 +3,7 @@ import { useRouteData } from 'react-static';
 import { Link } from '@reach/router';
 import { Collection, Product } from 'types/vendure';
 
-import '../assets/css/home.scss';
+import '../assets/styles/home.scss';
 
 import ProductComponent from 'components/Product';
 

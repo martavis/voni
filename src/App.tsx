@@ -7,7 +7,7 @@ import gqlClient from './gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 
-import './assets/css/app.scss';
+import './assets/styles/app.scss';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(['cart']);
