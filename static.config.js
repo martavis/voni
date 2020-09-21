@@ -2,6 +2,7 @@ import path from 'path';
 import gqlClient from './src/gqlClient';
 
 import { 
+    GET_ALL_COLLECTIONS,
     GET_FEATURED_COLLECTION,
     GET_ALL_PRODUCTS
 } from './src/utils/gql';
@@ -9,6 +10,11 @@ import {
 export default {
     entry: path.join(__dirname, 'src', 'index.tsx'),
     getRoutes: async () => {
+        const {data: { collections }} = await gqlClient.query({
+            query: GET_ALL_COLLECTIONS,
+            fetchPolicy: 'no-cache'
+        });
+
         const {data: { collection }} = await gqlClient.query({
             query: GET_FEATURED_COLLECTION,
             fetchPolicy: 'no-cache'
@@ -29,7 +35,8 @@ export default {
             {
                 path: '/shop',
                 getData: () => ({
-                    products
+                    products,
+                    collections: collections.items.filter(c => c.slug !== 'featured')
                 }),
                 children: products.items.map((product) => ({
                     path: `/product/${product.slug}`,

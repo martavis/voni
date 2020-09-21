@@ -7,87 +7,6 @@ export const GET_ALL_COLLECTIONS = gql`
                 id
                 name
                 slug
-                breadcrumbs {
-                    id
-                    name
-                    slug
-                }
-                description
-                featuredAsset {
-                    source
-                }
-                assets {
-                    source
-                }
-                productVariants {
-                    items {
-                        id
-                        product {
-                            name
-                            slug
-                            description
-                            featuredAsset {
-                                source
-                            }
-                            assets {
-                                source
-                            }
-                            variants {
-                                id
-                                product {
-                                    name
-                                    slug
-                                    description
-                                    featuredAsset {
-                                        source
-                                    }
-                                    assets {
-                                        source
-                                    }
-                                }
-                                productId
-                                sku
-                                name
-                                featuredAsset {
-                                    source
-                                }
-                                assets {
-                                    source
-                                }
-                                price
-                                currencyCode
-                                priceIncludesTax
-                                priceWithTax
-                                options {
-                                    id
-                                    code
-                                    name
-                                    groupId
-                                }
-                            }
-                        }
-                        productId
-                        sku
-                        name
-                        featuredAsset {
-                            source
-                        }
-                        assets {
-                            source
-                        }
-                        price
-                        currencyCode
-                        priceIncludesTax
-                        priceWithTax
-                        options {
-                            id
-                            code
-                            name
-                            groupId
-                        }
-                    }
-                    totalItems
-                }
             }
             totalItems
         }
@@ -181,6 +100,11 @@ export const GET_ALL_PRODUCTS = gql`
                 name
                 slug
                 description
+                collections {
+                    id
+                    name
+                    slug
+                }
                 featuredAsset {
                     source
                 }
@@ -270,6 +194,15 @@ export const ADD_TO_CART = gql`
 export const ADJUST_ITEM_QUANTITY = gql`
     mutation adjustItemQuantity($orderLineId: ID!, $quantity: Int) {
         cart: adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
+            ...Cart
+        }
+    }
+    ${CART_FRAGMENT}
+`;
+
+export const REMOVE_FROM_CART = gql`
+    mutation removeFromCart($orderLineId: ID!) {
+        cart: removeOrderLine(orderLineId: $orderLineId) {
             ...Cart
         }
     }

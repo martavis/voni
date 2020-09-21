@@ -1,15 +1,40 @@
 @import './variables.scss';
 
-.items {
-    margin-top: 150px;
-    
-    .item-grid {
-        padding-top: 75px;
-        padding-bottom: 75px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        column-gap: 40px;
-        row-gap: 50px;
-        box-sizing: border-box;
+.shop.page {
+    .filters {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        label {
+            margin-right: 10px;
+        }
+        select {
+            font-size: 1.125em;
+            cursor: pointer;
+        }
+        .categories {
+            display: flex;
+            align-items: center;
+
+            .product-count {
+                margin-left: 30px;
+                font-family: 'Bahnschrift';
+                font-size: 1.125em;
+            }
+        }
+    }
+    .items {
+        margin-top: 50px;
+        
+        .item-grid {
+            padding-top: 75px;
+            padding-bottom: 75px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 40px;
+            row-gap: 50px;
+            box-sizing: border-box;
+        }
     }
 }

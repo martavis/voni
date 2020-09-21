@@ -38,4 +38,16 @@ function App() {
 	)
 };
 
+// const ScrollToTop = (): null => {
+// 	const { pathname } = useLocation();
+
+// 	useEffect(() => {
+// 		if (typeof document !== 'undefined') {
+// 			window.scrollTo(0, 0);
+// 		}
+// 	}, [pathname]);
+
+// 	return null;
+// }
+
 export default App;

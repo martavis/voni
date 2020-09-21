@@ -3,7 +3,7 @@ import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
 import { Order } from 'types/vendure';
-import { ADJUST_ITEM_QUANTITY } from 'utils/gql';
+import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gql';
 import { formatPrice } from 'utils/functions';
 
 import '../assets/styles/cart.scss';
@@ -28,8 +28,22 @@ const Cart: DF = () => {
 			alert('We could not adjust your quantity. Please refresh and try again, or contact us.');
 		}
 	});
+	
+	const [removeFromCart] = useMutation(REMOVE_FROM_CART, {
+		onCompleted: (data) => {
+			if (data) {
+				setCart(data.cart);
+			} else {
+				console.log('nope');
+			}
+		},
+		onError: (error) => {
+			console.error(error);
+			alert('We could not remove this item from your cart. Please refresh and try again, or contact us.');
+		}
+	});
 
-	const increaseCart = async (orderLineId: string, quantity: number) => {
+	const changeCartCount = async (orderLineId: string, quantity: number) => {
 		try {
 			await adjustItemQuantity({
 				fetchPolicy: 'no-cache',
@@ -39,6 +53,19 @@ const Cart: DF = () => {
 				}
 			});
 		} catch(error) {
+			console.log(error);
+		}
+	};
+
+	const removeItem = async (orderLineId: string) => {
+		try {
+			await removeFromCart({
+				fetchPolicy: 'no-cache',
+				variables: {
+					orderLineId
+				}
+			});
+		} catch (error) {
 			console.log(error);
 		}
 	};
@@ -60,11 +87,21 @@ const Cart: DF = () => {
 								<div key={i} className="item">
 									<div className="item-image-name">
 										<ProductImage src={line.featuredAsset.source} isSmall />
-										<p>{line.productVariant.name}</p>
+										<div className="title-delete">
+											<p>{line.productVariant.name}</p>
+											<div role="button" className="remove-item-button" onClick={() => removeItem(line.id)}>
+												<div className="button-text">
+													<span>Remove</span>
+													<div className="icon">
+														<img alt={`remove ${line.productVariant.name}`} src="https://storage.googleapis.com/voni-assets/img/times.png" />
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div className="item-price">${formatPrice(line.unitPrice)}</div>
 									<div className="item-quantity">
-										<ItemCounter count={line.quantity} setCount={increaseCart} lineId={line.id} />
+										<ItemCounter count={line.quantity} setCount={changeCartCount} lineId={line.id} />
 									</div>
 									<div className="item-total">${formatPrice(line.totalPrice)}</div>
 								</div>

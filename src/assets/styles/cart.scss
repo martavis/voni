@@ -33,9 +33,67 @@
                         display: flex;
                         align-items: center;
 
-                        p {
-                            margin-left: 55px;
-                            font-size: 1.25em;
+                        .title-delete {
+                            padding-left: 55px;
+
+                            p {
+                                font-size: 1.25em;
+                            }
+                            .remove-item-button {
+                                width: 200px;
+                                height: 46px;
+                                box-shadow: 0px 0px 2px 0px $white inset;
+                                transition: box-shadow .15s ease;
+                                cursor: pointer;
+                                
+                                .button-text, .icon {
+                                    display: flex;
+                                    align-items: center;
+                                    background-color: transparent;
+                                    transition: background-color .15s ease;
+                                }
+                                .button-text {
+                                    width: 100%;
+                                    height: 100%;
+                                    padding-left: 25px;
+                                    position: relative;
+                                    box-sizing: border-box;
+                                    
+                                    span {
+                                        font-family: 'Bahnschrift';
+                                        font-size: 1.125em;
+                                    }
+                                    .icon {
+                                        width: 46px;
+                                        height: 100%;
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        box-shadow: 0px 0px 1px 1px $white inset;
+                                        user-select: none;
+                                        justify-content: center;
+                                        transition: box-shadow .15s ease;
+                                        
+                                        img {
+                                            width: 18px;
+                                            transition: filter .15s ease;
+                                        }
+                                    }
+                                }
+                                &:hover {
+                                    box-shadow: 0px 0px 0px 0px $white inset;
+
+                                    .button-text {
+                                        background-color: $white;
+                                    }
+                                    .icon {
+                                        border-left: 1px solid $black;
+                                    }
+                                    span, img {
+                                        filter: invert(1);
+                                    }
+                                }
+                            }
                         }
                     }
                     .item-total {
