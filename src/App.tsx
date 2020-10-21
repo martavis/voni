@@ -11,7 +11,7 @@ import Checkout from 'containers/Checkout/index';
 import './assets/styles/app.scss';
 
 // non-static routes
-addPrefetchExcludes(['cart', 'checkout/*']);
+addPrefetchExcludes(['cart', 'checkout', 'checkout/shipping', 'checkout/payment']);
 
 function App() {
 	return (
@@ -24,7 +24,9 @@ function App() {
 						<React.Suspense fallback={<em>Loading...</em>}>
 							<Router>
 								<Cart path="cart" />
-								<Checkout path="checkout/*" />
+								<Checkout path="checkout" />
+								<Checkout path="checkout/shipping" />
+								<Checkout path="checkout/payment" />
 								<Routes default />
 							</Router>
 						</React.Suspense>
