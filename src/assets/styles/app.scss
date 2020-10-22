@@ -105,13 +105,23 @@ body {
 	}
 	footer {
 		position: relative;
-		padding: 10px 60px;
+		padding: 10px 20px;
 		box-sizing: border-box;
 		z-index: 0;
-		
+		text-align: center;		
 		p {
 			font-size: 0.875em;
 			color: $white;
+			margin: 5px 0px;
+		}
+		a { 
+			cursor: pointer;
+			margin-left: 10px;			
+			color: #fafafa !important;
+			text-decoration: none;
+			&:hover { 
+				text-decoration: underline;
+			}
 		}
 	}
 }

@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+.terms-of-service {
+    h3 { 
+        font-weight: 400;
+    }   
+    .table-of-contents { 
+        font-weight: 700;
+        margin: 5px 0px;
+    }
+    .font-bold { 
+        font-weight: 700;
+    }
+}
