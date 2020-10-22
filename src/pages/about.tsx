@@ -17,6 +17,18 @@ export default () => (
 				cleaning the house, doing the shopping, etc. Purchase the goods you need every day or just like in a 
 				few clicks or taps, depending on the device you use to access the Internet. We work to make your life more enjoyable.
 			</p>
+			<p>
+				Here at Voni Aesthetics we strive for every girl to feel, love and be the absolute best version of themselves. Your future begins here, and it all starts with YOU.
+			</p>
+			<p>
+				Let go of all the expectations.
+			</p>
+			<p>
+				Let go of all the judgement.
+			</p>
+			<p>
+				Let go, and be YOU.
+			</p>
 		</div>
 		<div className="need-help">
 			<Link to="/contact">Need help? Click to send us an email.</Link>
