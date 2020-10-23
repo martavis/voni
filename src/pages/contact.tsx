@@ -1,25 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../assets/styles/contact.scss';
 
 export default () => {
+    const [alertMessage, setAlertMessage] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [alertClass, setAlertClass] = useState("contact-alert-red");
+
+    let sendEmail = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAlertClass("contact-alert-red");
+        if (name == "") { 
+            setAlertMessage("Please input name field.");
+            return;
+        }
+        if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) { 
+            setAlertMessage("Please input correct email address.");
+            return;
+        }
+        if (message ==""){ 
+            setAlertMessage("Please input message field.");
+            return;
+        }       
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify( {
+                sendToEmail: "info.voni@gmail.com", 
+                userEmail: email, //email input
+                userName: name, //name input
+                userMessage: message //message input
+            } )
+        };
+        fetch('https://us-central1-portfolio-2020-268818.cloudfunctions.net/sendEmailToInfo', requestOptions)
+            .then(response => {
+                if(response.ok == true) { 
+                    setAlertClass("contact-alert-green");
+                    setAlertMessage("Email sent successfully.");
+                } else { 
+                    setAlertClass("contact-alert-red");
+                    setAlertMessage("There was an error to sent email.");
+                }
+            });
+    };
+    let setNameField = (event: React.ChangeEvent<HTMLInputElement>) => { 
+        setName(event.target.value);
+    };
+    let setEmailField = (event: React.ChangeEvent<HTMLInputElement>) => { 
+        setEmail(event.target.value);
+    };
+    let setMessageField = (event: { target: { value: React.SetStateAction<string>; }; }) => { 
+        setMessage(event.target.value);
+    };
+
     return (
         <div className="contact page">
             <h1 className="page-title">Contact Us</h1>
             <div className="contact-blurb section-custom-border">
                 <div className="contact-form"> 
                     <div className="contact-info"> 
-                        <input className="button-clip-path" placeholder="NAME"></input>
-                        <input className="button-clip-path" placeholder="EMAIL"></input>
+                        <input className="button-clip-path" placeholder="NAME" onChange={setNameField} value={name}></input>
+                        <input className="button-clip-path" placeholder="EMAIL" onChange={setEmailField} value={email}></input>
                     </div>
                     <div className="contact-message">
-                        <textarea placeholder="MESSAGE"></textarea>
+                        <textarea placeholder="MESSAGE" onChange={setMessageField} value={message}></textarea>
                     </div>   
                     <div className="contact-submit"> 
-                        <button className="button-clip-path"> 
+                        <button className="button-clip-path" onClick={sendEmail}> 
                             SUBMIT
                         </button>            
                     </div>     
+                    <p className={alertClass}> 
+                        {alertMessage}
+                    </p>
                 </div>
                 <div className="contact-information"> 
                     <div>
