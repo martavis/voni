@@ -1,6 +1,6 @@
 import React from 'react';
 import { Root, Routes, addPrefetchExcludes } from 'react-static';
-import { Router } from '@reach/router';
+import { Link, Router } from '@reach/router';
 import { ApolloProvider } from '@apollo/react-hooks';
 import CartProvider from 'state/Cart';
 import gqlClient from './gqlClient';
@@ -32,7 +32,13 @@ function App() {
 						</React.Suspense>
 					</div>
 					<footer>
-						<p>{new Date().getFullYear()} &trade; Voni Aesthetics - All Rights Reserved</p>
+						<p>
+							{new Date().getFullYear()} &trade; Voni Aesthetics - All Rights Reserved							
+						</p>
+						<p>
+							<Link to="/terms-of-service">Terms of Service</Link> 
+							<Link to="/privacy-and-policy">Privacy and Policy</Link> 
+						</p>
 					</footer>
 				</Root>
 			</CartProvider>

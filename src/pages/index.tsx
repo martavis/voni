@@ -39,7 +39,8 @@ export default () => {
 		<div className="home page">
 			<section className="welcome">
 				<div className="model-roll">
-					<img alt="" src={`https://storage.googleapis.com/voni-assets/img/welcome-models/model-${imageNum}.png`} />
+					${imageNum}
+					{/* <img alt="" src={`https://storage.googleapis.com/voni-assets/img/welcome-models/model-${imageNum}.png`} /> */}
 				</div>
 				<div className="welcome-message">
 					<h1><span>Say Hello,</span><br />To The Future</h1>

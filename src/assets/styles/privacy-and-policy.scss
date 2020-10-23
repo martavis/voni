@@ -1,0 +1,29 @@
+@import './variables.scss'; 
+
+.privacy-and-policy { 
+    h3 { 
+        font-weight: 400;
+    }   
+    .table-of-contents { 
+        font-weight: 600;
+        margin: 5px 0px;
+    }
+    .font-bold { 
+        font-weight: 600;
+    }
+    .font-large { 
+        font-weight: 600;
+        font-size: 1.25em;
+    }
+    a { 
+        text-decoration: none;
+        color: grey;
+        font-weight: 400;
+        &:hover { 
+            text-decoration: underline;
+        }
+    }
+    .mg-left-20 { 
+        margin-left: 20px;
+    }
+}

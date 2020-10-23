@@ -24,8 +24,10 @@ const Header: React.FC = () => {
 				<div className="border"></div>
 			</div>
 			<div className="page-links">
-				<Link to="/shop" getProps={isActive}>Shop</Link>
+				<Link to="/" getProps={isActive}>Home</Link>
 				<Link to="/about" getProps={isActive}>About</Link>
+				<Link to="/shop" getProps={isActive}>Shop</Link>
+				<Link to="/contact" getProps={isActive}>Contact</Link>
 				<Link to="/ambassador" getProps={isActive}>Ambassador</Link>
 				<div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div>
 				<div className="cart-display">

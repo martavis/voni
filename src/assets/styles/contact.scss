@@ -1,0 +1,84 @@
+@import './variables.scss';
+
+.contact { 
+    .contact-blurb{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 80px;
+        row-gap: 50px;
+        box-sizing: border-box;
+        padding-left: 5%;
+        padding-right: 5%;
+        @media screen and (max-width: 992px) {
+            grid-template-columns: repeat(1, 1fr); 
+        }
+    }          
+    .contact-form { 
+        > div:first-child { 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 20px;
+            row-gap: 50px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        > div { 
+            margin-top: 10px;
+        }
+        input, textarea { 
+            width: calc(100% - 20px);
+            background: transparent;
+            border: 1px solid grey;
+            padding: 10px;
+            color: #fafafa;
+        }
+        textarea { 
+            height: 60px;
+        }
+        button { 
+            -webkit-clip-path: polygon(8px 0, 120px 0, 120px 28px, 112px 36px, 0 36px, 0px 8px);
+            clip-path: polygon(8px 0, 120px 0, 120px 28px, 112px 36px, 0 36px, 0px 8px);
+            width: 120px;
+            height: 36px;
+            float: right;
+            background: #fffffd;
+            color: black;            
+            line-height: 36px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        button, button:focus { 
+            outline: none;
+            border: none;
+        }
+        button:hover { 
+            background: grey;
+        }
+    }
+    .contact-information { 
+        > div { 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 40px;
+            row-gap: 80px;
+            box-sizing: border-box;
+            margin-top: 20px; 
+            @media screen and (max-width: 600px) {
+                grid-template-columns: repeat(1, 1fr); 
+                margin-top: 20px; 
+                row-gap: 20px;
+                text-align: center;
+            }
+        }
+        .info-title { 
+            font-size: 1.2em;;
+        }
+        .info-description {
+            font-size: 1em;;
+        }
+        p {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+    }    
+}
