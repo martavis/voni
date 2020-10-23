@@ -62,16 +62,24 @@ export default () => {
             <div className="contact-blurb section-custom-border">
                 <div className="contact-form"> 
                     <div className="contact-info"> 
-                        <input className="button-clip-path" placeholder="NAME" onChange={setNameField} value={name}></input>
-                        <input className="button-clip-path" placeholder="EMAIL" onChange={setEmailField} value={email}></input>
+                        <div className="input-clip-path-outside">
+                            <input placeholder="NAME" onChange={setNameField} value={name} className="input-clip-path-inside"></input>
+                        </div>
+                        <div className="input-clip-path-outside">
+                            <input placeholder="EMAIL" onChange={setEmailField} value={email} className="input-clip-path-inside"></input>
+                        </div>
                     </div>
                     <div className="contact-message">
-                        <textarea placeholder="MESSAGE" onChange={setMessageField} value={message}></textarea>
+                        <div className="input-clip-path-outside">
+                            <textarea placeholder="MESSAGE" onChange={setMessageField} value={message} className="input-clip-path-inside"></textarea>
+                        </div>
                     </div>   
                     <div className="contact-submit"> 
-                        <button className="button-clip-path" onClick={sendEmail}> 
-                            SUBMIT
-                        </button>            
+                        <div className="button-clip-path-outside">
+                            <button className="button-clip-path-inside" onClick={sendEmail}> 
+                                SUBMIT
+                            </button>            
+                        </div>                        
                     </div>     
                     <p className={alertClass}> 
                         {alertMessage}

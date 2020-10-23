@@ -7,6 +7,7 @@ const Information: DF = () => {
 
     return (
         <div className="payment-container page-container">
+            Payment
         </div>
     );
 };

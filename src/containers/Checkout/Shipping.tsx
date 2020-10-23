@@ -7,6 +7,7 @@ const Shipping: DF = () => {
 
 	return (
 		<div className="shipping-container page-container">
+			Shipping
 		</div>
 	);
 };

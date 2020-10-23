@@ -5,25 +5,29 @@ import { CartContext } from 'state/Cart';
 import { Order } from 'types/vendure';
 import { formatPrice } from 'utils/functions';
 
+import Information from './Information';
+import Shipping from './Shipping';
+import Payment from './Payment';
 import '../../assets/styles/checkout.scss';
 
 type DF = React.FC<{ path?: String }>;
 
 const Checkout: DF = () => {
-    const [hasReachedInfo, setHasReachedInfo] = useState<boolean>(false);
+    const [hasReachedInfo, setHasReachedInfo] = useState<boolean>(true);
     const [hasReachedShipping, setHasReachedShipping] = useState<boolean>(false);
     const [hasReachedPayment, setHasReachedPayment] = useState<boolean>(false);
     const { pathname } = typeof document !== 'undefined' && window.location;
     const { cart }: { cart: Order, setCart: Function } = useContext(CartContext);
-
+    
     useEffect(() => {
+        console.log(pathname);
         switch (pathname) {
             case '/checkout/shipping':
                 setHasReachedShipping(true);
                 break;
             case '/checkout/payment':
                 setHasReachedPayment(true);
-                break;
+                break;                
             default:
                 setHasReachedInfo(true);
                 break;
@@ -39,6 +43,11 @@ const Checkout: DF = () => {
                     <Link to="/checkout/shipping" data-enabled={hasReachedShipping}>Shipping</Link>
                     <Link to="/checkout/payment" data-enabled={hasReachedPayment}>Payment</Link>
                 </header>
+                <body>
+                    { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information></Information> : ''}           
+                    { hasReachedShipping && !hasReachedPayment? <Shipping></Shipping> : ''}     
+                    { hasReachedPayment ? <Payment></Payment> : ''}     
+                </body>
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{

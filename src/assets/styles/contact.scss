@@ -28,31 +28,67 @@
         input, textarea { 
             width: calc(100% - 20px);
             background: transparent;
-            border: 1px solid grey;
             padding: 10px;
             color: #fafafa;
         }
         textarea { 
             height: 60px;
         }
-        button { 
-            -webkit-clip-path: polygon(8px 0, 120px 0, 120px 28px, 112px 36px, 0 36px, 0px 8px);
-            clip-path: polygon(8px 0, 120px 0, 120px 28px, 112px 36px, 0 36px, 0px 8px);
-            width: 120px;
-            height: 36px;
-            float: right;
-            background: #fffffd;
-            color: black;            
-            line-height: 36px;
-            margin-top: 10px;
-            cursor: pointer;
+        .input-clip-path-outside { 
+            -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+            text-transform: uppercase;
+            background-color: #fafafa;
+            padding: 0;
         }
-        button, button:focus { 
+        .input-clip-path-inside { 
+            -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px 100%, 1px 9px);
+            clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px 100%, 1px 9px);
+            text-transform: uppercase;
+            background: linear-gradient(#111b05, #000);
+            background-repeat: no-repeat;
             outline: none;
             border: none;
+            color: white;
+            position: relative;
+            margin: 0;
+            vertical-align: bottom;
+            &::before { 
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: url(https://storage.googleapis.com/voni-assets/img/bg-dots.png);
+                background-repeat: repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
         }
-        button:hover { 
-            background: grey;
+        .button-clip-path-outside {            
+            -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+            text-transform: uppercase;
+            color: #000;
+            background-color: #fafafa;
+            padding: 0;
+            float: right;
+        }
+        .button-clip-path-inside { 
+            -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px 100%, 1px 9px);
+            clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
+            padding: 12px 40px;            
+            font-family: 'Bahnschrift';
+            text-transform: uppercase;
+            color: #000;
+            cursor: pointer;
+            background-color: #fafafa;
+            outline: none;
+            border: none;
+            font-size: 1em;
+            &:hover {
+                color: #fafafa;
+                background-color: black;
+            }
         }
     }
     .contact-information { 
