@@ -27,6 +27,7 @@ const Checkout: DF = () => {
                 break;
             case '/checkout/payment':
                 setHasReachedPayment(true);
+                setHasReachedShipping(true);
                 break;                
             default:
                 setHasReachedInfo(true);
@@ -44,9 +45,9 @@ const Checkout: DF = () => {
                     <Link to="/checkout/payment" data-enabled={hasReachedPayment}>Payment</Link>
                 </header>
                 <body>
-                    { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information></Information> : ''}           
-                    { hasReachedShipping && !hasReachedPayment? <Shipping></Shipping> : ''}     
-                    { hasReachedPayment ? <Payment></Payment> : ''}     
+                    { hasReachedPayment ? <Payment></Payment> : ''}        
+                    { hasReachedShipping && !hasReachedPayment? <Shipping></Shipping> : ''}   
+                    { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information></Information> : ''}          
                 </body>
             </div>
             <div className="summary checkout-side">
