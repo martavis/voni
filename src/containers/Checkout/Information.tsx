@@ -4,12 +4,12 @@ import React from 'react';
 type DF = React.FC<{ path?: String }>;
 
 const Information: DF = () => {
-	let information = { 
-		contact: '',
-		address: '', 
-		fname: '', 
-		lname: '',
-	}
+	// let information = { 
+	// 	contact: '',
+	// 	address: '', 
+	// 	fname: '', 
+	// 	lname: '',
+	// }
 	const onSubmit = () => { 
 		window.location.href="/checkout/shipping";
 	}
@@ -19,7 +19,7 @@ const Information: DF = () => {
 				CONTACT INFORMATION
 			</p>
 			<div className="input-clip-path-outside">
-				<input placeholder="Email or mobile phone number" value={information.contact} className="input-clip-path-inside"></input>
+				<input placeholder="Email or mobile phone number" className="input-clip-path-inside"></input>
 			</div>
 			<span>
 				Already have an account? <Link to="/login">LOGIN</Link>

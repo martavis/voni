@@ -29,6 +29,8 @@ const Header: React.FC = () => {
 				<Link to="/shop" getProps={isActive}>Shop</Link>
 				<Link to="/contact" getProps={isActive}>Contact</Link>
 				<Link to="/ambassador" getProps={isActive}>Ambassador</Link>
+				<Link to="/login" getProps={isActive}>Login</Link>
+				<Link to="/Register" getProps={isActive}>Register</Link>
 				<div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div>
 				<div className="cart-display">
 					<Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link>

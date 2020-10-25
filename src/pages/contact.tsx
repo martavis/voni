@@ -23,6 +23,7 @@ export default () => {
             setAlertMessage("Please input message field.");
             return;
         }       
+        setAlertMessage('sending now..');
         const requestOptions = {
             method: 'POST',
             headers: { 
@@ -35,7 +36,7 @@ export default () => {
                 userMessage: message //message input
             } )
         };
-        fetch('https://us-central1-portfolio-2020-268818.cloudfunctions.net/sendEmailToInfo', requestOptions)
+        fetch('https://us-central1-portfolio-2020-268818.cloudfunctions.net/sendEmailToInfo', requestOptions)            
             .then(response => {
                 if(response.ok == true) { 
                     setAlertClass("contact-alert-green");

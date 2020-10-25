@@ -8,6 +8,7 @@ import { formatPrice } from 'utils/functions';
 import Information from './Information';
 import Shipping from './Shipping';
 import Payment from './Payment';
+import ProductImage from 'components/ProductImage';
 import '../../assets/styles/checkout.scss';
 
 type DF = React.FC<{ path?: String }>;
@@ -20,7 +21,6 @@ const Checkout: DF = () => {
     const { cart }: { cart: Order, setCart: Function } = useContext(CartContext);
     
     useEffect(() => {
-        console.log(pathname);
         switch (pathname) {
             case '/checkout/shipping':
                 setHasReachedShipping(true);
@@ -44,24 +44,33 @@ const Checkout: DF = () => {
                     <Link to="/checkout/shipping" data-enabled={hasReachedShipping}>Shipping</Link>
                     <Link to="/checkout/payment" data-enabled={hasReachedPayment}>Payment</Link>
                 </header>
-                <body>
-                    { hasReachedPayment ? <Payment></Payment> : ''}        
-                    { hasReachedShipping && !hasReachedPayment? <Shipping></Shipping> : ''}   
-                    { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information></Information> : ''}          
-                </body>
+                { hasReachedPayment ? <Payment></Payment> : ''}        
+                { hasReachedShipping && !hasReachedPayment? <Shipping></Shipping> : ''}   
+                { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information></Information> : ''}          
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{
                     cart.lines.map((line, i) => (
                         <div key={i}>
-                            <p className="summary-line-title">({line.quantity})&nbsp;&nbsp;{line.productVariant.name}</p>
-                            <p className="summary-line-price">${formatPrice(line.totalPrice)} USD</p>
+                            <div className="summary-left-line">      
+                                <ProductImage src={line.featuredAsset.source} isSmall />     
+                                <div>
+                                    <p>{line.productVariant.name}</p>
+                                    <p>QTY: &nbsp;{line.quantity}</p>                                
+                                </div>
+                            </div>
+                            <div>
+                                <p className="summary-line-price">${formatPrice(line.totalPrice)} USD</p>                                
+                            </div>
                         </div>
                     ))
                 }</div>
-                {/* <div className="promo-code summary-section">
-                    Promos coming soon
-                </div> */}
+                <div className="promo-code summary-section">
+                    <div className="input-clip-path-outside">
+                        <input placeholder="Discount Code" className="input-clip-path-inside"></input>
+                        <button className="input-clip-path-inside">Apply</button>
+                    </div>
+                </div>
                 <div className="price-structure summary-section">
                     <div>
                         <p className="title">Subtotal</p>
