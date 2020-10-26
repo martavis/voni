@@ -9,7 +9,7 @@ const Shipping: DF = () => {
 	let contact = "example@example.com";
 	let shipTo = "10th Street, Example area, City 7600, Pakistan";
 	const onSubmit = () => { 
-		window.location.href="/checkout/payment";
+		window.location.href="/profile/payment";
 	}
 	return (
 		<div className="shipping-container page-container">

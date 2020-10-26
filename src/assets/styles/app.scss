@@ -106,17 +106,12 @@ body {
 	footer {
 		position: relative;
 		padding: 10px 20px;
+		font-family: 'Bahnschrift';
 		box-sizing: border-box;
 		z-index: 0;
 		text-align: center;		
-		p {
-			font-size: 0.875em;
-			color: $white;
-			margin: 5px 0px;
-		}
 		a { 
-			cursor: pointer;
-			margin-left: 10px;			
+			cursor: pointer;	
 			color: #fafafa !important;
 			text-decoration: none;
 			&:hover { 

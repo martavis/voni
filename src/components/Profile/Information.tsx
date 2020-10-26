@@ -12,7 +12,7 @@ const Information: DF = () => {
 	// 	lname: '',
 	// }
 	const onSubmit = () => { 
-		window.location.href="/checkout/shipping";
+		window.location.href="/profile/shipping";
 	}
 	return (
 		<div className="information-container page-container">

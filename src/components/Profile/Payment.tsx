@@ -10,7 +10,7 @@ const Payment: DF = () => {
     let ShipMethod = "Standard - Free";
     let [billMethod, setBillMethod] = useState(0);
 	const onSubmit = () => { 
-		window.location.href="/checkout/payment";
+		window.location.href="/profile/payment";
 	}
     return (
         <div className="payment-container page-container">

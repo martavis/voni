@@ -7,11 +7,12 @@ import gqlClient from './gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Checkout from 'containers/Checkout';
+import Profile from 'containers/Profile';
 
 import './assets/styles/app.scss';
 
 // non-static routes
-addPrefetchExcludes(['cart', 'checkout', 'checkout/shipping', 'checkout/payment']);
+addPrefetchExcludes(['cart', 'profile', 'checkout', 'checkout/shipping', 'checkout/payment']);
 
 function App() {
 	return (
@@ -24,21 +25,17 @@ function App() {
 						<React.Suspense fallback={<em>Loading...</em>}>
 							<Router>
 								<Cart path="cart" />
-								<Checkout path="checkout" />
-								<Checkout path="checkout/shipping" />
-								<Checkout path="checkout/payment" />
+								<Checkout path="checkout"/>
+								<Checkout path="checkout/shipping"/>
+								<Checkout path="checkout/payment"/>
+								<Profile path="profile"></Profile>
 								<Routes default />
 							</Router>
 						</React.Suspense>
 					</div>
 					<footer>
-						<p>
-							{new Date().getFullYear()} &trade; Voni Aesthetics - All Rights Reserved							
-						</p>
-						<p>
-							<Link to="/terms-of-service">Terms of Service</Link> 
-							<Link to="/privacy-and-policy">Privacy and Policy</Link> 
-						</p>
+						{new Date().getFullYear()} &trade; Voni Aesthetics - All Rights Reserved &nbsp;||&nbsp;<Link to="/contact"> Contact</Link> &nbsp;||&nbsp;<Link to="/terms-of-service"> Terms of Service</Link> 	
+						&nbsp;||&nbsp;<Link to="/privacy-and-policy"> Privacy Policy</Link> 
 					</footer>
 				</Root>
 			</CartProvider>

@@ -12,96 +12,108 @@ export default () => (
             <p>
                 This “Privacy Policy” describes the privacy practices of Voni Aesthetics, and our subsidiaries and affiliates (collectively, “Voni Aesthetics”, “we”, “us”, or “our”) in connection with the www.voni.us website, or other website applications that we own or control and which posts or links to this Privacy Policy (the “Sites”) as well as our retail stores and related services (together with the Sites, the “Service”), and the rights and choices available to individuals with respect to their information.
             </p>
-            <p>
-				Table of Contents
-			</p>
-			<p className="table-of-contents">
-				- Personal Information We Collect
-			</p>
-			<p className="table-of-contents">
-				- How We Use Your Personal Information
-			</p>
-			<p className="table-of-contents">
-				- How We Share your Personal Information
-			</p>
-			<p className="table-of-contents">
-				- Your Choices
-			</p>
-			<p className="table-of-contents">
-				- Other sites, mobile applications and services
-			</p>
-			<p className="table-of-contents">
-				- Security Practices
-			</p>
-			<p className="table-of-contents">
-				- International Data Transfers
-			</p>
-			<p className="table-of-contents">
-				- Children
-			</p>
-			<p className="table-of-contents">
-				- Changes to this Privacy Policy
-			</p>
-			<p className="table-of-contents">
-				- How to Contact Us
-			</p>
-            <p className="table-of-contents">
-				- Cookie Policy
-			</p>
+            <span className="font-bold">
+                Table of Contents
+			</span>
+            <ul className="font-bold">                
+                <li>
+                    Personal Information We Collect
+                </li>
+                <li>
+                    How We Use Your Personal Information
+                </li>
+                <li>
+                    How We Share your Personal Information
+                </li>
+                <li>
+                    Your Choices
+                </li>
+                <li>
+                    Other sites, mobile applications and services
+                </li>
+                <li>
+                    Security Practices
+                </li>
+                <li>
+                    International Data Transfers
+                </li>
+                <li>
+                    Children
+                </li>
+                <li>
+                    Changes to this Privacy Policy
+                </li>
+                <li>
+                    How to Contact Us
+                </li>
+                <li>
+                    Cookie Policy
+                </li>
+            </ul>
             <p className="font-large">
                 PERSONAL INFORMATION WE COLLECT
             </p>
-            <p>
-                <span className="font-bold">Personal information you provide to us. </span> Personal information you may provide to us through the Service or otherwise includes:
-            </p>
-            <p>
-                <span className="font-bold">- Contact data</span>, personal or business contact information such as your first and last name, email, phone number and mailing addresses, professional title and company name.
-			</p>
-            <p>
-                <span className="font-bold">- Registration data</span>, such as information that you provide to register for an account or sign up for an event, including the day and month of your birth and the event you registered for.
-			</p>
-            <p>
-                <span className="font-bold">- Data about others</span>for whom you purchase an item or gift, such as name, delivery address and phone number. Please do not purchase a gift for someone or share their contact information with us unless you have their permission to do so.
-			</p>
-            <p>
-                <span className="font-bold">- Profile data</span>, such as your username and password that you may set to establish an online account with us and your interests and preferences.
-			</p>
-            <p>
-                <span className="font-bold">- Communications</span>, such as information you provide when you contact us with questions, feedback, survey responses, or otherwise correspond with us,
-			</p>
-            <p>
-                <span className="font-bold">- Marketing data</span>, such as the email address or contact details that we use to send marketing communications and your preferences for receiving communications about our activities, events, sweepstakes and contests.
-			</p>
-            <p>
-                <span className="font-bold">- Purchase data</span>, including your order history and information needed to process and fulfill your order, including order details, billing address, and delivery address.
-			</p>
-            <p>
-                <span className="font-bold">- Other information</span>that we may collect which is not specifically listed here, but which we will use in accordance with this Privacy Policy or as otherwise disclosed at the time of collection.
-			</p>
-            <p>
-                <span className="font-bold">Data from other sources. </span> We may also collect information about you from:
-            </p>
-            <p>
-                - Business partners, such as advertising and joint marketing partners.
-			</p>
-            <p>
-                - Data providers, such as information services and data licensors.
-			</p>
-            <p>
-                - Public sources, such as blogs, forums or social media platforms.
-			</p>
+            <span>
+                <span className="font-bold">
+                    Personal information you provide to us. 
+                </span> 
+                &nbsp;Personal information you may provide to us through the Service or otherwise includes:
+            </span>
+            <ul>
+                <li>
+                    <span className="font-bold">Contact data</span>, personal or business contact information such as your first and last name, email, phone number and mailing addresses, professional title and company name.
+                </li>
+                <li>
+                    <span className="font-bold">Registration data</span>, such as information that you provide to register for an account or sign up for an event, including the day and month of your birth and the event you registered for.
+                </li>
+                <li>
+                    <span className="font-bold">Data about others</span>for whom you purchase an item or gift, such as name, delivery address and phone number. Please do not purchase a gift for someone or share their contact information with us unless you have their permission to do so.
+                </li>
+                <li>
+                    <span className="font-bold">Profile data</span>, such as your username and password that you may set to establish an online account with us and your interests and preferences.
+                </li>
+                <li>
+                    <span className="font-bold">Communications</span>, such as information you provide when you contact us with questions, feedback, survey responses, or otherwise correspond with us,
+                </li>
+                <li>
+                    <span className="font-bold">Marketing data</span>, such as the email address or contact details that we use to send marketing communications and your preferences for receiving communications about our activities, events, sweepstakes and contests.
+                </li>
+                <li>
+                    <span className="font-bold">Purchase data</span>, including your order history and information needed to process and fulfill your order, including order details, billing address, and delivery address.
+                </li>
+                <li>
+                    <span className="font-bold">Other information</span>that we may collect which is not specifically listed here, but which we will use in accordance with this Privacy Policy or as otherwise disclosed at the time of collection.
+                </li>
+            </ul>
+            <span>
+                <span className="font-bold">Data from other sources. </span> 
+                We may also collect information about you from:
+            </span>
+            <ul>
+                <li>
+                    Business partners, such as advertising and joint marketing partners.
+                </li>
+                <li>
+                    Data providers, such as information services and data licensors.
+                </li>
+                <li>
+                    Public sources, such as blogs, forums or social media platforms.
+                </li>
+            </ul>
             <p>
                 <span className="font-bold">Information we obtain from third party platforms. </span> If you choose to login to the Sites via a third-party platform, such as Google or Facebook, or otherwise connect your account on the third-party platform or network to your account through the Sites, we may collect information from that platform or network. You may also have the opportunity to provide us with additional information via the third-party platform or network, such as a list of your friends or connections and your email address. You can read more about your privacy choices in the “Your Choices” section.
             </p>
-            <p>
+            <span>
                 <span className="font-bold">Automatic collection. </span> We and our service providers may automatically log information about you, your computer or mobile device, and your activity occurring on or through the Sites, such as:
-            </p>
-            <p>
-                <span className="font-bold">- Device data</span>, such as your computer or mobile device operating system type and version number, manufacturer and model, browser type, screen resolution, IP address, the website you visited before browsing our site, and general location information such as city, state or geographic area.
-			</p>
-            <p>
-                <span className="font-bold">- Online activity data</span>, such as pages or screens you viewed, how long you spent on a page or screen, navigation paths between pages or screens, information about your activity on a page or screen, access times, and duration of access.
-			</p>
+            </span>
+            <ul>
+                <li>
+                    <span className="font-bold">Device data</span>, such as your computer or mobile device operating system type and version number, manufacturer and model, browser type, screen resolution, IP address, the website you visited before browsing our site, and general location information such as city, state or geographic area.
+                </li>
+                <li>
+                    <span className="font-bold">Online activity data</span>, such as pages or screens you viewed, how long you spent on a page or screen, navigation paths between pages or screens, information about your activity on a page or screen, access times, and duration of access.
+                </li>
+            </ul>
             <p>
                 <span className="font-bold">Cookies and similar technologies. </span> Some of our automatic data collection is facilitated by cookies and similar technologies. See our Cookie Policy for more information.
             </p>
@@ -114,27 +126,29 @@ export default () => (
             <p>
                 We use your personal information for the following purposes and as otherwise described in this Privacy Policy or at the time of collection:
             </p>
-            <p>
+            <span>
                 <span className="font-bold">Service delivery. </span> We may use your personal information to:
-            </p>
-            <p>
-                - provide, operate and improve the Service, such as to enable you to make purchases of clothing and accessories that we have listed on the Sites;
-			</p>
-            <p>
-                - establish and maintain your account on the Service;
-			</p>
-            <p>
-                - communicate with you about the Service, including by sending you announcements, updates, security alerts, and support and administrative messages;
-			</p>
-            <p>
-                - provide customer support and maintenance for the Service;
-			</p>
-            <p>
-                - facilitate your login to the Sites via third party platforms, such as Google and Facebook; and
-			</p>
-            <p>
-                - enable security features of the Sites, such as by sending you security codes via email or SMS, and remembering devices from which you have previously logged in.
-			</p>
+            </span>
+            <ul>
+                <li>
+                    provide, operate and improve the Service, such as to enable you to make purchases of clothing and accessories that we have listed on the Sites;
+                </li>
+                <li>
+                    establish and maintain your account on the Service;
+                </li>
+                <li>
+                    communicate with you about the Service, including by sending you announcements, updates, security alerts, and support and administrative messages;
+                </li>
+                <li>
+                    provide customer support and maintenance for the Service;
+                </li>
+                <li>
+                    facilitate your login to the Sites via third party platforms, such as Google and Facebook; and
+                </li>
+                <li>
+                    enable security features of the Sites, such as by sending you security codes via email or SMS, and remembering devices from which you have previously logged in.
+                </li>
+            </ul>
             <p>
                 <span className="font-bold">Direct Marketing. </span> We may use your personal information to send you Voni Aesthetics-related marketing communications as permitted by law. You will have the ability to opt-out of our marketing and promotional communications as described in the Your Choices section below.
             </p>
@@ -318,48 +332,54 @@ export default () => (
             <p className="font-large">
                 Like many companies online, we use services provided by Google, Facebook and others companies that use tracking technology. Your choices for opting out of these companies’ use of your personal information for interest-based advertising include:
             </p>
-            <p>
-                <span className="font-bold">Blocking cookies in your browser </span>. Most browsers let you remove or reject cookies, including cookies used for interest-based advertising. To do this, follow the instructions in your browser settings. Many browsers accept cookies by default until you change your settings. For more information about cookies, including how to see what cookies have been set on your device and how to manage and delete them, visit <a href="allaboutcookies.org"> allaboutcookies.org</a>.
-            </p> 
-            <p>
-                <span className="font-bold">Blocking advertising ID use in your mobile settings </span>. Your mobile device settings may provide functionality to limit use of the advertising ID associated with your mobile device for interest-based advertising purposes.
-            </p> 
-            <p>
-                <span className="font-bold">Using privacy plug-ins or browsers </span>. You can block our websites from setting cookies used for interest-based ads by using a browser with privacy features, like <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fbrave.com-252F-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3DUUzohOD2NP0YJpbbfwso2QTS2i8pq0kXH06ykyfiIq8-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3Dysxlhh4JTpssHkwb8Mu8h5PxQLll4Mov41Sw_8Qp76I%26e%3D&data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&sdata=AKSjw7Jg1wvYbiEUlNhbmc%2Bqra3R%2B2tZhtWt67RbbS0%3D&reserved=0"> Brave</a>
-                or installing browser plugins like <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fwww.eff.org-252Fprivacybadger-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3DiJtqQjcTdglt-252FrPTx8o6YMItndgN6VPZa1ATsvgv5Nw-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3D_S7MveGOoRQjo7McNLNB0H3rHpH8eaM_Yt6Hzh58uPk%26e%3D&data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&sdata=MzS5aNpiW6nJlOPssJDZUh%2BYJV1wuTTbxDtMIZXlF1c%3D&reserved=0">Privacy Badger</a>,
-                <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fwww.ghostery.com-252F-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3D7bLkXwlBB4RlOOrai33RDGlywD9D3Uz3W7dbyvE3w6o-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3Di3OHw0osHTWUVDetkFWDjpGzPg8q4fGocVN5sCp3U1g%26e%3D&amp;data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&amp;sdata=I9hXONIe0LOL0SJZGBSsJ2qIgbLBr0XwmId%2BKl%2BPsYM%3D&amp;reserved=0"> Ghostery</a>, or
-                <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fublock.org-252F-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3DI05aiOXYuD-252Fs20Ki89cnG6Toznv9352OsTLBOQ01kXI-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3DZ8WU2G-MdK8muHPPXCH-2NYAwWN_9R4yUoxENaRFe0Y%26e%3D&amp;data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&amp;sdata=h7Wtr1uQNS9PrvWN5Bc1215bBl2iMR5jrJmykVcx5Qo%3D&amp;reserved=0"> uBlock Origin</a>, and configuring them to block third party cookies/trackers.
-            </p> 
-            <p>
-                <span className="font-bold">Platform opt-outs </span>. The following advertising partners offer opt-out features that let you opt-out of use of your information for interest-based advertising:
-            </p> 
-            <p>
-                <span className="font-bold">Blocking advertising ID use in your mobile settings </span>. Your mobile device settings may provide functionality to limit use of the advertising ID associated with your mobile device for interest-based advertising purposes.
-            </p> 
-            <p className="mg-left-20">
-                - Google: <a href="https://adssettings.google.com">https://adssettings.google.com</a>
-            </p>
-            <p className="mg-left-20">
-                - Facebook: <a href="https://www.facebook.com/about/ads">https://www.facebook.com/about/ads</a>
-            </p> 
-            <p>
-                <span className="font-bold">Advertising industry opt-out tools </span>. Some of our business partners that collect information about users’ activities on or through the Sites or Apps may be members of organizations or programs that provide choices to individuals regarding the use of their browsing behavior or mobile application usage for purposes of targeted advertising. You can use the following opt-out options to limit use of your information for interest-based advertising by participating companies:
-            </p> 
-            <p className="mg-left-20">
-                - Digital Advertising Alliance: <a href="http://optout.aboutads.info">http://optout.aboutads.info</a>
-            </p>
-            <p className="mg-left-20">
-                - Network Advertising Initiative: <a href="http://optout.networkadvertising.org/?c=1">http://optout.networkadvertising.org/?c=1</a>
-            </p> 
-            <p className="mg-left-20">
-                - European users may opt out of receiving targeted advertising on websites through members of the European Interactive Digital Advertising Alliance by clicking <a href="https://www.youradchoices.com/appchoices">here</a>, selecting the user’s country, and then clicking “Choices” (or similarly titled link).
-            </p>
-            <p className="mg-left-20">
-                - Please note that we also may work with companies that offer their own opt-out mechanisms and may not participate in the opt-out mechanisms that we linked above.
-            </p> 
+            <ul>
+                <li>
+                    <span className="font-bold">Blocking cookies in your browser </span>. Most browsers let you remove or reject cookies, including cookies used for interest-based advertising. To do this, follow the instructions in your browser settings. Many browsers accept cookies by default until you change your settings. For more information about cookies, including how to see what cookies have been set on your device and how to manage and delete them, visit <a href="allaboutcookies.org"> allaboutcookies.org</a>.
+                </li> 
+                <li>
+                    <span className="font-bold">Blocking advertising ID use in your mobile settings </span>. Your mobile device settings may provide functionality to limit use of the advertising ID associated with your mobile device for interest-based advertising purposes.
+                </li> 
+                <li>
+                    <span className="font-bold">Using privacy plug-ins or browsers </span>. You can block our websites from setting cookies used for interest-based ads by using a browser with privacy features, like <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fbrave.com-252F-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3DUUzohOD2NP0YJpbbfwso2QTS2i8pq0kXH06ykyfiIq8-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3Dysxlhh4JTpssHkwb8Mu8h5PxQLll4Mov41Sw_8Qp76I%26e%3D&data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&sdata=AKSjw7Jg1wvYbiEUlNhbmc%2Bqra3R%2B2tZhtWt67RbbS0%3D&reserved=0"> Brave</a>
+                    or installing browser plugins like <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fwww.eff.org-252Fprivacybadger-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3DiJtqQjcTdglt-252FrPTx8o6YMItndgN6VPZa1ATsvgv5Nw-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3D_S7MveGOoRQjo7McNLNB0H3rHpH8eaM_Yt6Hzh58uPk%26e%3D&data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&sdata=MzS5aNpiW6nJlOPssJDZUh%2BYJV1wuTTbxDtMIZXlF1c%3D&reserved=0">Privacy Badger</a>,
+                    <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fwww.ghostery.com-252F-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3D7bLkXwlBB4RlOOrai33RDGlywD9D3Uz3W7dbyvE3w6o-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3Di3OHw0osHTWUVDetkFWDjpGzPg8q4fGocVN5sCp3U1g%26e%3D&amp;data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&amp;sdata=I9hXONIe0LOL0SJZGBSsJ2qIgbLBr0XwmId%2BKl%2BPsYM%3D&amp;reserved=0"> Ghostery</a>, or
+                    <a href="https://nam04.safelinks.protection.outlook.com/?url=https%3A%2F%2Furldefense.proofpoint.com%2Fv2%2Furl%3Fu%3Dhttps-3A__nam04.safelinks.protection.outlook.com_-3Furl-3Dhttps-253A-252F-252Fublock.org-252F-26data-3D01-257C01-257Cmsher-2540tegna.com-257C0b9591b3164a4223a43a08d76c83aa09-257Cccd8a79b7268413b878971f8b6f4c0df-257C0-26sdata-3DI05aiOXYuD-252Fs20Ki89cnG6Toznv9352OsTLBOQ01kXI-253D-26reserved-3D0%26d%3DDwMGaQ%26c%3D5vOBDmAB7iEjDDOZLSiuMw%26r%3D_YfAy831FkbZfTnxNug9lr52Tp3YXZ2rXWQiKuJkKFI%26m%3DFEz0wMvPsct8JxsR6hb29zWVG-8y5VDXFe9FQksk7T4%26s%3DZ8WU2G-MdK8muHPPXCH-2NYAwWN_9R4yUoxENaRFe0Y%26e%3D&amp;data=01%7C01%7Cmsher%40tegna.com%7C7ea8404e46834aead0b508d76c9655ae%7Cccd8a79b7268413b878971f8b6f4c0df%7C0&amp;sdata=h7Wtr1uQNS9PrvWN5Bc1215bBl2iMR5jrJmykVcx5Qo%3D&amp;reserved=0"> uBlock Origin</a>, and configuring them to block third party cookies/trackers.
+                </li> 
+                <li>
+                    <span className="font-bold">Platform opt-outs </span>. The following advertising partners offer opt-out features that let you opt-out of use of your information for interest-based advertising:
+                </li> 
+                <li>
+                    <span className="font-bold">Blocking advertising ID use in your mobile settings </span>. Your mobile device settings may provide functionality to limit use of the advertising ID associated with your mobile device for interest-based advertising purposes.
+                </li> 
+                <ul>
+                    <li>
+                        Google: <a href="https://adssettings.google.com">https://adssettings.google.com</a>
+                    </li>
+                    <li>
+                        Facebook: <a href="https://www.facebook.com/about/ads">https://www.facebook.com/about/ads</a>
+                    </li> 
+                </ul>
+                <li>
+                    <span className="font-bold">Advertising industry opt-out tools </span>. Some of our business partners that collect information about users’ activities on or through the Sites or Apps may be members of organizations or programs that provide choices to individuals regarding the use of their browsing behavior or mobile application usage for purposes of targeted advertising. You can use the following opt-out options to limit use of your information for interest-based advertising by participating companies:
+                </li> 
+                <ul>
+                    <li>
+                        Digital Advertising Alliance: <a href="http://optout.aboutads.info">http://optout.aboutads.info</a>
+                    </li>
+                    <li>
+                        Network Advertising Initiative: <a href="http://optout.networkadvertising.org/?c=1">http://optout.networkadvertising.org/?c=1</a>
+                    </li> 
+                    <li>
+                        European users may opt out of receiving targeted advertising on websites through members of the European Interactive Digital Advertising Alliance by clicking <a href="https://www.youradchoices.com/appchoices">here</a>, selecting the user’s country, and then clicking “Choices” (or similarly titled link).
+                    </li>
+                    <li>
+                        Please note that we also may work with companies that offer their own opt-out mechanisms and may not participate in the opt-out mechanisms that we linked above.
+                    </li> 
+                </ul> 
+            </ul>    
             <p>
                 If you choose to opt-out of targeted advertisements, you will still see advertisements online but they may not be relevant to you. Even if you do choose to opt out, not all companies that serve online behavioral advertising are included in this list, so you may still receive some cookies and tailored advertisements from companies that are not listed.
-            </p>             
+            </p>        
             <p className="font-bold">
                 CHANGES
             </p>
