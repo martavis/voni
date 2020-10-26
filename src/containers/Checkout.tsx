@@ -5,11 +5,12 @@ import { CartContext } from 'state/Cart';
 import { Order } from 'types/vendure';
 import { formatPrice } from 'utils/functions';
 
-import Information from './Information';
-import Shipping from './Shipping';
-import Payment from './Payment';
+import '../assets/styles/checkout.scss';
+
+import Information from 'components/Profile/Information';
+import Shipping from 'components/Profile/Shipping';
+import Payment from 'components/Profile/Payment';
 import ProductImage from 'components/ProductImage';
-import '../../assets/styles/checkout.scss';
 
 type DF = React.FC<{ path?: String }>;
 
@@ -68,7 +69,9 @@ const Checkout: DF = () => {
                 <div className="promo-code summary-section">
                     <div className="input-clip-path-outside">
                         <input placeholder="Discount Code" className="input-clip-path-inside"></input>
-                        <button className="input-clip-path-inside">Apply</button>
+                        <div className="input-clip-path-outside apply-button">
+                            <button className="input-clip-path-inside">Apply</button>
+                        </div>
                     </div>
                 </div>
                 <div className="price-structure summary-section">

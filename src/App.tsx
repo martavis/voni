@@ -6,7 +6,7 @@ import CartProvider from 'state/Cart';
 import gqlClient from './gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
-import Checkout from 'containers/Checkout/index';
+import Checkout from 'containers/Checkout';
 
 import './assets/styles/app.scss';
 

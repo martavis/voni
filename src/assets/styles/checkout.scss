@@ -74,6 +74,7 @@
             }
             .input-clip-path-outside { 
                 margin: 15px 0px;                
+                position: relative;
             }
             input.input-clip-path-inside { 
                 -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
@@ -82,6 +83,12 @@
             button.input-clip-path-inside { 
                 -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
                 clip-path: polygon(8px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
+            }
+            .apply-button { 
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                margin: 0px;
             }
         }
         .summary-section {
@@ -115,113 +122,7 @@
             }
         }
     }
-    .payment-container {
-        .input-clip-path-outside {
-            margin-top: 15px !important;
-        }
-        .two-comlumns-responsive {
-            .input-clip-path-outside {
-                margin-top: 0px !important;
-                margin-bottom: 0px !important;
-            }
-        }
-    }
-    .shipping-container { 
-        p { 
-            padding-bottom: 10px;
-        }
-    }
-    .page-container { 
-        margin-top: 30px;
-        padding: 10px;
-        .shipping-info { 
-            cursor: pointer;
-            padding: 10px 15px;
-            text-transform: none;
-            font-weight: 400 !important;
-            span { 
-                float: right;
-            }
-            >div { 
-                margin-top: 2px;
-            }
-            &.selected { 
-                background: white !important;
-                color: #090f02 !important;
-            }
-        }
-        .contact-info { 
-            padding: 10px 15px;
-            text-transform: none;
-            font-weight: 400 !important;
-            span { 
-                padding-left: 10px;
-            }
-            a { 
-                float: right;
-                line-height: 18px;
-            }
-            > div { 
-                padding-top: 8px;
-                &:first-child { 
-                    border-bottom: 2px solid grey;
-                    padding-bottom: 8px;
-                    padding-top: 0px;
-                }
-            }
-        }
-        
-        .button-clip-path-outside {            
-            -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-            text-transform: uppercase;
-            color: #000;
-            background-color: #fafafa;
-            padding: 0;
-            float: right;
-        }
-        .button-clip-path-inside { 
-            -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-            clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-            padding: 12px 40px;            
-            font-family: 'Bahnschrift';
-            text-transform: uppercase;
-            color: #000;
-            cursor: pointer;
-            background-color: #fafafa;
-            outline: none;
-            border: none;
-            font-size: 1em;
-            &:hover {
-                color: #fafafa;
-                background-color: black;
-            }
-        }
-        .title { 
-            font-family: 'Skirmisher';
-            font-size: 1.5em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        input { 
-            width: calc(100% - 30px);
-            padding: 10px 15px 8px 15px;
-        }
-        a { 
-            font-family: 'Skirmisher';
-            color: white;
-            padding-left: 10px;
-        }        
-        span { 
-            font-family: 'Bahnschrift' !important;
-        }
-        .information-submit { 
-            margin-top: 20px;
-            a { 
-                line-height: 43px;
-            }
-        }
-    }
+    
     .two-comlumns-responsive { 
         display: grid;
         grid-template-columns: repeat(2, 1fr);

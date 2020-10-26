@@ -1,6 +1,7 @@
 import { Link } from '@reach/router';
 import React from 'react';
 
+import './Profile.scss';
 type DF = React.FC<{ path?: String }>;
 
 const Information: DF = () => {

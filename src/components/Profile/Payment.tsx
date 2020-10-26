@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from '@reach/router';
 
+import './Profile.scss';
 type DF = React.FC<{ path?: String }>;
 
-const Information: DF = () => {
+const Payment: DF = () => {
 	let contact = "example@example.com";
     let shipTo = "10th Street, Example area, City 7600, Pakistan";
     let ShipMethod = "Standard - Free";
@@ -109,4 +110,4 @@ const Information: DF = () => {
     );
 };
 
-export default Information;
+export default Payment;
