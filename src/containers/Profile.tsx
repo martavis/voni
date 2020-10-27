@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from '@reach/router';
 
-import '../assets/styles/checkout.scss';
+import '../assets/styles/account-related.scss';
 
 import Information from 'components/Profile/Information';
 import Shipping from 'components/Profile/Shipping';

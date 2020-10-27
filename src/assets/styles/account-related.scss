@@ -1,5 +1,27 @@
 @import './variables.scss';
 
+.profile-container {
+    .forms {
+        padding-right: 45px;
+        
+        header {
+            a {
+                font-size: 1.5em;
+                color: $white;
+                user-select: none;
+                
+                &[data-enabled="false"] {
+                    font-weight: 300;
+                    pointer-events: none;
+                }  
+                &:not(:last-of-type) {
+                    margin-right: 30px;
+                }
+            }
+        }
+    }
+}
+
 .profile { 
     p { 
         float: left;

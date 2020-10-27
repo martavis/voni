@@ -12,7 +12,7 @@ import Profile from 'containers/Profile';
 import './assets/styles/app.scss';
 
 // non-static routes
-addPrefetchExcludes(['cart', 'profile', 'checkout', 'checkout/shipping', 'checkout/payment']);
+addPrefetchExcludes(['cart', 'profile', 'profile/shipping', 'profile/payment', 'checkout', 'checkout/shipping', 'checkout/payment']);
 
 function App() {
 	return (
@@ -28,7 +28,9 @@ function App() {
 								<Checkout path="checkout"/>
 								<Checkout path="checkout/shipping"/>
 								<Checkout path="checkout/payment"/>
-								<Profile path="profile"></Profile>
+								<Profile path="profile"/>
+								<Profile path="profile/shipping"/>
+								<Profile path="profile/payment"/>
 								<Routes default />
 							</Router>
 						</React.Suspense>

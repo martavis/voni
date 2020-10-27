@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import '../assets/styles/login-signup.scss';
+import '../assets/styles/account-related.scss';
 
 export default () => {
     const [alertMessage, setAlertMessage] = useState("spam alert");

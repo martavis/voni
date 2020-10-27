@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import '../assets/styles/login-signup.scss';
+import '../assets/styles/account-related.scss';
 
 export default () => {
     const [alertMessage, setAlertMessage] = useState("spam alert");
@@ -19,28 +19,28 @@ export default () => {
             setAlertMessage("Please input assword field.");
             return;
         }
-        setAlertMessage('sending now..');
-        const requestOptions = {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-            },
-            body : JSON.stringify( {
-                sendToEmail: "info.voni@gmail.com", 
-                userEmail: email, //email input
-                userName: name, //name input
-            } )
-        };
-        fetch('https://us-central1-portfolio-2020-268818.cloudfunctions.net/sendEmailToInfo', requestOptions)            
-            .then(response => {
-                if(response.ok == true) { 
-                    setAlertClass("contact-alert-green");
-                    setAlertMessage("Email sent successfully.");
-                } else { 
-                    setAlertClass("contact-alert-red");
-                    setAlertMessage("There was an error to sent email.");
-                }
-            });
+        setAlertMessage('sending now..');        
+        // const requestOptions = {
+        //     method: 'POST',
+        //     headers: { 
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body : JSON.stringify( {
+        //         sendToEmail: "info.voni@gmail.com", 
+        //         userEmail: email, //email input
+        //         userName: name, //name input
+        //     } )
+        // };
+        // fetch('https://us-central1-portfolio-2020-268818.cloudfunctions.net/sendEmailToInfo', requestOptions)            
+        //     .then(response => {
+        //         if(response.ok == true) { 
+        //             setAlertClass("contact-alert-green");
+        //             setAlertMessage("Email sent successfully.");
+        //         } else { 
+        //             setAlertClass("contact-alert-red");
+        //             setAlertMessage("There was an error to sent email.");
+        //         }
+        //     });
     };
     let setPasswordField = (event: React.ChangeEvent<HTMLInputElement>) => { 
         setPassword(event.target.value);
