@@ -208,3 +208,44 @@ export const REMOVE_FROM_CART = gql`
     }
     ${CART_FRAGMENT}
 `;
+
+const REGISTER_CUSTOMER_ACCOUNT_RESULT = gql`
+    fragment RegisterResult on RegisterCustomerAccountResult {
+        ... on Success{
+            success
+        }
+    }
+`;
+
+export const REGISTER_ACCOUNT = gql`
+    mutation registerAccount($customerAccount: RegisterCustomerInput!) {
+        registerCustomerAccount(input: $customerAccount) {
+            ...RegisterResult
+        }
+    }
+    ${REGISTER_CUSTOMER_ACCOUNT_RESULT}
+`;
+
+const NATIVE_AUTHENTICATION_RESULT = gql`
+    fragment LoginResult on NativeAuthenticationResult {
+        ... on CurrentUser{
+            id,
+            identifier,
+            channels { 
+                id,
+                token,
+                code
+            }
+        }
+    }
+`;
+
+export const LOGIN = gql`
+    mutation login($userName: String!, $password: String!, $rememberMe: Boolean) {
+        login(username: $userName, password: $password, rememberMe: $rememberMe) {     
+            ...LoginResult
+        }
+    }
+    ${NATIVE_AUTHENTICATION_RESULT}
+`;
+
