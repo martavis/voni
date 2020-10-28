@@ -8,14 +8,7 @@
             margin-top: 0px !important;
             margin-bottom: 0px !important;
         }
-    }    
-    .two-comlumns-responsive { 
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 20px;
-        row-gap: 50px;
-        box-sizing: border-box;
-    }
+    }  
 }
 .shipping-container { 
     p { 

@@ -2,9 +2,12 @@ import { Link } from '@reach/router';
 import React, { useState } from 'react';
 
 import './Profile.scss';
-type DF = React.FC<{ path?: String }>;
 
-const Shipping: DF = () => {
+type Props = {
+    isCheckout: boolean,
+};
+
+const Shipping = ({ isCheckout }: Props) => {
 	let [shipMethod, setShipMethod] = useState(0);
 	let contact = "example@example.com";
 	let shipTo = "10th Street, Example area, City 7600, Pakistan";
@@ -58,14 +61,18 @@ const Shipping: DF = () => {
 					</div>
 				</div>
 			</div>
-			<div className="information-submit">
-				<Link to="/checkout"> <span> {`<  Return to Information`}</span></Link> 
-				<div className="button-clip-path-outside">
-					<button onClick={onSubmit} className="button-clip-path-inside"> 
-						CONTINUE TO PAYMENT
-					</button> 
+			{  	
+				isCheckout ? <>
+				<div className="information-submit">
+					<Link to="/checkout"> <span> {`<  Return to Information`}</span></Link> 
+					<div className="button-clip-path-outside">
+						<button onClick={onSubmit} className="button-clip-path-inside"> 
+							CONTINUE TO PAYMENT
+						</button> 
+					</div>
 				</div>
-			</div>
+				</> : ''
+			}
 		</div>
 	);
 };

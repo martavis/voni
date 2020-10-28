@@ -45,9 +45,9 @@ const Checkout: DF = () => {
                     <Link to="/checkout/shipping" data-enabled={hasReachedShipping}>Shipping</Link>
                     <Link to="/checkout/payment" data-enabled={hasReachedPayment}>Payment</Link>
                 </header>
-                { hasReachedPayment ? <Payment></Payment> : ''}        
-                { hasReachedShipping && !hasReachedPayment? <Shipping></Shipping> : ''}   
-                { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information></Information> : ''}          
+                { hasReachedPayment ? <Payment isCheckout={true}></Payment> : ''}        
+                { hasReachedShipping && !hasReachedPayment? <Shipping isCheckout={true}></Shipping> : ''}   
+                { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information isCheckout={true}></Information> : ''}          
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{

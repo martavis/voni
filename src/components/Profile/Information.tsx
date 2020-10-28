@@ -2,15 +2,12 @@ import { Link } from '@reach/router';
 import React from 'react';
 
 import './Profile.scss';
-type DF = React.FC<{ path?: String }>;
 
-const Information: DF = () => {
-	// let information = { 
-	// 	contact: '',
-	// 	address: '', 
-	// 	fname: '', 
-	// 	lname: '',
-	// }
+type Props = {
+    isCheckout: boolean,
+};
+
+const Information = ({ isCheckout }: Props) => {
 	const onSubmit = () => { 
 		window.location.href="/profile/shipping";
 	}
@@ -22,9 +19,12 @@ const Information: DF = () => {
 			<div className="input-clip-path-outside">
 				<input placeholder="Email or mobile phone number" className="input-clip-path-inside"></input>
 			</div>
-			<span>
-				Already have an account? <Link to="/login">LOGIN</Link>
-			</span>
+			{	isCheckout ? <>
+				<span>
+					Already have an account? <Link to="/login">LOGIN</Link>
+				</span>
+				</> : ''
+			}
 			<p className="title">
 				SHIPPING ADDRESS
 			</p>
@@ -53,14 +53,18 @@ const Information: DF = () => {
 					<input placeholder="Post Code" name="postcode" className="input-clip-path-inside"></input>
 				</div>
 			</div>
-			<div className="information-submit">
-				<Link to="/cart"> <span> {`<  Return to Cart`}</span></Link> 
-				<div className="button-clip-path-outside">
-					<button onClick={onSubmit} className="button-clip-path-inside"> 
-						CONTINUE TO SHIPPING
-					</button> 
+			{  	
+				isCheckout ? <>
+				<div className="information-submit">
+					<Link to="/cart"> <span> {`<  Return to Cart`}</span></Link> 
+					<div className="button-clip-path-outside">
+						<button onClick={onSubmit} className="button-clip-path-inside"> 
+							CONTINUE TO SHIPPING
+						</button> 
+					</div>
 				</div>
-			</div>
+				</> : ''
+			}
 		</div>
 	);
 };

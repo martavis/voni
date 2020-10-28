@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Link } from '@reach/router';
 
 import './Profile.scss';
-type DF = React.FC<{ path?: String }>;
 
-const Payment: DF = () => {
+type Props = {
+    isCheckout: boolean,
+};
+
+const Payment = ({ isCheckout }: Props) => {
 	let contact = "example@example.com";
     let shipTo = "10th Street, Example area, City 7600, Pakistan";
     let ShipMethod = "Standard - Free";
     let [billMethod, setBillMethod] = useState(0);
-	const onSubmit = () => { 
-		window.location.href="/profile/payment";
-	}
     return (
         <div className="payment-container page-container">
             <div className="input-clip-path-outside"> 
@@ -98,14 +98,18 @@ const Payment: DF = () => {
                 </>
                 : ''
             }
-			<div className="information-submit">
-				<Link to="/checkout"> <span> {`<  Return to Information`}</span></Link> 
-				<div className="button-clip-path-outside">
-					<button onClick={onSubmit} className="button-clip-path-inside"> 
-						CONTINUE TO PAYMENT
-					</button> 
+			{ isCheckout ? <>
+				<div className="information-submit">
+					<Link to="/checkout"> <span> {`<  Return to Information`}</span></Link> 
+					<div className="button-clip-path-outside">
+						{/* <button onClick={onSubmit} className="button-clip-path-inside"> 
+							CONTINUE TO PAYMENT
+						</button>  */}
+					</div>
 				</div>
-			</div>
+				</>
+				: ''
+			}
         </div>
     );
 };

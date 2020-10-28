@@ -12,6 +12,7 @@ const httpLink = new HttpLink({
     fetch: fetch,
     credentials: 'include'
 });
+
 // const wsLink = process.browser ? new WebSocketLink(
 //     new SubscriptionClient(process.env.VENDURE_WS_URL || '', {
 //         reconnect: true,

@@ -8,7 +8,7 @@ export default () => {
     const [email, setEmail] = useState("");
     const [alertClass, setAlertClass] = useState("contact-alert-red");
 
-    let login = (event: React.MouseEvent<HTMLButtonElement>) => {
+    let register = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAlertClass("contact-alert-red");
        
         if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) { 
@@ -68,7 +68,7 @@ export default () => {
                             {alertMessage}
                         </p>
                         <div className="button-clip-path-outside">
-                            <button className="button-clip-path-inside" onClick={login}> 
+                            <button className="button-clip-path-inside" onClick={register}> 
                                 SUBMIT
                             </button>            
                         </div> 

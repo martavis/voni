@@ -1,11 +1,13 @@
 @import './variables.scss';
 
 .profile-container {
+    margin-top: -10px !important;
     .forms {
         padding-right: 45px;
-        
+        padding-top: 65px !important;
         header {
             a {
+                cursor: pointer;
                 font-size: 1.5em;
                 color: $white;
                 user-select: none;
@@ -27,41 +29,6 @@
         float: left;
         color: red;
         margin: 10px 0px;
-    }
-    .input-clip-path-outside { 
-        -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-        clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-        text-transform: uppercase;
-        background-color: grey;
-        padding: 0;
-        margin-top: 0px;
-        margin-bottom: 15px;
-    }
-    .input-clip-path-inside { 
-        -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-        clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-        background: #090f02;
-        background-repeat: no-repeat;
-        outline: none;
-        border: none;
-        padding: 15px;
-        width: calc(100% - 30px);
-        color: white;
-        font-weight: 600;
-        position: relative;
-        font-family: 'Bahnschrift' !important;
-        margin: 0;
-        vertical-align: bottom;
-        &::before { 
-            content: '';
-            width: 100%;
-            height: 100%;
-            background: url(https://storage.googleapis.com/voni-assets/img/bg-dots.png);
-            background-repeat: repeat;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
     }
     .button-clip-path-outside {            
         -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
@@ -87,6 +54,41 @@
         &:hover {
             color: #fafafa;
             background-color: black;
+        }
+    }
+    .input-clip-path-outside { 
+        -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+        clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+        text-transform: uppercase;
+        background-color: grey;
+        padding: 0;
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+    .input-clip-path-inside { 
+        -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
+        clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
+        background: #090f02;
+        background-repeat: no-repeat;
+        outline: none;
+        border: none;
+        color: white;    
+        width: calc(100% - 30px);
+        padding: 15px;
+        font-weight: 600;
+        position: relative;
+        font-family: 'Bahnschrift' !important;
+        margin: 0;
+        vertical-align: bottom;
+        &::before { 
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: url(https://storage.googleapis.com/voni-assets/img/bg-dots.png);
+            background-repeat: repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     }
     .contact-blurb{
