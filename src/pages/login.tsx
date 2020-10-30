@@ -4,7 +4,7 @@ import { LOGIN } from 'utils/gql';
 import { CustomerContext } from 'state/Customer';
 import gqlClient from './../gqlClient';
 import { GET_ACTIVE_CUSTOMER } from './../utils/gql';
-// import { Customer } from 'types/vendure';
+import { Customer } from 'types/vendure';
 
 import '../assets/styles/account-related.scss';
 
@@ -13,11 +13,10 @@ export default () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [alertClass, setAlertClass] = useState("contact-alert-red");
-    const {token, setToken}: { token: String, setToken: Function} = useContext(CustomerContext);
+    const {setToken, setCustomer}: { token: String, setToken: Function, customer: Customer, setCustomer: Function} = useContext(CustomerContext);
 
     let login = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAlertClass("contact-alert-red");
-       
+        setAlertClass("contact-alert-red");       
         if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) { 
             setAlertMessage("Please input correct email address.");
             return;
@@ -43,13 +42,13 @@ export default () => {
     const [loginAccount] = useMutation(LOGIN, {
 		onCompleted: async (data) => {
 			if (data) {		                
-                setToken(data.login.channels[0].token);   
-                const {data: { customerData }} = await gqlClient.query({
+                setToken(data.login.channels[0].token);  
+                const {data: result} = await gqlClient.query({
                     query: GET_ACTIVE_CUSTOMER,
-                    fetchPolicy: 'no-cache'
+                    fetchPolicy: 'no-cache',                    
                 });
-                console.log(customerData);
-                // setCustomer(customerData);
+                setCustomer(result.activeCustomer);
+                window.location.href=("/profile");
 			} else {
 				console.log('nope');
 			}
@@ -61,9 +60,7 @@ export default () => {
 
     return (
         <div className="profile page">
-            <h1 className="page-title">Log in</h1>            
-            {/* { customer } */}
-            { token }
+            <h1 className="page-title">Log in</h1>       
             <div className="section-custom-border">
                 <div className="profile-info"> 
                     <div className="input-clip-path-outside">

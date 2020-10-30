@@ -13,9 +13,9 @@ type InitialStateType = {
 };
 
 const initialState = {
-    customer: JSON.parse(localStorage.getItem('customerStorage')) || null,
-    setCustomer: () => {},
-    token: JSON.parse(localStorage.getItem('tokenStorage')) || null,
+    customer: JSON.parse(localStorage.getItem('customerStorage') != undefined ? localStorage.getItem('customerStorage') : null) || null,
+    setCustomer: () => {},    
+    token: localStorage.getItem('tokenStorage') || null,
     setToken: () => {}
 };
 

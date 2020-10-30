@@ -1,11 +1,12 @@
 import ApolloClient from 'apollo-client';
 import fetch from 'isomorphic-fetch'; 
 import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from '@apollo/client';
+import { InMemoryCache, ApolloLink, concat } from '@apollo/client';
 import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
+
 
 const httpLink = new HttpLink({ 
     uri: process.env.VENDURE_API_URL, 
@@ -35,6 +36,7 @@ const httpLink = new HttpLink({
 const gqlClient = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache(),
+    credentials: 'include'
 });
 
 export default gqlClient;
