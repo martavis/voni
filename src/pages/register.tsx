@@ -16,7 +16,7 @@ export default () => {
     const [registerAccount] = useMutation(REGISTER_ACCOUNT, {
 		onCompleted: (data) => {
 			if (data) {
-				// setCart(data.cart);
+				console.log(data);
 			} else {
 				console.log('nope');
 			}

@@ -249,3 +249,17 @@ export const LOGIN = gql`
     ${NATIVE_AUTHENTICATION_RESULT}
 `;
 
+export const GET_ACTIVE_CUSTOMER = gql`
+    query {
+        activeCustomer {
+            id
+            createdAt
+            updatedAt
+            title
+            firstName
+            lastName
+            phoneNumber
+            emailAddress
+        }
+    }
+`;
