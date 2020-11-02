@@ -1,0 +1,25 @@
+.customSelectCountries {
+    > div > div { 
+        background: #090f02;
+        height: 42px;
+        border: 1px solid grey !important;
+        > div > div { 
+            color : white;
+            font-family: 'Bahnschrift' !important;
+        }
+    }
+
+    > div > div:nth-child(3) { 
+        height: 200px !important;
+        > div { 
+            height: 200px;
+            &::-webkit-scrollbar {
+                width: 4px;
+            }    
+            &::-webkit-scrollbar-thumb {
+                background-color: white;
+            }
+            
+        }
+    }
+}

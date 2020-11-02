@@ -1,5 +1,13 @@
 import gql from 'graphql-tag';
 
+export const COUNTRY_FRAGMENT = gql`
+    fragment Country on Country {
+        id
+        code
+        name
+        enabled
+    }
+`;
 
 export const CART_FRAGMENT = gql`
     fragment Cart on Order {
@@ -71,5 +79,26 @@ export const NATIVE_AUTHENTICATION_RESULT = gql`
 export const LOGOUT_RESULT = gql`
     fragment Result on Success { 
         success
+    }
+`;
+
+export const ADDRESS_FRAGMENT = gql`
+    fragment Address on Address {
+        id
+        fullName
+        company
+        streetLine1
+        streetLine2
+        city
+        province
+        postalCode
+        country {
+            id
+            code
+            name
+        }
+        phoneNumber
+        defaultShippingAddress
+        defaultBillingAddress
     }
 `;

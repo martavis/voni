@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import '../assets/styles/account-related.scss';
 
 import ProfileInfo from 'components/Profile/ProfileInfo';
-import Shipping from 'components/Profile/Shipping';
+import ShippingInfo from 'components/Profile/ShippingInfo';
 import Payment from 'components/Profile/Payment';
 
 type DF = React.FC<{ path?: String }>;
@@ -18,10 +18,11 @@ const Profile: DF = () => {
                 <header>
                     <a onClick={() => {setViewMode(0)}}>Information</a>
                     <a onClick={() => {setViewMode(1)}}>Shipping</a>
-                    <a onClick={() => {setViewMode(2)}}>Payment</a>
+                    <a onClick={() => {setViewMode(2)}}>Privacy</a>
+                    <a onClick={() => {setViewMode(2)}}>Orders</a>
                 </header>
                 { viewMode == 2 ? <Payment isCheckout={false}></Payment> : ''}        
-                { viewMode == 1 ? <Shipping isCheckout={false}></Shipping> : ''}   
+                { viewMode == 1 ? <ShippingInfo /> : ''}   
                 { viewMode == 0 ? <ProfileInfo /> : ''}          
             </div>            
 		</div>

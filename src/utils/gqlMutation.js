@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, LOGOUT_RESULT } from './gqlFragment';
+import { CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, LOGOUT_RESULT, ADDRESS_FRAGMENT } from './gqlFragment';
 
 export const ADD_TO_CART = gql`
     mutation addToCart($productVariantId: ID!, $quantity: Int!) {
@@ -67,3 +67,22 @@ export const UPDATE_CUSTOMER_DETAILS = gql`
         }
     }
 `;
+
+export const UPDATE_ADDRESS = gql`
+    mutation UpdateAddress($input: UpdateAddressInput!) {
+        updateCustomerAddress(input: $input) {
+            ...Address
+        }
+    }
+    ${ADDRESS_FRAGMENT}
+`;
+
+export const CREATE_ADDRESS = gql`
+    mutation CreateAddress($input: CreateAddressInput!) {
+        createCustomerAddress(input: $input) {
+            ...Address
+        }
+    }
+    ${ADDRESS_FRAGMENT}
+`;
+

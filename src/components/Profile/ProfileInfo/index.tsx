@@ -34,7 +34,7 @@ const ProfileInfo = () => {
             query: GET_ACTIVE_CUSTOMER,
             fetchPolicy: 'no-cache'
         });
-        setUCustomer(activeCustomer);         
+        setUCustomer(activeCustomer);                
     }
 
     let updateProfileInfo = ( event: React.MouseEvent<HTMLButtonElement> ) => {    
@@ -68,9 +68,11 @@ const ProfileInfo = () => {
 
     return ( 
         <div className="profileInfo">
-            <CustomInput placeholder="Title" type="input" value={uCustomer.title} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, title:event.target.value})}} />
-            <CustomInput placeholder="First Name" type="input" value={uCustomer.firstName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, firstName:event.target.value})}} />
-            <CustomInput placeholder="Last Name" type="input" value={uCustomer.lastName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, lastName:event.target.value})}} />
+            <CustomInput placeholder="Title" type="input" value={uCustomer.title} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, title:event.target.value})}} />                 
+            <div className="two-comlumns-responsive">
+                <CustomInput placeholder="First Name" type="input" value={uCustomer.firstName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, firstName:event.target.value})}} />
+                <CustomInput placeholder="Last Name" type="input" value={uCustomer.lastName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, lastName:event.target.value})}} />
+            </div>       
             <CustomInput placeholder="Email" type="input" value={uCustomer.emailAddress} enable={false} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, emailAddress:event.target.value})}} />
             <CustomInput placeholder="Phone Number" type="input" value={uCustomer.phoneNumber} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, phoneNumber:event.target.value})}} />
             <CustomButton buttonText="Update" submit={updateProfileInfo}></CustomButton>
