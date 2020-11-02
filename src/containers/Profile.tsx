@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import '../assets/styles/account-related.scss';
 
-import Information from 'components/Profile/Information';
+import ProfileInfo from 'components/Profile/ProfileInfo';
 import Shipping from 'components/Profile/Shipping';
 import Payment from 'components/Profile/Payment';
 
@@ -14,7 +14,7 @@ const Profile: DF = () => {
 	return (
 		<div className="profile-container page-container">
             <h1 className="page-title">Profile</h1>
-            <div className="forms profile-side section-custom-border">
+            <div className="forms section-custom-border">
                 <header>
                     <a onClick={() => {setViewMode(0)}}>Information</a>
                     <a onClick={() => {setViewMode(1)}}>Shipping</a>
@@ -22,7 +22,7 @@ const Profile: DF = () => {
                 </header>
                 { viewMode == 2 ? <Payment isCheckout={false}></Payment> : ''}        
                 { viewMode == 1 ? <Shipping isCheckout={false}></Shipping> : ''}   
-                { viewMode == 0 ? <Information isCheckout={false}></Information> : ''}          
+                { viewMode == 0 ? <ProfileInfo /> : ''}          
             </div>            
 		</div>
 	);

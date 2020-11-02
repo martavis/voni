@@ -3,7 +3,7 @@ import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
 import { Order } from 'types/vendure';
-import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gql';
+import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gqlMutation';
 import { formatPrice } from 'utils/functions';
 
 import '../assets/styles/cart.scss';

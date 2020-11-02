@@ -3636,7 +3636,6 @@ export type UpdateCustomerGroupInput = {
 };
 
 export type UpdateCustomerInput = {
-  id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;

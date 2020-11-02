@@ -1,11 +1,11 @@
 import path from 'path';
-import gqlClient from './src/gqlClient';
+import gqlClient from './src/utils/gqlClient';
 
 import { 
     GET_ALL_COLLECTIONS,
     GET_FEATURED_COLLECTION,
     GET_ALL_PRODUCTS
-} from './src/utils/gql';
+} from './src/utils/gqlQuery';
 
 export default {
     entry: path.join(__dirname, 'src', 'index.tsx'),

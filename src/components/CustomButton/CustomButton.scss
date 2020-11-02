@@ -1,0 +1,28 @@
+.button-clip-path-outside {            
+    -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
+    text-transform: uppercase;
+    color: #000;
+    background-color: #fafafa;
+    padding: 0;
+    float: right;
+}
+.button-clip-path-inside { 
+    -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px 100%, 1px 9px);
+    clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
+    padding: 12px 40px;            
+    font-family: 'Bahnschrift';
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    background-color: #fafafa;
+    width: 100%;
+    padding: 15px 25px;
+    outline: none;
+    border: none;
+    font-size: 1em;
+    &:hover {
+        color: #fafafa;
+        background-color: black;
+    }
+}

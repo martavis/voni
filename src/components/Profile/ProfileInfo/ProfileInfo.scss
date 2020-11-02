@@ -1,0 +1,8 @@
+.profileInfo { 
+    padding: 20px 10px 40px 10px;
+
+    /* webkit solution */
+    ::-webkit-input-placeholder { text-align:right; }
+    /* mozilla solution */
+    input:-moz-placeholder { text-align:right; }
+}

@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { Order, Customer } from 'types/vendure';
 import { CustomerContext } from 'state/Customer';
-import { LOGOUT } from 'utils/gql';
+import { LOGOUT } from 'utils/gqlMutation';
 import './Header.scss';
 
 const Header: React.FC = () => {

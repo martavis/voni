@@ -19,7 +19,8 @@ const Information = ({ isCheckout }: Props) => {
 			<div className="input-clip-path-outside">
 				<input placeholder="Email or mobile phone number" className="input-clip-path-inside"></input>
 			</div>
-			{	isCheckout ? <>
+			{	
+				isCheckout ? <>
 				<span>
 					Already have an account? <Link to="/login">LOGIN</Link>
 				</span>

@@ -4,7 +4,7 @@ import { Link, Router } from '@reach/router';
 import { ApolloProvider } from '@apollo/react-hooks';
 import CartProvider from 'state/Cart';
 import CustomerProvider from 'state/Customer';
-import gqlClient  from './gqlClient';
+import gqlClient  from 'utils/gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Checkout from 'containers/Checkout';

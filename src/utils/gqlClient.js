@@ -7,7 +7,6 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
-
 const httpLink = new HttpLink({ 
     uri: process.env.VENDURE_API_URL, 
     fetch: fetch,

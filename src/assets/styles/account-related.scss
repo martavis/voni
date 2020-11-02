@@ -26,83 +26,12 @@
 
 .profile { 
     p { 
-        float: left;
-        color: red;
+        float: left;    
         margin: 10px 0px;
-    }
-    .button-clip-path-outside {            
-        -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-        clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-        text-transform: uppercase;
-        color: #000;
-        background-color: #fafafa;
-        padding: 0;
-        float: right;
-    }
-    .button-clip-path-inside { 
-        -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px 100%, 1px 9px);
-        clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-        padding: 12px 40px;            
-        font-family: 'Bahnschrift';
-        text-transform: uppercase;
-        color: #000;
-        cursor: pointer;
-        background-color: #fafafa;
-        outline: none;
-        border: none;
-        font-size: 1em;
-        &:hover {
-            color: #fafafa;
-            background-color: black;
-        }
-    }
-    .input-clip-path-outside { 
-        -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-        clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
-        text-transform: uppercase;
-        background-color: grey;
-        padding: 0;
-        margin-top: 0px;
-        margin-bottom: 15px;
-    }
-    .input-clip-path-inside { 
-        -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-        clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
-        background: #090f02;
-        background-repeat: no-repeat;
-        outline: none;
-        border: none;
-        color: white;    
-        width: calc(100% - 30px);
-        padding: 15px;
-        font-weight: 600;
-        position: relative;
-        font-family: 'Bahnschrift' !important;
-        margin: 0;
-        vertical-align: bottom;
-        &::before { 
-            content: '';
-            width: 100%;
-            height: 100%;
-            background: url(https://storage.googleapis.com/voni-assets/img/bg-dots.png);
-            background-repeat: repeat;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-    }
-    .contact-blurb{
-        padding: 20px;
-    }              
-    .contact-alert-red { 
-        color: red;
-    }
-    .contact-alert-green { 
-        color: green;
-    }
+    }    
     .profile-info { 
         width: 420px;
-    }
+    }    
     .section-custom-border { 
         display: flex;
         justify-content: center;

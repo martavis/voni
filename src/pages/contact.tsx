@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { validateEmail } from 'utils/functions';
+import CustomInput from 'components/CustomInput';
+import CustomButton from 'components/CustomButton';
 
 import '../assets/styles/contact.scss';
 
@@ -7,15 +10,15 @@ export default () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
-    const [alertClass, setAlertClass] = useState("contact-alert-red");
+    const [alertClass, setAlertClass] = useState("alert-red");
 
     let sendEmail = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAlertClass("contact-alert-red");
+        setAlertClass("alert-red");
         if (name == "") { 
             setAlertMessage("Please input name field.");
             return;
         }
-        if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) { 
+        if (!validateEmail(email)) { 
             setAlertMessage("Please input correct email address.");
             return;
         }
@@ -42,19 +45,10 @@ export default () => {
                     setAlertClass("contact-alert-green");
                     setAlertMessage("Email sent successfully.");
                 } else { 
-                    setAlertClass("contact-alert-red");
+                    setAlertClass("alert-red");
                     setAlertMessage("There was an error to sent email.");
                 }
             });
-    };
-    let setNameField = (event: React.ChangeEvent<HTMLInputElement>) => { 
-        setName(event.target.value);
-    };
-    let setEmailField = (event: React.ChangeEvent<HTMLInputElement>) => { 
-        setEmail(event.target.value);
-    };
-    let setMessageField = (event: { target: { value: React.SetStateAction<string>; }; }) => { 
-        setMessage(event.target.value);
     };
 
     return (
@@ -63,28 +57,12 @@ export default () => {
             <div className="contact-blurb section-custom-border">
                 <div className="contact-form"> 
                     <div className="contact-info"> 
-                        <div className="input-clip-path-outside">
-                            <input placeholder="NAME" onChange={setNameField} value={name} className="input-clip-path-inside"></input>
-                        </div>
-                        <div className="input-clip-path-outside">
-                            <input placeholder="EMAIL" onChange={setEmailField} value={email} className="input-clip-path-inside"></input>
-                        </div>
+                        <CustomInput placeholder="NAME" type="input" value="" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setName(event.target.value); }} />
+                        <CustomInput placeholder="EMAIL" type="input" value="" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setEmail(event.target.value); }} />
                     </div>
-                    <div className="contact-message">
-                        <div className="input-clip-path-outside">
-                            <textarea placeholder="MESSAGE" onChange={setMessageField} value={message} className="input-clip-path-inside"></textarea>
-                        </div>
-                    </div>   
-                    <div className="contact-submit"> 
-                        <div className="button-clip-path-outside">
-                            <button className="button-clip-path-inside" onClick={sendEmail}> 
-                                SUBMIT
-                            </button>            
-                        </div>                        
-                    </div>     
-                    <p className={alertClass}> 
-                        {alertMessage}
-                    </p>
+                    <CustomInput placeholder="MESSAGE"  value="" type="textarea" onChange={(event: { target: { value: React.SetStateAction<string>; }; }) => {setMessage(event.target.value);}} />
+                    <CustomButton buttonText="SUBMIT" submit={sendEmail} />                    
+                    <p className={alertClass}> {alertMessage} </p>
                 </div>
                 <div className="contact-information"> 
                     <div>

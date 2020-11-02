@@ -1,87 +1,78 @@
 import React, { useState, useContext } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from 'utils/gql';
+import { LOGIN } from 'utils/gqlMutation';
 import { CustomerContext } from 'state/Customer';
-import gqlClient from './../gqlClient';
-import { GET_ACTIVE_CUSTOMER } from './../utils/gql';
-import { Customer } from 'types/vendure';
+import { validateEmail } from 'utils/functions';
+
+import { GET_ACTIVE_CUSTOMER } from 'utils/gqlQuery';
+import gqlClient from 'utils/gqlClient';
+
+import CustomInput from 'components/CustomInput';
+import CustomButton from 'components/CustomButton';
 
 import '../assets/styles/account-related.scss';
 
 export default () => {
+    const {setToken, setCustomer}: { token: String, setToken: Function, setCustomer: Function } = useContext(CustomerContext);
+
     const [alertMessage, setAlertMessage] = useState("");
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [alertClass, setAlertClass] = useState("contact-alert-red");
-    const {setToken, setCustomer}: { token: String, setToken: Function, customer: Customer, setCustomer: Function} = useContext(CustomerContext);
+    const [email, setEmail] = useState("");    
 
-    let login = async (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAlertClass("contact-alert-red");       
-        if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) { 
-            setAlertMessage("Please input correct email address.");
-            return;
-        }
-        if (password == "") { 
+    let login = async (event: React.MouseEvent<HTMLButtonElement>) => {        
+        if ( password == "") { 
             setAlertMessage("Please input password field.");
             return;
-        }    
-        try {
-			await loginAccount({
-				fetchPolicy: 'no-cache',
-				variables: {
-                    "userName": email, 
-                    "password": password,
-                    "rememberMe": false
-				}
-            });
-		} catch (error) {
-			console.log(error);
-		}
+        }
+        if( !validateEmail(email) ) { 
+            setAlertMessage("Please input correct Email");
+            return;
+        }        
+        await loginAccount({
+            fetchPolicy: 'no-cache',
+            variables: {
+                "userName": email, 
+                "password": password,
+                "rememberMe": false
+            }
+        });		
     };
 
     const [loginAccount] = useMutation(LOGIN, {
 		onCompleted: async (data) => {
-			if (data) {		                
-                setToken(data.login.channels[0].token);  
-                const {data: result} = await gqlClient.query({
-                    query: GET_ACTIVE_CUSTOMER,
-                    fetchPolicy: 'no-cache',                    
-                });
-                setCustomer(result.activeCustomer);
-                window.location.href=("/profile");
-			} else {
-				console.log('nope');
-			}
+            if(data.login.channels) {                
+                await getCustomers();
+                setToken(data.login.channels[0].token);
+                window.location.href = "/profile";
+            } else { 
+                setAlertMessage("Email or password incorrect.");
+            }
 		},
 		onError: (error) => {
 			console.error(error);
 		}
     });    
 
+    let getCustomers = async () => { 
+        const {data: { activeCustomer }} = await gqlClient.query({
+            query: GET_ACTIVE_CUSTOMER,
+            fetchPolicy: 'no-cache'
+        });
+        setCustomer(activeCustomer);       
+    }
+
     return (
         <div className="profile page">
             <h1 className="page-title">Log in</h1>       
             <div className="section-custom-border">
                 <div className="profile-info"> 
-                    <div className="input-clip-path-outside">
-                        <input placeholder="Email" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setEmail(event.target.value)}}  className="input-clip-path-inside"></input>
-                    </div>
-                    <div className="input-clip-path-outside">
-                        <input placeholder="Password" type="password" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setPassword(event.target.value)}} className="input-clip-path-inside"></input>
-                    </div>
-                    <div>
-                        <p className={alertClass}> 
-                            {alertMessage}
-                        </p>
-                        <div className="button-clip-path-outside">
-                            <button className="button-clip-path-inside" onClick={login}> 
-                                SUBMIT
-                            </button>            
-                        </div> 
-                    </div>                    
+                    <CustomInput placeholder="Email" type="input" value={email} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setEmail(event.target.value)}/>
+                    <CustomInput placeholder="Password" type="password" value={password} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setPassword(event.target.value)}/>                        
+                    <CustomButton buttonText="Submit" submit={login}/> 
+                    <p className="alert-red"> {alertMessage} </p>
                 </div>      
             </div>
-        </div>
+        </div> 
     )
 };
 

@@ -4,7 +4,7 @@ import { Product, ProductOption } from 'types/vendure';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { formatPrice } from 'utils/functions';
-import { ADD_TO_CART } from 'utils/gql';
+import { ADD_TO_CART } from 'utils/gqlMutation';
 
 import '../assets/styles/single-product.scss';
 
