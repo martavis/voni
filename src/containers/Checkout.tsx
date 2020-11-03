@@ -7,8 +7,8 @@ import { formatPrice } from 'utils/functions';
 
 import '../assets/styles/checkout.scss';
 
-import Information from 'components/Profile/Information';
-import Shipping from 'components/Profile/Shipping';
+import CheckoutInformation from 'components/Checkout/Information';
+import CheckoutShipping from 'components/Checkout/Shipping';
 import Payment from 'components/Profile/Payment';
 import ProductImage from 'components/ProductImage';
 
@@ -46,8 +46,8 @@ const Checkout: DF = () => {
                     <Link to="/checkout/payment" data-enabled={hasReachedPayment}>Payment</Link>
                 </header>
                 { hasReachedPayment ? <Payment isCheckout={true}></Payment> : ''}        
-                { hasReachedShipping && !hasReachedPayment? <Shipping isCheckout={true}></Shipping> : ''}   
-                { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <Information isCheckout={true}></Information> : ''}          
+                { hasReachedShipping && !hasReachedPayment? <CheckoutShipping/> : ''}   
+                { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <CheckoutInformation/> : ''}          
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{

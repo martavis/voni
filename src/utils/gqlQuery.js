@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { COUNTRY_FRAGMENT, ADDRESS_FRAGMENT } from './gqlFragment';
 
 export const GET_ALL_COLLECTIONS = gql`
     query {
@@ -138,7 +139,7 @@ export const GET_ALL_PRODUCTS = gql`
 `;
 
 export const GET_ACTIVE_CUSTOMER = gql`
-    query {
+    query GetActiveCustomer {
         activeCustomer {
             id
             title
@@ -150,6 +151,18 @@ export const GET_ACTIVE_CUSTOMER = gql`
     }
 `;
 
+export const GET_CUSTOMER_ADDRESSES = gql`
+    query GetCustomerAddresses {
+        activeCustomer {
+            id
+            addresses {
+                ...Address
+            }
+        }
+    }
+    ${ADDRESS_FRAGMENT}
+`;
+
 export const GET_ME = gql`
     query {
         me {
@@ -157,3 +170,13 @@ export const GET_ME = gql`
         }
     }
 `;
+
+export const GET_AVAILABLE_COUNTRIES = gql`
+    query GetAvailableCountries {
+        availableCountries {
+            ...Country
+        }
+    }
+    ${COUNTRY_FRAGMENT}
+`;
+

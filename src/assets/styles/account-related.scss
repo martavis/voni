@@ -1,24 +1,20 @@
 @import './variables.scss';
 
-.profile-container {
-    margin-top: -10px !important;
-    .forms {
-        padding-right: 45px;
-        padding-top: 65px !important;
-        header {
-            a {
-                cursor: pointer;
-                font-size: 1.5em;
-                color: $white;
-                user-select: none;
-                
-                &[data-enabled="false"] {
-                    font-weight: 300;
-                    pointer-events: none;
-                }  
-                &:not(:last-of-type) {
-                    margin-right: 30px;
-                }
+.profile-container { 
+    header {
+        padding: 15px 0px;
+        a {
+            cursor: pointer;
+            font-size: 1.5em;
+            color: $white;
+            user-select: none;
+            
+            &[data-enabled="false"] {
+                font-weight: 300;
+                pointer-events: none;
+            }  
+            &:not(:last-of-type) {
+                margin-right: 30px;
             }
         }
     }

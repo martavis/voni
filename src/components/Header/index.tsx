@@ -9,7 +9,7 @@ import './Header.scss';
 
 const Header: React.FC = () => {
 	const { cart }: { cart: Order } = useContext(CartContext);
-	const { token, customer, setToken } : { token: String, customer: Customer, setToken: Function} = useContext(CustomerContext);	
+	const { token, customer, setToken } : { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
 	const isActive = ({ isCurrent }: LinkGetProps) => {
 		return isCurrent ? { className: "active" } : {};
 	};

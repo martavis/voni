@@ -83,6 +83,7 @@
             button.input-clip-path-inside { 
                 -webkit-clip-path: polygon(9px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
                 clip-path: polygon(8px 1px, calc(100% - 1px) 1px, calc(100% - 1px) calc(100% - 9px), calc(100% - 9px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px);
+                width: 100%;
             }
             .apply-button { 
                 position: absolute;

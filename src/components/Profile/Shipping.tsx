@@ -12,7 +12,7 @@ const Shipping = ({ isCheckout }: Props) => {
 	let contact = "example@example.com";
 	let shipTo = "10th Street, Example area, City 7600, Pakistan";
 	const onSubmit = () => { 
-		window.location.href="/profile/payment";
+		window.location.href="/checkout/payment";
 	}
 	return (
 		<div className="shipping-container page-container">

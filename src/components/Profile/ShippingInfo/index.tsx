@@ -1,17 +1,22 @@
-import React, { useEffect, useState  } from 'react';
+import React, { useContext, useEffect, useState  } from 'react';
 import gqlClient from 'utils/gqlClient';
 import { useMutation } from '@apollo/client';
 import { UPDATE_ADDRESS, CREATE_ADDRESS } from 'utils/gqlMutation';
 import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
-import { UpdateAddressInput, CreateAddressInput } from 'types/vendure';
-
+import { UpdateAddressInput, CreateAddressInput, Address } from 'types/vendure';
+import { AddressContext } from 'state/Address';
 import './ShippingInfo.scss';
 
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 import CustomCountrySelect from 'components/CustomCountrySelect';
 
-const ShippingInfo = () => { 
+type props = { 
+    isCheckout : boolean,
+}
+
+const ShippingInfo = ( { isCheckout }: props) => { 
+    const { setShippingAddress, shippingAddress } : {setShippingAddress: Function, shippingAddress: Address} = useContext(AddressContext);
     const [alertMessage, setAlertMessage] = useState("");
     const [alertClass, setAlertClass] = useState("alert-red"); 
     const [isCreate, setIsCreate] = useState(false);
@@ -30,7 +35,7 @@ const ShippingInfo = () => {
 
     useEffect( () => { 
         getCustomerAddress();
-    }, []);
+    }, []); 
 
     let getCustomerAddress = async () => { 
         const {data: data } = await gqlClient.query({
@@ -39,6 +44,7 @@ const ShippingInfo = () => {
         });
         if(data.activeCustomer.addresses[0]) { 
             setUAddress(data.activeCustomer.addresses[0]);
+            setShippingAddress(data.activeCustomer.addresses[0]);
             setIsCreate(false);
         } else { 
             setIsCreate(true);
@@ -118,24 +124,32 @@ const ShippingInfo = () => {
     }
 
     return (
-        <div className="shippingInfo">                       
-            <CustomInput placeholder="Address" type="input" value={uAddress.streetLine1} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
+        <div className="shippingInfo">       
+            {shippingAddress ? shippingAddress.streetLine1: ''}                
+            <CustomInput placeholder="Address" type="input" enable={isCheckout? false : true} value={uAddress.streetLine1} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
                 {setUAddress({...uAddress, streetLine1:event.target.value})}} />                
-            <CustomInput placeholder="Apartment, Suit, Etc.(Optional)" type="input" value={uAddress.streetLine2} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
+            <CustomInput placeholder="Apartment, Suit, Etc.(Optional)" enable={isCheckout? false : true} type="input" value={uAddress.streetLine2} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
                 {setUAddress({...uAddress, streetLine2:event.target.value})}} />    
-            <CustomInput placeholder="City" type="input" value={uAddress.city} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
+            <CustomInput placeholder="City" type="input" enable={isCheckout? false : true} value={uAddress.city} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
                 {setUAddress({...uAddress, city:event.target.value})}} />                
-            <CustomInput placeholder="Province" type="input" value={uAddress.province} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
+            <CustomInput placeholder="Province" type="input" enable={isCheckout? false : true} value={uAddress.province} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
                 {setUAddress({...uAddress, province:event.target.value})}} />                
 			<div className="two-comlumns-responsive">
                 <CustomCountrySelect onChange={selectCountry} value={uAddress.country}/>    
                 <CustomInput placeholder="Post Code" type="input" value={uAddress.postalCode} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
-                    {setUAddress({...uAddress, postalCode:event.target.value})}} />    				
+                    {setUAddress({...uAddress, postalCode:event.target.value})}} enable={isCheckout? false : true} />    				
 			</div>
-            <CustomButton buttonText="Update" submit={updateShippingInfo}></CustomButton>
-            <p className={alertClass}> {alertMessage} </p>
+            {
+                !isCheckout ? <>    
+                    <CustomButton buttonText="Update" submit={updateShippingInfo}></CustomButton>
+                    <p className={alertClass}> {alertMessage} </p>
+                </> : ''
+            }
         </div>
     );
 }
 
+ShippingInfo.defaultProps = {
+    isCheckout: false
+}
 export default ShippingInfo;

@@ -20,7 +20,7 @@
     font-family: 'Bahnschrift' !important;
     margin: 0;
     width: calc(100% - 24px);
-    padding: 12px;
+    padding: 12px !important;
     vertical-align: bottom;
     &::before { 
         content: '';

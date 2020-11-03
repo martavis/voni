@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, LOGOUT_RESULT, ADDRESS_FRAGMENT } from './gqlFragment';
+import { CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, LOGOUT_RESULT, ADDRESS_FRAGMENT, ERROR_RESULT_FRAGMENT } from './gqlFragment';
 
 export const ADD_TO_CART = gql`
     mutation addToCart($productVariantId: ID!, $quantity: Int!) {
@@ -84,5 +84,17 @@ export const CREATE_ADDRESS = gql`
         }
     }
     ${ADDRESS_FRAGMENT}
+`;
+
+export const CHANGE_PASSWORD = gql`
+    mutation ChangePassword($old: String! $new: String!) {
+        updateCustomerPassword(currentPassword: $old newPassword: $new) {
+            ... on Success {
+                success
+            }
+            ...ErrorResult
+        }
+    }
+    ${ERROR_RESULT_FRAGMENT}
 `;
 
