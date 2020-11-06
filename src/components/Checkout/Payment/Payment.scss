@@ -1,4 +1,4 @@
-.checkoutShipping{
+.checkoutPayment{ 
     padding: 30px 10px 50px 10px;
     .contact-info { 
         padding: 10px 15px;
@@ -19,7 +19,7 @@
                 padding-top: 0px;
             }
         }
-    }        
+    }   
     .shipping-info { 
         cursor: pointer;
         padding: 10px 15px;
@@ -36,5 +36,11 @@
             color: #090f02 !important;
         }
     }   
-}
+    .sub-title { 
+        margin-top: 0px;
+    }
 
+    .shippingInfo { 
+        padding: 5px 0px;
+    }
+}

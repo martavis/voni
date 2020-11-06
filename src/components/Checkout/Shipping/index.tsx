@@ -93,17 +93,15 @@ const CheckoutShipping = () => {
 						3 to 4 business days
 					</div>
 				</div>
-			</div> */}
-			{  					
-				<div className="information-submit">
-					<Link to="/checkout"> <span> {`<  Return to Information`}</span></Link> 
-					<div className="button-clip-path-outside">
-						<button onClick={onSubmit} className="button-clip-path-inside"> 
-							CONTINUE TO PAYMENT
-						</button> 
-					</div>
+			</div> */}							
+			<div className="information-submit">
+				<Link to="/checkout"> <span> {`<  Return to Information`}</span></Link> 
+				<div className="button-clip-path-outside">
+					<button onClick={onSubmit} className="button-clip-path-inside"> 
+						CONTINUE TO PAYMENT
+					</button> 
 				</div>
-			}
+			</div>
 		</div>
 	);
 };

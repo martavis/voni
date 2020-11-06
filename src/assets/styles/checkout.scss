@@ -45,6 +45,27 @@
         padding-right: 45px;
         border-right: 1px solid $white;
         
+        .title { 
+            font-family: 'Skirmisher';
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        a { 
+            font-family: 'Skirmisher';
+            color: white;
+            padding-left: 10px;
+        }        
+        span { 
+            font-family: 'Bahnschrift' !important;
+        }
+        .information-submit { 
+            margin-top: 20px;
+            a { 
+                line-height: 43px;
+            }
+        }
+        
         header {
             a {
                 font-size: 1.5em;

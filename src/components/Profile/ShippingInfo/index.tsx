@@ -13,9 +13,10 @@ import CustomCountrySelect from 'components/CustomCountrySelect';
 
 type props = { 
     isCheckout : boolean,
+    isCheckoutPayment: boolean,
 }
 
-const ShippingInfo = ( { isCheckout }: props) => { 
+const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => { 
     const { setShippingAddress, shippingAddress } : {setShippingAddress: Function, shippingAddress: Address} = useContext(AddressContext);
     const [alertMessage, setAlertMessage] = useState("");
     const [alertClass, setAlertClass] = useState("alert-red"); 
@@ -34,7 +35,9 @@ const ShippingInfo = ( { isCheckout }: props) => {
     });
 
     useEffect( () => { 
-        getCustomerAddress();
+        if(!isCheckoutPayment) { 
+            getCustomerAddress();
+        }        
     }, []); 
 
     let getCustomerAddress = async () => { 
@@ -140,7 +143,7 @@ const ShippingInfo = ( { isCheckout }: props) => {
                     {setUAddress({...uAddress, postalCode:event.target.value})}} enable={isCheckout? false : true} />    				
 			</div>
             {
-                !isCheckout ? <>    
+                !isCheckout && !isCheckoutPayment? <>    
                     <CustomButton buttonText="Update" submit={updateShippingInfo}></CustomButton>
                     <p className={alertClass}> {alertMessage} </p>
                 </> : ''
@@ -150,6 +153,7 @@ const ShippingInfo = ( { isCheckout }: props) => {
 }
 
 ShippingInfo.defaultProps = {
-    isCheckout: false
+    isCheckout: false, 
+    isCheckoutPayment: false
 }
 export default ShippingInfo;

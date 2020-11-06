@@ -9,7 +9,7 @@ import '../assets/styles/checkout.scss';
 
 import CheckoutInformation from 'components/Checkout/Information';
 import CheckoutShipping from 'components/Checkout/Shipping';
-import Payment from 'components/Profile/Payment';
+import Payment from 'components/Checkout/Payment';
 import ProductImage from 'components/ProductImage';
 
 type DF = React.FC<{ path?: String }>;
@@ -45,7 +45,7 @@ const Checkout: DF = () => {
                     <Link to="/checkout/shipping" data-enabled={hasReachedShipping}>Shipping</Link>
                     <Link to="/checkout/payment" data-enabled={hasReachedPayment}>Payment</Link>
                 </header>
-                { hasReachedPayment ? <Payment isCheckout={true}></Payment> : ''}        
+                { hasReachedPayment ? <Payment/> : ''}        
                 { hasReachedShipping && !hasReachedPayment? <CheckoutShipping/> : ''}   
                 { hasReachedInfo && !hasReachedShipping && !hasReachedPayment? <CheckoutInformation/> : ''}          
             </div>
