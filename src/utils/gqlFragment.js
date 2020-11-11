@@ -109,3 +109,17 @@ export const ERROR_RESULT_FRAGMENT = gql`
         message
     }
 `;
+
+export const ORDER_ADDRESS_FRAGMENT = gql`
+    fragment OrderAddress on OrderAddress {
+        fullName
+        company
+        streetLine1
+        streetLine2
+        city
+        province
+        postalCode
+        country
+        phoneNumber
+    }
+`;

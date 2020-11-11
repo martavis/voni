@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
-import { CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, LOGOUT_RESULT, ADDRESS_FRAGMENT, ERROR_RESULT_FRAGMENT } from './gqlFragment';
+import { ORDER_ADDRESS_FRAGMENT, CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, 
+    LOGOUT_RESULT, ADDRESS_FRAGMENT, ERROR_RESULT_FRAGMENT } from './gqlFragment';
 
 export const ADD_TO_CART = gql`
     mutation addToCart($productVariantId: ID!, $quantity: Int!) {
@@ -28,6 +29,29 @@ export const REMOVE_FROM_CART = gql`
     ${CART_FRAGMENT}
 `;
 
+export const SET_SHIPPING_ADDRESS = gql`
+    mutation SetShippingAddress($input: CreateAddressInput!) {
+        setOrderShippingAddress(input: $input) {
+            ...Cart
+            shippingAddress {
+                ...OrderAddress
+            }
+        }
+    }
+    ${CART_FRAGMENT}
+    ${ORDER_ADDRESS_FRAGMENT}
+`;
+
+export const SET_SHIPPING_METHOD = gql`
+    mutation SetShippingMethod($id: ID!) {
+        setOrderShippingMethod(shippingMethodId: $id) {
+            ...Cart
+            ...ErrorResult
+        }
+    }
+    ${CART_FRAGMENT}
+    ${ERROR_RESULT_FRAGMENT}
+`;
 
 export const REGISTER_ACCOUNT = gql`
     mutation registerAccount($customerAccount: RegisterCustomerInput!) {

@@ -3,6 +3,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { CustomerContext } from 'state/Customer';
 import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
 import gqlClient from 'utils/gqlClient';
+import { useMutation } from '@apollo/client';
+import { SET_SHIPPING_METHOD } from 'utils/gqlMutation';
+
 // import { AddressContext } from 'state/Address';
 
 import './Shipping.scss';
@@ -22,10 +25,25 @@ const CheckoutShipping = () => {
             code : '', 
             name : ''
         }
-    });
-	const onSubmit = () => { 
-		window.location.href="/checkout/payment";
+	});
+	
+	const onSubmit = async () => { 
+		await setShipingMethod({
+			fetchPolicy: 'no-cache',
+			variables: { 
+				id : '3'
+			}
+		});	
+		window.location.href="/checkout/payment";		
 	}
+
+	const [setShipingMethod] = useMutation(SET_SHIPPING_METHOD, {
+		onCompleted: async (data) => {
+            if(data) {                
+                console.log(data);   
+            } 
+		},
+	});
 
 	useEffect( () => { 
         getCustomerAddress();

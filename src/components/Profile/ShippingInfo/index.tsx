@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState  } from 'react';
+import React, { useEffect, useState  } from 'react';
 import gqlClient from 'utils/gqlClient';
 import { useMutation } from '@apollo/client';
 import { UPDATE_ADDRESS, CREATE_ADDRESS } from 'utils/gqlMutation';
 import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
-import { UpdateAddressInput, CreateAddressInput, Address } from 'types/vendure';
-import { AddressContext } from 'state/Address';
+import { UpdateAddressInput, CreateAddressInput } from 'types/vendure';
+// import { AddressContext } from 'state/Address';
 import './ShippingInfo.scss';
 
 import CustomInput from 'components/CustomInput';
@@ -14,14 +14,15 @@ import CustomCountrySelect from 'components/CustomCountrySelect';
 type props = { 
     isCheckout : boolean,
     isCheckoutPayment: boolean,
+    changeValue: Function
 }
 
-const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => { 
-    const { setShippingAddress, shippingAddress } : {setShippingAddress: Function, shippingAddress: Address} = useContext(AddressContext);
+const ShippingInfo = ( { isCheckout, isCheckoutPayment, changeValue }: props) => { 
+    // const { setShippingAddress, shippingAddress } : {setShippingAddress: Function, shippingAddress: Address} = useContext(AddressContext);
     const [alertMessage, setAlertMessage] = useState("");
     const [alertClass, setAlertClass] = useState("alert-red"); 
     const [isCreate, setIsCreate] = useState(false);
-    const [uAddress, setUAddress] = useState({   
+    const [uAddress, setUAddress] = useState({
         id: '',     
         streetLine1: '', 
         streetLine2: '',
@@ -47,7 +48,7 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => {
         });
         if(data.activeCustomer.addresses[0]) { 
             setUAddress(data.activeCustomer.addresses[0]);
-            setShippingAddress(data.activeCustomer.addresses[0]);
+            // setShippingAddress(data.activeCustomer.addresses[0]);
             setIsCreate(false);
         } else { 
             setIsCreate(true);
@@ -55,7 +56,6 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => {
     }
 
     let updateShippingInfo = () => {
-        console.log(isCreate);
         if ( !isCreate ) { 
             const input: UpdateAddressInput = {
                 id: uAddress.id,
@@ -66,7 +66,6 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => {
                 postalCode: uAddress.postalCode,
                 countryCode: uAddress.country.code
             };
-            
             updateAddress({
                 fetchPolicy: 'no-cache',
                 variables: {
@@ -127,8 +126,7 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => {
     }
 
     return (
-        <div className="shippingInfo">       
-            {shippingAddress ? shippingAddress.streetLine1: ''}                
+        <div className="shippingInfo">                     
             <CustomInput placeholder="Address" type="input" enable={isCheckout? false : true} value={uAddress.streetLine1} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
                 {setUAddress({...uAddress, streetLine1:event.target.value})}} />                
             <CustomInput placeholder="Apartment, Suit, Etc.(Optional)" enable={isCheckout? false : true} type="input" value={uAddress.streetLine2} onChange={(event: React.ChangeEvent<HTMLInputElement>) => 
@@ -154,6 +152,7 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment }: props) => {
 
 ShippingInfo.defaultProps = {
     isCheckout: false, 
-    isCheckoutPayment: false
+    isCheckoutPayment: false,
+    changeValue : Function    
 }
 export default ShippingInfo;

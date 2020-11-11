@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { COUNTRY_FRAGMENT, ADDRESS_FRAGMENT } from './gqlFragment';
+import { COUNTRY_FRAGMENT, ADDRESS_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from './gqlFragment';
 
 export const GET_ALL_COLLECTIONS = gql`
     query {
@@ -178,5 +178,17 @@ export const GET_AVAILABLE_COUNTRIES = gql`
         }
     }
     ${COUNTRY_FRAGMENT}
+`;
+
+export const GET_SHIPPING_ADDRESS = gql`
+    query GetShippingAddress {
+        activeOrder {
+            id
+            shippingAddress {
+                ...OrderAddress
+            }
+        }
+    }
+    ${ORDER_ADDRESS_FRAGMENT}
 `;
 
