@@ -23,7 +23,7 @@ function App() {
 				<CustomerProvider>
 					<Root>
 						<Header />
-						<div className="content">
+						<div className="content" id="content">
 							<React.Suspense fallback={<em>Loading...</em>}>
 								<Router>
 									<Cart path="cart" />

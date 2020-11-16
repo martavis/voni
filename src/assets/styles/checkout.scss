@@ -36,6 +36,9 @@
     }
     display: grid;
     grid-template-columns: 50% 50%;
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 
     .checkout-side {
         padding-top: 20px;
@@ -44,6 +47,11 @@
     .forms {
         padding-right: 45px;
         border-right: 1px solid $white;
+
+        @media (max-width: 1000px) {
+            padding-right: 0;
+            border: none;
+        }
         
         .title { 
             font-family: 'Skirmisher';
@@ -67,6 +75,13 @@
         }
         
         header {
+            display: flex;
+            @media (max-width: 600px) {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
             a {
                 font-size: 1.5em;
                 color: $white;
@@ -77,13 +92,16 @@
                     pointer-events: none;
                 }  
                 &:not(:last-of-type) {
-                    margin-right: 30px;
+                    margin-right: 20px;
                 }
             }
         }
     }
     .summary {
         padding-left: 45px;
+        @media (max-width: 1000px) {
+            padding-left: 0;
+        }
         .promo-code {
             input { 
                 width: 100%;
@@ -142,6 +160,12 @@
                     margin-right: 20px;
                 }
             }
+        }
+    }
+    .product-image {
+        @media (max-width: 400px) {
+            height: 70% !important;
+            margin-top: 18px;
         }
     }
 }

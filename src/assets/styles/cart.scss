@@ -4,27 +4,35 @@
     .cart-summary {
         .cart-table {
             margin-top: 50px;
+            overflow: auto;
             
             .headers, .cart-items .item {
                 padding: 25px 40px;
                 display: grid;
-                grid-template-columns: auto 200px 250px 150px;
+                grid-template-columns: auto auto auto auto;
                 align-items: center;
                 border-bottom: 1px solid $white;
+                min-width: 655px;
             }
             .header-name {
+                text-align: right;
                 text-transform: uppercase;
-
+                &:nth-of-type(1) {
+                    min-width: 300px;
+                    text-align: left;
+                }
                 &:nth-of-type(3) {
-                    padding-left: 74px;
+                    padding-left: 70px;
                 }
-                &:last-of-type {
-                    text-align: right;
-                }
+                // &:last-of-type {
+                //     text-align: right;
+                // }
             }
             .header-name, .item-price, .item-total {
                 font-family: 'Bahnschrift';
                 font-size: 1.125em;
+                text-align: right;
+                // justify-self: center;
             }
             
             .cart-items {
@@ -100,7 +108,7 @@
                         text-align: right;
                     }
                     .item-quantity {
-                        padding-left: 40px;
+                        justify-self: right;
                     }
                 }
             }
@@ -127,11 +135,15 @@
         margin-top: 50px;
     }
     .total, .cart-actions {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 30px;
+        padding-right: 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media (max-width: 600px) {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
 
         .total-title {
             font-size: 2.5em;

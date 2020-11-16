@@ -8,8 +8,10 @@ export default {
 '__react_static_root__/src/pages/ambassador.tsx': require('__react_static_root__/src/pages/ambassador.tsx').default,
 '__react_static_root__/src/pages/contact.tsx': require('__react_static_root__/src/pages/contact.tsx').default,
 '__react_static_root__/src/pages/index.tsx': require('__react_static_root__/src/pages/index.tsx').default,
+'__react_static_root__/src/pages/login.tsx': require('__react_static_root__/src/pages/login.tsx').default,
 '__react_static_root__/src/pages/privacy-and-policy.tsx': require('__react_static_root__/src/pages/privacy-and-policy.tsx').default,
 '__react_static_root__/src/pages/product.tsx': require('__react_static_root__/src/pages/product.tsx').default,
+'__react_static_root__/src/pages/register.tsx': require('__react_static_root__/src/pages/register.tsx').default,
 '__react_static_root__/src/pages/shop.tsx': require('__react_static_root__/src/pages/shop.tsx').default,
 '__react_static_root__/src/pages/terms-of-service.tsx': require('__react_static_root__/src/pages/terms-of-service.tsx').default,
 '__react_static_root__/src/pages/product': require('__react_static_root__/src/pages/product').default

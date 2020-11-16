@@ -53,7 +53,7 @@ export default () => {
 			<section className="lookbook">
 				<div className="video-wrapper">
 					<div className="video">
-						<video ref={videoRef} width="512" height="288">
+						<video ref={videoRef} width="400" height="288">
 							<source src="https://storage.googleapis.com/voni-assets/videos/voni-ad.mp4?t=sdk" type="video/mp4" />
 							Your browser does not support the video tag.
 						</video>

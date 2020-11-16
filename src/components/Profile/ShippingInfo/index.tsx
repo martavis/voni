@@ -4,12 +4,13 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_ADDRESS, CREATE_ADDRESS } from 'utils/gqlMutation';
 import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
 import { UpdateAddressInput, CreateAddressInput } from 'types/vendure';
-// import { AddressContext } from 'state/Address';
 import './ShippingInfo.scss';
 
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 import CustomCountrySelect from 'components/CustomCountrySelect';
+
+import { addressValidation } from 'utils/functions';
 
 type props = { 
     isCheckout : boolean,
@@ -18,7 +19,6 @@ type props = {
 }
 
 const ShippingInfo = ( { isCheckout, isCheckoutPayment, changeValue }: props) => { 
-    // const { setShippingAddress, shippingAddress } : {setShippingAddress: Function, shippingAddress: Address} = useContext(AddressContext);
     const [alertMessage, setAlertMessage] = useState("");
     const [alertClass, setAlertClass] = useState("alert-red"); 
     const [isCreate, setIsCreate] = useState(false);
@@ -48,15 +48,14 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment, changeValue }: props) =>
         });
         if(data.activeCustomer.addresses[0]) { 
             setUAddress(data.activeCustomer.addresses[0]);
-            // setShippingAddress(data.activeCustomer.addresses[0]);
             setIsCreate(false);
         } else { 
             setIsCreate(true);
         }
     }
 
-    let updateShippingInfo = () => {
-        if ( !isCreate ) { 
+    let updateShippingInfo = async () => {
+        if ( !isCreate ) {             
             const input: UpdateAddressInput = {
                 id: uAddress.id,
                 streetLine1: uAddress.streetLine1,
@@ -66,12 +65,17 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment, changeValue }: props) =>
                 postalCode: uAddress.postalCode,
                 countryCode: uAddress.country.code
             };
-            updateAddress({
-                fetchPolicy: 'no-cache',
-                variables: {
-                    input: input
-                }
-            });	
+            var validate = await addressValidation(input);
+            if (validate) {                 
+                updateAddress({
+                    fetchPolicy: 'no-cache',
+                    variables: {
+                        input: input
+                    }
+                });	
+            } else { 
+                setAlertMessage("Please input right address !")                
+            }
         } else { 
             const input: CreateAddressInput = {
                 streetLine1: uAddress.streetLine1,

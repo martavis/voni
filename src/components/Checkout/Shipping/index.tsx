@@ -34,7 +34,7 @@ const CheckoutShipping = () => {
 				id : '3'
 			}
 		});	
-		window.location.href="/checkout/payment";		
+		// window.location.href="/checkout/payment";		
 	}
 
 	const [setShipingMethod] = useMutation(SET_SHIPPING_METHOD, {

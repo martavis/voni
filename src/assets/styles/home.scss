@@ -1,13 +1,18 @@
 @import './variables.scss';
 
 .home {
+
     .welcome {
         display: flex;
         justify-content: center;
         align-items: center;
+        @media (max-width: 800px) {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
 
         .model-roll {
-            width: 400px;
+            width: 345px;
             height: 580px;
             background-image: url('https://storage.googleapis.com/voni-assets/img/model-frame.svg');
             background-repeat: no-repeat;
@@ -15,16 +20,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            justify-self: center;
 
             img {
                 width: 80%;
             }
         }
         .welcome-message {
-            margin-left: 150px;
-
+            margin-left: 50px;
+            @media (max-width: 500px) {
+                margin-left: 0;
+                text-align: -webkit-center;
+            }
             h1 {
-                font-size: 5.4375em;
+                font-size: 8vw;
                 margin: 0;
 
                 span {
@@ -51,13 +60,17 @@
         grid-template-columns: 50% 50%;
         align-items: center;
         position: relative;
-
+        @media (max-width: 800px) {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
         &::before {
             content: 'lookbook';
             position: absolute;
             top: -180px;
+            left: -15px;
             left: 50%;
-            font-size: 16.375em;
+            font-size: 19vw;
             -webkit-text-stroke: 1px $white;
             -webkit-text-fill-color: transparent;
             transform: translateX(-50%);
@@ -70,13 +83,32 @@
             .video {
                 position: relative;
                 overflow: visible;
-                left: 10px;
+
+                @media (max-width: 600px) {
+                    video {
+                        width: 300px;
+                        height: 188px;
+                        position: relative;
+                    }
+                }
                 
                 &::before {
-                    content: url('https://storage.googleapis.com/voni-assets/img/video-frame.svg');
+                    content: '';
                     position: absolute;
-                    top: -18px;
-                    left: -10px;
+                    top: 23px;
+                    // left: 80px;
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('https://storage.googleapis.com/voni-assets/img/video-frame.svg');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    justify-self: center;
+                    @media (max-width: 500px) {
+                        top: 0px;
+                    }
                 }
                 .video-overlay {
                     width: 100%;
@@ -97,29 +129,33 @@
             }
         }
         .pdf-wrapper {
-            padding-left: 60px;
+            padding: 60px;
+            justify-self: center;
             a {
                 color: $white;
                 text-decoration: none;
             }
             h1 {
                 margin: 0;
-                font-size: 5.4375em;
+                font-size: 8vw;
                 font-weight: 300;
             }
             h3 {
                 margin: 0;
-                font-size: 3.75em;
+                font-size: 6vw;
             }
         }
     }
     .featured-items {
         margin-top: 150px;
+        @media (max-width: 800px) {
+            margin-top: 10px;
+        }
         
         h2 {
             margin-bottom: 75px;
             font-weight: 300;
-            font-size: 4.0625em;
+            font-size: 3.0625em;
             text-align: center;
         }
         .item-grid {
