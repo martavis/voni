@@ -1,6 +1,5 @@
 import { UpdateAddressInput } from 'types/vendure';
 
-
 export const formatPrice = (intPrice: number): string => {
     const priceStr = intPrice.toString();
     const cents = priceStr.substr(-2);

@@ -5,6 +5,7 @@ import gqlClient from 'utils/gqlClient';
 import { Link } from '@reach/router';
 
 import ShippingInfo from 'components/Profile/ShippingInfo'
+import StripeForm from 'components/Checkout/Stripe'
 import './Payment.scss';
 
 const CheckoutPayment = () => {	
@@ -70,7 +71,7 @@ const CheckoutPayment = () => {
             <p className="sub-title">
                 All transactions are secure and encrypted.
             </p> 
-            <div className="input-clip-path-outside">
+            {/* <div className="input-clip-path-outside">
 				<input placeholder="Card number" className="input-clip-path-inside"></input>
 			</div>
             <div className="input-clip-path-outside">
@@ -83,7 +84,8 @@ const CheckoutPayment = () => {
 				<div className="input-clip-path-outside">
 					<input placeholder="Security" className="input-clip-path-inside"></input>
 				</div>
-			</div>
+			</div> */}
+            <StripeForm />
             <p className="title">
 				BILLING ADDRESS
 			</p>
