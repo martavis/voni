@@ -13,6 +13,9 @@
         }
         > div { 
             padding-top: 8px;
+            @media (max-width: 500px) {
+                display: inline-table;
+            }
             &:first-child { 
                 border-bottom: 2px solid grey;
                 padding-bottom: 8px;

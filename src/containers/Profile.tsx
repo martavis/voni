@@ -9,7 +9,7 @@ import PrivacyInfo from 'components/Profile/PrivacyInfo';
 type DF = React.FC<{ path?: String }>;
 
 const Profile: DF = () => {
-    const [viewMode, setViewMode] = useState(0);    
+    const [viewMode, setViewMode] = useState(0);
     
 	return (
 		<div className="profile-container page-container">

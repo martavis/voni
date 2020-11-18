@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client';
 import { SET_SHIPPING_METHOD } from 'utils/gqlMutation';
 
 // import { AddressContext } from 'state/Address';
+// import { getShipment } from 'utils/functions';
 
 import './Shipping.scss';
 
@@ -34,7 +35,7 @@ const CheckoutShipping = () => {
 				id : '3'
 			}
 		});	
-		// window.location.href="/checkout/payment";		
+		window.location.href="/checkout/payment";		
 	}
 
 	const [setShipingMethod] = useMutation(SET_SHIPPING_METHOD, {
@@ -59,7 +60,14 @@ const CheckoutShipping = () => {
         } else { 
             
         }
-    }
+	}
+
+	// let getShipCost = async () => {
+    //     var resp = await getShipment(uAddress);
+	// 	if (resp) {   
+	// 	} else {
+	// 	}
+	// }
 
 	return (
 		<div className="checkoutShipping">
