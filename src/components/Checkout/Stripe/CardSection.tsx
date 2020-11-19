@@ -11,12 +11,12 @@ const CardSection = () => {
         style: {
             base: {
                 color: "#ffffff",
-                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                fontSmoothing: "antialiased",
                 fontSize: "16px",
+                backgroud: '#ffffff',
                 "::placeholder": {
-                    color: "#aab7c4",
+                    color: "#ffffff",
                 },
+                iconColor: '#ffffff'
             },
             invalid: {
                 color: "#ffffff",
@@ -27,8 +27,9 @@ const CardSection = () => {
 
     return (
         <label>
-            Card details
-            <CardElement options={CARD_ELEMENT_OPTIONS} />
+            <div className="input-clip-path-outside">
+                <CardElement options={CARD_ELEMENT_OPTIONS} />
+            </div>
         </label>
     );
 };
