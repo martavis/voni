@@ -19,6 +19,7 @@ export const addressValidation = (input: UpdateAddressInput): boolean => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         },
         body:
             JSON.stringify({
@@ -30,19 +31,19 @@ export const addressValidation = (input: UpdateAddressInput): boolean => {
                 "AddressValidationRequest": {
                     "Request": {
                         "TransactionReference": {
-                            "CustomerContext": "Your Customer Context",
+                            "CustomerContext": "Shipping Address Validation",
                         },
                         "RequestAction": "AV"
                     },
                     "Address": {
-                        "City": "ALPHARETTA",
-                        "StateProvinceCode": "GA",
-                        "PostalCode": "30005"
+                        "City": input.city,
+                        "StateProvinceCode": input.province,
+                        "PostalCode": input.postalCode,
                     }
                 }
             })
     };
-    fetch('https://onlinetools.ups.com/rest/AV/', requestOptions)
+    fetch('https://wwwcie.ups.com/rest/AV', requestOptions)
         .then(response => {
             console.log(response);
         });
@@ -64,7 +65,6 @@ export const getShipment = (input: UpdateAddressInput): boolean => {
                     "Password": "d82u@K0re8LsmPkm!mQ3l2",
                     "tranId": "tranid123",
                     "transactionSrc": "transSrc",
-
                 },
                 "ShipmentRequest": {
                     "Shipment": {

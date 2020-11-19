@@ -29,6 +29,11 @@ const CheckoutPayment = () => {
         getCustomerAddress();
     }, []); 
 
+    let setProfileBill = () => { 
+        getCustomerAddress();
+        setBillMethod(0);
+    }
+
     let getCustomerAddress = async () => { 
         const {data: data } = await gqlClient.query({
             query: GET_CUSTOMER_ADDRESSES,
@@ -41,7 +46,7 @@ const CheckoutPayment = () => {
         }
     }
     const onSubmit = () => { 
-	
+        console.log(uAddress);
     }    
     return (
         <div className="checkoutPayment">
@@ -71,20 +76,6 @@ const CheckoutPayment = () => {
             <p className="sub-title">
                 All transactions are secure and encrypted.
             </p> 
-            {/* <div className="input-clip-path-outside">
-				<input placeholder="Card number" className="input-clip-path-inside"></input>
-			</div>
-            <div className="input-clip-path-outside">
-				<input placeholder="Name on card" className="input-clip-path-inside"></input>
-			</div>
-            <div className="two-comlumns-responsive">
-				<div className="input-clip-path-outside">
-					<input placeholder="Expiration Date (MM/YY)" className="input-clip-path-inside"></input>
-				</div>
-				<div className="input-clip-path-outside">
-					<input placeholder="Security" className="input-clip-path-inside"></input>
-				</div>
-			</div> */}
             <StripeForm />
             <p className="title">
 				BILLING ADDRESS
@@ -93,7 +84,7 @@ const CheckoutPayment = () => {
                 Select the address that matches your card or payment method.
             </p> 
             <div className="input-clip-path-outside"> 
-				<div className={"input-clip-path-inside shipping-info " + (billMethod == 0 ? 'selected' : '')} onClick={() => setBillMethod(0)}> 
+				<div className={"input-clip-path-inside shipping-info " + (billMethod == 0 ? 'selected' : '')} onClick={() => setProfileBill()}> 
 					Same as shipping address					
 				</div>
 			</div>
@@ -103,7 +94,7 @@ const CheckoutPayment = () => {
 				</div>
 			</div>
             { billMethod == 1 ? <>
-                <ShippingInfo isCheckoutPayment={true}/>
+                <ShippingInfo isCheckoutPayment={true} changeValue={(value : any)=>{setUAddress(value)}}/>
                 </>
                 : ''
             }			
