@@ -10,7 +10,7 @@ import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 import CustomCountrySelect from 'components/CustomCountrySelect';
 
-import { addressValidation, getShipment } from 'utils/functions';
+import { addressValidationFunc, getShipment } from 'utils/functions';
 
 type props = { 
     isCheckout : boolean,
@@ -65,7 +65,7 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment, changeValue }: props) =>
                 postalCode: uAddress.postalCode,
                 countryCode: uAddress.country.code
             };
-            var validate = await addressValidation(input);
+            var validate = await addressValidationFunc(input);
             getShipment(input);
             if (validate) {                 
                 updateAddress({

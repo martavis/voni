@@ -35,7 +35,8 @@
     "react-static-plugin-source-filesystem": "7.4.2",
     "react-static-plugin-typescript": "7.4.2",
     "stripe": "^8.122.1",
-    "subscriptions-transport-ws": "0.9.18"
+    "subscriptions-transport-ws": "0.9.18",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@types/node": "12.7.2",

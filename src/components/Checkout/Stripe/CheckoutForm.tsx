@@ -18,7 +18,7 @@ const CheckoutForm = () => {
             return;
         }
 
-        const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
+        const result = await stripe.confirmCardPayment(process.env.SECRET_KEY, {
             payment_method: {
                 card: elements.getElement(CardElement),
                 billing_details: {
@@ -45,7 +45,7 @@ const CheckoutForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <CardSection />
-            {/* <button disabled={!stripe}>Confirm order</button> */}
+            <button disabled={!stripe}>Confirm order</button>
         </form>
     );
 }

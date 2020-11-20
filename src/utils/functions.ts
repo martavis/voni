@@ -14,166 +14,27 @@ export const validateEmail = (email: string): boolean => {
     }
 };
 
-export const addressValidation = (input: UpdateAddressInput): boolean => {
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-        },
-        body:
-            JSON.stringify({
-                "AccessRequest": {
-                    "AccessLicenseNumber": "CD8C99ABC34D8CFD",
-                    "UserId": "auraticd",
-                    "Password": "d82u@K0re8LsmPkm!mQ3l2"
-                },
-                "AddressValidationRequest": {
-                    "Request": {
-                        "TransactionReference": {
-                            "CustomerContext": "Shipping Address Validation",
-                        },
-                        "RequestAction": "AV"
-                    },
-                    "Address": {
-                        "City": input.city,
-                        "StateProvinceCode": input.province,
-                        "PostalCode": input.postalCode,
-                    }
-                }
-            })
-    };
-    fetch('https://wwwcie.ups.com/rest/AV', requestOptions)
-        .then(response => {
-            console.log(response);
-        });
-    return false;
+export const addressValidationFunc = (input: UpdateAddressInput): boolean => {
+    var addressValidation = require('./UPS/addressValidation');
+    var validateAddress = new addressValidation('CD8C99ABC34D8CFD', 'auraticd', 'd82u@K0re8LsmPkm!mQ3l2');
+    validateAddress.useSandbox(true);
+
+    validateAddress.makeRequest({
+        customerContext: "Customer Data",
+        city: input.city,
+        stateProvinceCode: input.province
+    }, function (err: any, data: any) {
+        if (err) {
+            console.error(err);
+        }
+        if (data) {
+            //Enjoy playing the data :)
+            console.log(data);
+        }
+    });
+    return true;
 }
 
 export const getShipment = (input: UpdateAddressInput): boolean => {
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        body:
-            JSON.stringify({
-                "AccessRequest": {
-                    "AccessLicenseNumber": "CD8C99ABC34D8CFD",
-                    "UserId": "auraticd",
-                    "Password": "d82u@K0re8LsmPkm!mQ3l2",
-                    "tranId": "tranid123",
-                    "transactionSrc": "transSrc",
-                },
-                "ShipmentRequest": {
-                    "Shipment": {
-                        "Description": "1206 PTR",
-                        "Shipper": {
-                            "Name": "ShipperName",
-                            "AttentionName": "AttentionName",
-                            "TaxIdentificationNumber": "TaxID",
-                            "Phone": {
-                                "Number": "1234567890"
-                            },
-                            "ShipperNumber": "ShipperNumber",
-                            "Address": {
-                                "AddressLine": "AddressLine",
-                                "City": "City",
-                                "StateProvinceCode": "StateProvince",
-                                "PostalCode": "PostalCode",
-                                "CountryCode": "CountryCode"
-                            }
-                        },
-                        "ShipTo": {
-                            "Name": "ShipToName",
-                            "AttentionName": "AttentionName",
-                            "Phone": {
-                                "Number": "1234567890"
-                            },
-                            "FaxNumber": "1234567999",
-                            "TaxIdentificationNumber": "456999",
-                            "Address": {
-                                "AddressLine": "AddressLine",
-                                "City": "City",
-                                "StateProvinceCode": "StateProvince",
-                                "PostalCode": "PostalCode",
-                                "CountryCode": "CountryCode"
-                            }
-                        },
-                        "ShipFrom": {
-                            "Name": "ShipperName",
-                            "AttentionName": "AttentionName",
-                            "Phone": {
-                                "Number": "1234567890"
-                            },
-                            "FaxNumber": "1234567999",
-                            "TaxIdentificationNumber": "456999",
-                            "Address": {
-                                "AddressLine": "AddressLine",
-                                "City": "City",
-                                "StateProvinceCode": "StateProvince",
-                                "PostalCode": "PsotalCode",
-                                "CountryCode": "CountryCode"
-                            }
-                        },
-                        "PaymentInformation": {
-                            "ShipmentCharge": {
-                                "Type": "01",
-                                "BillShipper": {
-                                    "AccountNumber": "AccountNumber"
-                                }
-                            }
-                        },
-                        "Service": {
-                            "Code": "01",
-                            "Description": "Expedited"
-                        },
-                        "Package": [{
-                            "Description": "International Goods",
-                            "Packaging": {
-                                "Code": "02"
-                            },
-                            "PackageWeight": {
-                                "UnitOfMeasurement": {
-                                    "Code": "LBS"
-                                },
-                                "Weight": "10"
-                            },
-                            "PackageServiceOptions": ""
-                        },
-                        {
-                            "Description": "International Goods",
-                            "Packaging": {
-                                "Code": "02"
-                            },
-                            "PackageWeight": {
-                                "UnitOfMeasurement": {
-                                    "Code": "LBS"
-                                },
-                                "Weight": "20"
-                            },
-                            "PackageServiceOptions": ""
-                        }]
-                        ,
-                        "ItemizedChargesRequestedIndicator": "",
-                        "RatingMethodRequestedIndicator": "",
-                        "TaxInformationIndicator": "",
-                        "ShipmentRatingOptions": {
-                            "NegotiatedRatesIndicator": ""
-                        }
-                    },
-                    "LabelSpecification": {
-                        "LabelImageFormat": {
-                            "Code": "GIF"
-                        }
-                    }
-                }
-            })
-    };
-    fetch('https://onlinetools.ups.com/ship/v1/shipments?additionaladdressvalidation=city', requestOptions)
-        .then(response => {
-            console.log(response);
-        });
-    return false;
+    return true;
 }
