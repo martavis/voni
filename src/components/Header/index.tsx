@@ -68,9 +68,9 @@ const Header: React.FC = () => {
 				<div id="navigationMobile" onClick={toggleMenu}>
 					<div id="navigationDropdown" className="is-invisible">
 						<Link to="/" getProps={isActive}>Home</Link>
-						<Link to="/about" getProps={isActive}>About</Link>
 						<Link to="/shop" getProps={isActive}>Shop</Link>
-						<Link to="/ambassador" getProps={isActive}>Ambassador</Link>
+						{/* <Link to="/about" getProps={isActive}>About</Link> */}
+						{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 						{ 
 							token == null ? <>
 								<Link to="/login" getProps={isActive}>Login</Link>				
@@ -91,9 +91,9 @@ const Header: React.FC = () => {
 			</div>
 			<div className="page-links">
 				<Link to="/" getProps={isActive}>Home</Link>
-				<Link to="/about" getProps={isActive}>About</Link>
 				<Link to="/shop" getProps={isActive}>Shop</Link>
-				<Link to="/ambassador" getProps={isActive}>Ambassador</Link>
+				{/* <Link to="/about" getProps={isActive}>About</Link> */}
+				{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 				{ 
 					token == null ? <>
 						<Link to="/login" getProps={isActive}>Login</Link>				
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
 						<a onClick={logout}>Log out</a>
 					</>
 				}
-				<div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div>
+				{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}
 				<div className="cart-display">
 					<Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link>
 					{cartCount && <div className="cart-count">{cartCount}</div>}

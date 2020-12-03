@@ -10,8 +10,6 @@ import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 import CustomCountrySelect from 'components/CustomCountrySelect';
 
-import { addressValidationFunc, getShipment } from 'utils/functions';
-
 type props = { 
     isCheckout : boolean,
     isCheckoutPayment: boolean,
@@ -65,18 +63,19 @@ const ShippingInfo = ( { isCheckout, isCheckoutPayment, changeValue }: props) =>
                 postalCode: uAddress.postalCode,
                 countryCode: uAddress.country.code
             };
-            var validate = await addressValidationFunc(input);
-            getShipment(input);
-            if (validate) {                 
-                updateAddress({
-                    fetchPolicy: 'no-cache',
-                    variables: {
-                        input: input
-                    }
-                });	
-            } else { 
-                setAlertMessage("Please input right address !")                
-            }
+            // TODO: Do address validation and update the address via Vendure gql
+            // var validate = await addressValidationFunc(input);
+            // getShipment(input);
+            // if (validate) {                 
+            //     updateAddress({
+            //         fetchPolicy: 'no-cache',
+            //         variables: {
+            //             input: input
+            //         }
+            //     });	
+            // } else { 
+            //     setAlertMessage("Please input right address !")                
+            // }
         } else { 
             const input: CreateAddressInput = {
                 streetLine1: uAddress.streetLine1,

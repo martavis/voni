@@ -1,5 +1,3 @@
-import { UpdateAddressInput } from 'types/vendure';
-
 export const formatPrice = (intPrice: number): string => {
     const priceStr = intPrice.toString();
     const cents = priceStr.substr(-2);
@@ -13,28 +11,3 @@ export const validateEmail = (email: string): boolean => {
         return true;
     }
 };
-
-export const addressValidationFunc = (input: UpdateAddressInput): boolean => {
-    var addressValidation = require('./UPS/addressValidation');
-    var validateAddress = new addressValidation('CD8C99ABC34D8CFD', 'auraticd', 'd82u@K0re8LsmPkm!mQ3l2');
-    validateAddress.useSandbox(true);
-
-    validateAddress.makeRequest({
-        customerContext: "Customer Data",
-        city: input.city,
-        stateProvinceCode: input.province
-    }, function (err: any, data: any) {
-        if (err) {
-            console.error(err);
-        }
-        if (data) {
-            //Enjoy playing the data :)
-            console.log(data);
-        }
-    });
-    return true;
-}
-
-export const getShipment = (input: UpdateAddressInput): boolean => {
-    return true;
-}
