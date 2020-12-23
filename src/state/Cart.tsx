@@ -1,12 +1,12 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
-import { Order } from 'shopify-storefront-api-typings';
+import { Checkout } from 'shopify-storefront-api-typings';
 
 type Props = {
     children: ReactNode;
 };
 
 type InitialStateType = {
-    cart: Order | null,
+    cart: Checkout | null,
     setCart: Function
 };
 
@@ -36,7 +36,7 @@ const CartProvider = ({ children }: Props) => {
 
     const value = {
         cart: state.cart,
-        setCart: (cart: Order | null) => {
+        setCart: (cart: Checkout | null) => {
             dispatch({ type: actions.SET_CART, cart });
         }
     };

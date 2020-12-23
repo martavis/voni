@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { Link, LinkGetProps } from '@reach/router';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
-import { Order, Customer } from 'shopify-storefront-api-typings';
+import { Checkout, Customer } from 'shopify-storefront-api-typings';
 import { CustomerContext } from 'state/Customer';
 import { LOGOUT } from 'utils/gqlMutation';
 import './Header.scss';
 
 const Header: React.FC = () => {
-	const { cart }: { cart: Order } = useContext(CartContext);
+	const { cart }: { cart: Checkout } = useContext(CartContext);
 	const { token, customer, setToken }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
-import { Order } from 'shopify-storefront-api-typings';
+import { Checkout } from 'shopify-storefront-api-typings';
 import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gqlMutation';
 import { formatPrice } from 'utils/functions';
 
@@ -14,7 +14,7 @@ import ProductImage from 'components/ProductImage';
 type DF = React.FC<{ path?: String }>;
 
 const Cart: DF = () => {
-	const { cart, setCart }: { cart: Order, setCart: Function } = useContext(CartContext);
+	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
 	const [adjustItemQuantity] = useMutation(ADJUST_ITEM_QUANTITY, {
 		onCompleted: (data) => {
 			if (data) {
@@ -101,9 +101,9 @@ const Cart: DF = () => {
 									</div>
 									<div className="item-price">${formatPrice(line.node.variant.unitPrice.amount)}</div>
 									<div className="item-quantity">
-										<ItemCounter count={line.node.currentQuantity} setCount={changeCartCount} lineId={line.node.variant.id} />
+										<ItemCounter count={line.node.quantity} setCount={changeCartCount} lineId={line.node.variant.id} />
 									</div>
-									<div className="item-total">${formatPrice(line.node.originalTotalPrice.amount)}</div>
+									<div className="item-total">${formatPrice(line.node.variant.priceV2.amount)}</div>
 								</div>
 							))
 						}</div>
@@ -117,7 +117,7 @@ const Cart: DF = () => {
 			}</div>
 			<div className="total">
 				<div className="total-title">Items Subtotal</div>
-				<div className="price-text" title={`$${formatPrice(cart.currentSubtotalPrice.amount)}`}>${formatPrice(cart.currentSubtotalPrice.amount)}</div>
+				<div className="price-text" title={`$${formatPrice(cart.subtotalPriceV2.amount)}`}>${formatPrice(cart.subtotalPriceV2.amount)}</div>
 			</div>
 			<div className="cart-actions">
 				<Link to="/shop" className="shop">Continue Shopping</Link>

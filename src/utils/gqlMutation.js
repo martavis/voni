@@ -2,6 +2,50 @@ import gql from 'graphql-tag';
 import { ORDER_ADDRESS_FRAGMENT, CART_FRAGMENT, REGISTER_CUSTOMER_ACCOUNT_RESULT, NATIVE_AUTHENTICATION_RESULT, 
     LOGOUT_RESULT, ADDRESS_FRAGMENT, ERROR_RESULT_FRAGMENT } from './gqlFragment';
 
+export const CREATE_CART = gql`
+    mutation checkoutCreate($input: CheckoutCreateInput!) {
+        cart: checkoutCreate(input: $input) {
+            checkout {
+                id
+                lineItems(first: 5) {
+                    edges {
+                        node {
+                            id
+                            title
+                            quantity
+                            variant {
+                                id
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export const MODIFY_CART = gql`
+    mutation checkoutLineItemsReplace($lineItems: [CheckoutLineItemInput!]!, $checkoutId: ID!) {
+        cart: checkoutLineItemsReplace(lineItems: $lineItems, checkoutId: $checkoutId) {
+            checkout {
+                id
+                lineItems(first: 5) {
+                    edges {
+                        node {
+                            id
+                            title
+                            quantity
+                            variant {
+                                id
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export const ADD_TO_CART = gql`
     mutation addToCart($productVariantId: ID!, $quantity: Int!) {
         cart: addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {

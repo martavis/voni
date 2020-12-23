@@ -1,10 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { withRouteData } from 'react-static';
-import { Product, ProductOption, ProductVariantConnection } from 'shopify-storefront-api-typings';
+import { 
+	Product, 
+	ProductOption, 
+	ProductVariantConnection,
+	Checkout,
+	CheckoutLineItemInput
+} from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { formatPrice } from 'utils/functions';
-import { ADD_TO_CART } from 'utils/gqlMutation';
+import { CREATE_CART, MODIFY_CART } from 'utils/gqlMutation';
 
 import '../assets/styles/single-product.scss';
 
@@ -14,12 +20,26 @@ import ProductImage from 'components/ProductImage';
 const SingleProductPage = ({ product }: { product: Product }) => {
 	const [quantity, setQuantity] = useState<number>(1);
 	const [selectedVariant, setSelectedVariant] = useState(0);
-	const [selectedVariantImage] = useState(0);
-	const { setCart }: { setCart: Function } = useContext(CartContext);
-	const [addToCart] = useMutation(ADD_TO_CART, {
-		onCompleted: (data) => {
-			if (data) {
-				setCart(data.cart);
+	// const [selectedVariantImage] = useState(0);
+	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
+	const [createCart] = useMutation(CREATE_CART, {
+		onCompleted: ({ cart: { checkout } }) => {
+			if (checkout) {
+				setCart(checkout);
+			} else {
+				console.log('nope');
+			}
+		},
+		onError: (error) => {
+			console.error(error);
+			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
+		}
+	});
+
+	const [modifyCart] = useMutation(MODIFY_CART, {
+		onCompleted: ({ cart: { checkout } }) => {
+			if (checkout) {
+				setCart(checkout);
 			} else {
 				console.log('nope');
 			}
@@ -34,20 +54,48 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	const options: Array<ProductOption> = product.options.length > 0 && product.options.filter(({ name }) => name !== 'Title'); // Shopify keeps a default for some reason :|
 	let price = formatPrice(variants.edges[selectedVariant].node.priceV2.amount);
 	
-	const increaseCart = async () => {
+	const addToCart = async () => {
 		const { id } = variants.edges[selectedVariant].node;
+		
+		const itemIndexInCart = cart ? cart.lineItems.edges.findIndex((item) => item.node.variant.id === id ) : -1;
+		let lineItems: Array<CheckoutLineItemInput> = [{ variantId: id, quantity }];
+		
+		// modify cart
+		if (itemIndexInCart > -1) {
+			lineItems = [];
+			const newQuantity = cart.lineItems.edges[itemIndexInCart].node.quantity + quantity; // add state's quantity
+			
+			// restructure cart items, skipping the product with the old quantity
+			cart.lineItems.edges.forEach(({ node }, i) => {
+				if (i !== itemIndexInCart) {
+					lineItems.push({ variantId: node.id, quantity: node.quantity });
+				}
+			});
 
-		// try {
-		// 	await addToCart({
-		// 		fetchPolicy: 'no-cache',
-		// 		variables: {
-		// 			productVariantId: id,
-		// 			quantity: quantity
-		// 		}
-		// 	});
-		// } catch(error) {
-		// 	console.log(error);
-		// }
+			// add the new quantity of the product we're adding
+			lineItems.push({variantId: id, quantity: newQuantity})
+		}
+
+		try {
+			if (cart) {
+				await modifyCart({
+					fetchPolicy: 'no-cache',
+					variables: { 
+						lineItems,
+						checkoutId: cart.id
+					}
+				});
+				return;
+			}
+
+			await createCart({
+				fetchPolicy: 'no-cache',
+				variables: { input: { lineItems } }
+			});
+			return;
+		} catch(error) {
+			console.log(error);
+		}
 	};
 	
 	let selectedVariantNode = variants.edges[selectedVariant].node;
@@ -88,7 +136,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 						<ItemCounter count={quantity} setCount={setQuantity} />
 					</div>
 					<div className="add-to-cart">
-						<div role="button" onClick={() => increaseCart()}>
+						<div role="button" onClick={() => addToCart()}>
 							Add to Cart <img alt="" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" />
 						</div>
 					</div>

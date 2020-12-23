@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 // import { useMutation } from '@apollo/client';
-import { Order, OrderLineItemEdge } from 'shopify-storefront-api-typings';
+import { Checkout, CheckoutLineItemEdge } from 'shopify-storefront-api-typings';
 import { formatPrice } from 'utils/functions';
 
 import '../assets/styles/checkout.scss';
@@ -14,12 +14,12 @@ import ProductImage from 'components/ProductImage';
 
 type DF = React.FC<{ path?: String }>;
 
-const Checkout: DF = () => {
+const CheckoutContainer: DF = () => {
     const [hasReachedInfo, setHasReachedInfo] = useState<boolean>(true);
     const [hasReachedShipping, setHasReachedShipping] = useState<boolean>(false);
     const [hasReachedPayment, setHasReachedPayment] = useState<boolean>(false);
     const { pathname } = typeof document !== 'undefined' && window.location;
-    const { cart }: { cart: Order, setCart: Function } = useContext(CartContext);
+    const { cart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
     
     useEffect(() => {
         switch (pathname) {
@@ -51,17 +51,17 @@ const Checkout: DF = () => {
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{
-                    cart.lineItems.edges.map((line: OrderLineItemEdge, i: number) => (
+                    cart.lineItems.edges.map((line: CheckoutLineItemEdge, i: number) => (
                         <div key={i}>
                             <div className="summary-left-line">      
                                 <ProductImage src={line.node.variant.image.originalSrc} isSmall />     
                                 <div>
                                     <p>{line.node.variant.title}</p>
-                                    <p>QTY: &nbsp;{line.node.currentQuantity}</p>                                
+                                    <p>QTY: &nbsp;{line.node.quantity}</p>                                
                                 </div>
                             </div>
                             <div>
-                                <p className="summary-line-price">${formatPrice(line.node.originalTotalPrice.amount)} USD</p>                                
+                                <p className="summary-line-price">${formatPrice(line.node.variant.priceV2.amount)} USD</p>                                
                             </div>
                         </div>
                     ))
@@ -77,7 +77,7 @@ const Checkout: DF = () => {
                 <div className="price-structure summary-section">
                     <div>
                         <p className="title">Subtotal</p>
-                        <p className="value">${formatPrice(cart.currentSubtotalPrice.amount)} USD</p>
+                        <p className="value">${formatPrice(cart.subtotalPriceV2.amount)} USD</p>
                     </div>
                     <div>
                         <p className="title">Shipping</p>
@@ -87,7 +87,7 @@ const Checkout: DF = () => {
                 <div className="total summary-section">
                     <div>
                         <p className="title">Total</p>
-                        <p className="value">${formatPrice(cart.currentTotalPrice.amount)} USD</p>
+                        <p className="value">${formatPrice(cart.totalPriceV2.amount)} USD</p>
                     </div>
                 </div>
             </div>
@@ -95,4 +95,4 @@ const Checkout: DF = () => {
 	);
 };
 
-export default Checkout;
+export default CheckoutContainer;

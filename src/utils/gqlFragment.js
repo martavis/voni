@@ -10,46 +10,18 @@ export const COUNTRY_FRAGMENT = gql`
 `;
 
 export const CART_FRAGMENT = gql`
-    fragment Cart on Order {
-        id
-        code
-        state
-        active
-        lines {
+    fragment Cart on CheckoutCreatePayload {
+        checkout {
             id
-            featuredAsset {
-                source
+            lineItems(first: 5) {
+                edges {
+                    node {
+                        id
+                        title
+                        quantity
+                    }
+                }
             }
-            unitPrice
-            unitPriceWithTax
-            quantity
-            totalPrice
-            productVariant {
-                id
-                name
-            }
-            adjustments {
-                amount
-                description
-                adjustmentSource
-                type
-            }
-        }
-        subTotal
-        subTotalBeforeTax
-        totalBeforeTax
-        shipping
-        shippingMethod {
-            id
-            code
-            description
-        }
-        total
-        adjustments {
-            amount
-            description
-            adjustmentSource
-            type
         }
     }
 `;
