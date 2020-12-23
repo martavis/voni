@@ -7,6 +7,9 @@ export const CREATE_CART = gql`
         cart: checkoutCreate(input: $input) {
             checkout {
                 id
+                subtotalPriceV2 {
+                    amount
+                }
                 lineItems(first: 5) {
                     edges {
                         node {
@@ -15,6 +18,16 @@ export const CREATE_CART = gql`
                             quantity
                             variant {
                                 id
+                                title
+                                unitPrice {
+                                    amount
+                                }
+                                priceV2 {
+                                    amount
+                                }
+                                image {
+                                    originalSrc
+                                }
                             }
                         }
                     }
@@ -29,6 +42,9 @@ export const MODIFY_CART = gql`
         cart: checkoutLineItemsReplace(lineItems: $lineItems, checkoutId: $checkoutId) {
             checkout {
                 id
+                subtotalPriceV2 {
+                    amount
+                }
                 lineItems(first: 5) {
                     edges {
                         node {
@@ -37,6 +53,16 @@ export const MODIFY_CART = gql`
                             quantity
                             variant {
                                 id
+                                title
+                                unitPrice {
+                                    amount
+                                }
+                                priceV2 {
+                                    amount
+                                }
+                                image {
+                                    originalSrc
+                                }
                             }
                         }
                     }

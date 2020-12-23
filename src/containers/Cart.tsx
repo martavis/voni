@@ -4,7 +4,7 @@ import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
 import { Checkout } from 'shopify-storefront-api-typings';
 import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gqlMutation';
-import { formatPrice } from 'utils/functions';
+import { formatPrice, calculateQuantityTotal } from 'utils/functions';
 
 import '../assets/styles/cart.scss';
 
@@ -83,29 +83,34 @@ const Cart: DF = () => {
 							<div className="header-name">Total</div>
 						</div>
 						<div className="cart-items">{
-							cart.lineItems.edges.map((line, i) => (
-								<div key={i} className="item">
-									<div className="item-image-name">
-										<ProductImage src={line.node.variant.image.originalSrc} isSmall />
-										<div className="title-delete">
-											<p>{line.node.variant.title}</p>
-											<div role="button" className="remove-item-button" onClick={() => removeItem(line.node.variant.id)}>
-												<div className="button-text">
-													<span>Remove</span>
-													<div className="icon">
-														<img alt={`remove ${line.node.variant.title}`} src="https://storage.googleapis.com/voni-assets/img/times.png" />
+							cart.lineItems.edges.map(({ node }, i) => {
+								const title = node.variant.title === 'Default Title' ? node.title : node.variant.title;
+								const totalItemPrice = calculateQuantityTotal(node.variant.priceV2.amount, node.quantity);
+								
+								return (
+									<div key={i} className="item">
+										<div className="item-image-name">
+											<ProductImage src={node.variant.image.originalSrc} isSmall />
+											<div className="title-delete">
+												<p>{title}</p>
+												<div role="button" className="remove-item-button" onClick={() => removeItem(node.variant.id)}>
+													<div className="button-text">
+														<span>Remove</span>
+														<div className="icon">
+															<img alt={`remove ${title}`} src="https://storage.googleapis.com/voni-assets/img/times.png" />
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
+										<div className="item-price">${formatPrice(node.variant.priceV2.amount)}</div>
+										<div className="item-quantity">
+											<ItemCounter count={node.quantity} setCount={changeCartCount} lineId={node.variant.id} />
+										</div>
+										<div className="item-total">${totalItemPrice}</div>
 									</div>
-									<div className="item-price">${formatPrice(line.node.variant.unitPrice.amount)}</div>
-									<div className="item-quantity">
-										<ItemCounter count={line.node.quantity} setCount={changeCartCount} lineId={line.node.variant.id} />
-									</div>
-									<div className="item-total">${formatPrice(line.node.variant.priceV2.amount)}</div>
-								</div>
-							))
+								);
+							})
 						}</div>
 					</div>
 				) : (

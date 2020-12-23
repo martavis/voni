@@ -9,6 +9,14 @@ export const formatPrice = (priceStr: string | number): string => {
     return priceStr.substring(0, decimalIndex) + `.${cents}`;
 };
 
+export const calculateQuantityTotal = (price: string | number, quantity: number): string => {
+    if (typeof price == 'string') {
+        price = parseFloat(price);
+    }
+
+    return (price * quantity).toFixed(2).toString();
+};
+
 export const validateEmail = (email: string): boolean => {
     if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(email)) {
         return false;
