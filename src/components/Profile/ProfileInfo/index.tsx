@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Customer, UpdateCustomerInput } from 'types/vendure';
+import { Customer } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
 import { GET_ACTIVE_CUSTOMER } from 'utils/gqlQuery';
 import { UPDATE_CUSTOMER_DETAILS } from 'utils/gqlMutation';
@@ -21,7 +21,7 @@ const ProfileInfo = () => {
         title: '', 
         firstName: '',
         lastName: '',
-        emailAddress: '',
+        email: '',
         phoneNumber: ''
     });
 
@@ -38,7 +38,7 @@ const ProfileInfo = () => {
     }
 
     let updateProfileInfo = ( event: React.MouseEvent<HTMLButtonElement> ) => {    
-        const input: UpdateCustomerInput = {
+        const input = {
             title: uCustomer.title,
             firstName: uCustomer.firstName,
             lastName: uCustomer.lastName,
@@ -68,13 +68,13 @@ const ProfileInfo = () => {
 
     return ( 
         <div className="profileInfo">
-            <CustomInput placeholder="Title" type="input" value={uCustomer.title} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, title:event.target.value})}} />                 
+            <CustomInput placeholder="Title" type="input" value={uCustomer.title} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, title: event.target.value})}} />                 
             <div className="two-comlumns-responsive">
-                <CustomInput placeholder="First Name" type="input" value={uCustomer.firstName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, firstName:event.target.value})}} />
-                <CustomInput placeholder="Last Name" type="input" value={uCustomer.lastName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, lastName:event.target.value})}} />
+                <CustomInput placeholder="First Name" type="input" value={uCustomer.firstName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, firstName: event.target.value})}} />
+                <CustomInput placeholder="Last Name" type="input" value={uCustomer.lastName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, lastName: event.target.value})}} />
             </div>       
-            <CustomInput placeholder="Email" type="input" value={uCustomer.emailAddress} enable={false} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, emailAddress:event.target.value})}} />
-            <CustomInput placeholder="Phone Number" type="input" value={uCustomer.phoneNumber} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, phoneNumber:event.target.value})}} />
+            <CustomInput placeholder="Email" type="input" value={uCustomer.email} enable={false} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, email: event.target.value})}} />
+            <CustomInput placeholder="Phone Number" type="input" value={uCustomer.phoneNumber} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, phoneNumber: event.target.value})}} />
             <CustomButton buttonText="Update" submit={updateProfileInfo}></CustomButton>
             <p className={alertClass}> {alertMessage} </p>
         </div>

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
-import { Order } from 'types/vendure';
+import { Order } from 'shopify-storefront-api-typings';
 
 type Props = {
     children: ReactNode;

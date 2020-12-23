@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 // import { useMutation } from '@apollo/client';
-import { Order } from 'types/vendure';
+import { Order, OrderLineItemEdge } from 'shopify-storefront-api-typings';
 import { formatPrice } from 'utils/functions';
 
 import '../assets/styles/checkout.scss';
@@ -51,17 +51,17 @@ const Checkout: DF = () => {
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{
-                    cart.lines.map((line, i) => (
+                    cart.lineItems.edges.map((line: OrderLineItemEdge, i: number) => (
                         <div key={i}>
                             <div className="summary-left-line">      
-                                <ProductImage src={line.featuredAsset.source} isSmall />     
+                                <ProductImage src={line.node.variant.image.originalSrc} isSmall />     
                                 <div>
-                                    <p>{line.productVariant.name}</p>
-                                    <p>QTY: &nbsp;{line.quantity}</p>                                
+                                    <p>{line.node.variant.title}</p>
+                                    <p>QTY: &nbsp;{line.node.currentQuantity}</p>                                
                                 </div>
                             </div>
                             <div>
-                                <p className="summary-line-price">${formatPrice(line.totalPrice)} USD</p>                                
+                                <p className="summary-line-price">${formatPrice(line.node.originalTotalPrice.amount)} USD</p>                                
                             </div>
                         </div>
                     ))
@@ -77,7 +77,7 @@ const Checkout: DF = () => {
                 <div className="price-structure summary-section">
                     <div>
                         <p className="title">Subtotal</p>
-                        <p className="value">${formatPrice(cart.subTotal)} USD</p>
+                        <p className="value">${formatPrice(cart.currentSubtotalPrice.amount)} USD</p>
                     </div>
                     <div>
                         <p className="title">Shipping</p>
@@ -87,7 +87,7 @@ const Checkout: DF = () => {
                 <div className="total summary-section">
                     <div>
                         <p className="title">Total</p>
-                        <p className="value">${formatPrice(cart.total)} USD</p>
+                        <p className="value">${formatPrice(cart.currentTotalPrice.amount)} USD</p>
                     </div>
                 </div>
             </div>

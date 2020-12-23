@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef } from 'react';
 import { useRouteData } from 'react-static';
 import { Link } from '@reach/router';
-import { Collection, Product } from 'types/vendure';
+import { ProductEdge, ProductConnection } from 'shopify-storefront-api-typings';
 
 import '../assets/styles/home.scss';
 
@@ -12,8 +12,8 @@ export default () => {
 	const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 	const videoRef = createRef<HTMLVideoElement>();
 
-	const { collection }: { collection: Collection } = useRouteData();
-	
+	const { products }: { products: ProductConnection } = useRouteData();
+	console.log(products)
 	useEffect(() => {
 		['pause', 'ended'].forEach(evt => 
 			videoRef.current.addEventListener(evt, () => {
@@ -46,7 +46,8 @@ export default () => {
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean<br />congue cursus efficitur. Pellentesque odio tortor, suscipit nec tortor ut.
 					</p>
-					<Link to="/shop">Shop Now</Link>
+					{/* <Link to="/shop">Shop Now</Link> */}
+					<a href="#products">Shop Now</a>
 				</div>
 			</section>
 			<section className="lookbook">
@@ -69,10 +70,10 @@ export default () => {
 				</div>
 			</section>
 			<section className="featured-items">
-				<h2>New Arrivals</h2>
+				<h2 id="products">All Products</h2>
 				<div className="item-grid section-custom-border">{
-					collection && collection.productVariants.items.map(({ product }: { product: Product }, i: number) => (
-						<ProductComponent key={i} product={product} />
+					products && products.edges.map((product: ProductEdge, i: number) => (
+						<ProductComponent key={i} product={product.node} />
 					))
 				}</div>
 			</section>

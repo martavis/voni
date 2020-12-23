@@ -78,7 +78,7 @@ const CheckoutShipping = () => {
 				<div className="input-clip-path-inside contact-info"> 
 					<div>
 						Contact: 
-						<span>{customer.emailAddress}</span>
+						<span>{customer.email}</span>
 						<Link to="/checkout">CHANGE</Link>
 					</div> 
 					<div>

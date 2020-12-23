@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { withRouteData } from 'react-static';
-import { Product, ProductOption } from 'types/vendure';
+import { Product, ProductOption, ProductVariantConnection } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { formatPrice } from 'utils/functions';
@@ -30,49 +30,48 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 		}
 	});
 	
-	const { variants, description, featuredAsset } = product;
-	const { options } = product.optionGroups.length > 0 && product.optionGroups[0];
-	let price = formatPrice(variants[selectedVariant].price);
+	const { variants, description }: {variants: ProductVariantConnection, description: string } = product;
+	const options: Array<ProductOption> = product.options.length > 0 && product.options.filter(({ name }) => name !== 'Title'); // Shopify keeps a default for some reason :|
+	let price = formatPrice(variants.edges[selectedVariant].node.priceV2.amount);
 	
 	const increaseCart = async () => {
-		const { id } = variants[selectedVariant];
+		const { id } = variants.edges[selectedVariant].node;
 
-		try {
-			await addToCart({
-				fetchPolicy: 'no-cache',
-				variables: {
-					productVariantId: id,
-					quantity: quantity
-				}
-			});
-		} catch(error) {
-			console.log(error);
-		}
+		// try {
+		// 	await addToCart({
+		// 		fetchPolicy: 'no-cache',
+		// 		variables: {
+		// 			productVariantId: id,
+		// 			quantity: quantity
+		// 		}
+		// 	});
+		// } catch(error) {
+		// 	console.log(error);
+		// }
 	};
 	
-	console.log(product)
-	
-	let imageToShow = featuredAsset;
-	if (variants[selectedVariant]['assets'][selectedVariantImage]) {
-		imageToShow = variants[selectedVariant]['assets'][selectedVariantImage];
-	} else if (variants[selectedVariant]['featuredAsset']) {
-		imageToShow = variants[selectedVariant]['featuredAsset'];
-	}
+	let selectedVariantNode = variants.edges[selectedVariant].node;
+	// let imageToShow = selectedVariantNode;
+	// if (variants[selectedVariant]['assets'][selectedVariantImage]) {
+	// 	imageToShow = variants[selectedVariant]['assets'][selectedVariantImage];
+	// } else if (variants[selectedVariant]['featuredAsset']) {
+	// 	imageToShow = variants[selectedVariant]['featuredAsset'];
+	// }
 
-	const hasSecondaryImages = variants[selectedVariant]['assets'].length > 0;
+	const hasSecondaryImages = false;
 	return (
 		<div className="single-product page">
 			<div className="images" data-has-secondary={hasSecondaryImages}>
 				{hasSecondaryImages && <div className="secondary"></div>}
 				<div className="enlarged">
-					<ProductImage src={imageToShow.source} />
+					<ProductImage src={selectedVariantNode.image.originalSrc} />
 				</div>
 			</div>
 			<div className="details">
-				<p className="product-title">{product.name}</p>
+				<p className="product-title">{product.title}</p>
 				<p className="product-price">${price}</p>
 				<div className="product-actions">
-					{options && 
+					{options.length > 0 && 
 						<div className="product-options">{
 							options.map(({ name }: ProductOption, i: number) => (
 								<div 

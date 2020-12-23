@@ -1,6 +1,55 @@
 import gql from 'graphql-tag';
 import { COUNTRY_FRAGMENT, ADDRESS_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from './gqlFragment';
 
+export const GET_ALL_PRODUCTS = gql`
+    query {
+        products(first: 10) {
+            edges {
+                node {
+                    id
+                    title
+                    handle
+                    description
+                    totalInventory
+                    options {
+                        id
+                        name,
+                        values
+                    }
+                    priceRange {
+                        minVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                        maxVariantPrice {
+                            amount
+                            currencyCode
+                        }
+                    }
+                    variants(first: 10) {
+                        edges {
+                            node {
+                                id
+                                image {
+                                    originalSrc
+                                }
+                                quantityAvailable
+                                title
+                                currentlyNotInStock
+                                priceV2 {
+                                    amount
+                                    currencyCode
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
+
 export const GET_ALL_COLLECTIONS = gql`
     query {
         collections {
@@ -93,50 +142,50 @@ export const GET_FEATURED_COLLECTION = gql`
     }
 `;
 
-export const GET_ALL_PRODUCTS = gql`
-    query {
-        products {
-            items {
-                id
-                name
-                slug
-                description
-                collections {
-                    id
-                    name
-                    slug
-                }
-                featuredAsset {
-                    source
-                }
-                assets {
-                    source
-                }
-                variants {
-                    id
-                    sku
-                    name
-                    featuredAsset{
-                        source
-                    }
-                    assets {
-                        source
-                    }
-                    price
-                    currencyCode
-                    priceWithTax
-                    priceIncludesTax
-                }
-                optionGroups {
-                    options {
-                        name
-                    }
-                }
-            }
-            totalItems
-        }
-    }
-`;
+// export const GET_ALL_PRODUCTS = gql`
+//     query {
+//         products {
+//             items {
+//                 id
+//                 name
+//                 slug
+//                 description
+//                 collections {
+//                     id
+//                     name
+//                     slug
+//                 }
+//                 featuredAsset {
+//                     source
+//                 }
+//                 assets {
+//                     source
+//                 }
+//                 variants {
+//                     id
+//                     sku
+//                     name
+//                     featuredAsset{
+//                         source
+//                     }
+//                     assets {
+//                         source
+//                     }
+//                     price
+//                     currencyCode
+//                     priceWithTax
+//                     priceIncludesTax
+//                 }
+//                 optionGroups {
+//                     options {
+//                         name
+//                     }
+//                 }
+//             }
+//             totalItems
+//         }
+//     }
+// `;
 
 export const GET_ACTIVE_CUSTOMER = gql`
     query GetActiveCustomer {

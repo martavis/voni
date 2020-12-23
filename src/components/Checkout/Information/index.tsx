@@ -84,7 +84,7 @@ const CheckoutInformation = () => {
 						Already have an account? <Link to="/login">LOGIN</Link>
 					</span>
 				</> : 
-				 	<CustomInput placeholder="Email or mobile phone number" value={customer.emailAddress} onChange={() => {}} enable={false}/>   
+				 	<CustomInput placeholder="Email or mobile phone number" value={customer.email} onChange={() => {}} enable={false}/>   
 			}
 			<p className="title">
 				SHIPPING ADDRESS

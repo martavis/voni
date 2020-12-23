@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import { Product } from 'types/vendure';
+import { Product, ProductVariantEdge } from 'shopify-storefront-api-typings';
 import { formatPrice } from 'utils/functions';
 
 import './Product.scss';
@@ -12,15 +12,16 @@ type Props = {
 };
 
 const ProductComponent = ({ product }: Props) => {
-    let price = formatPrice(product.variants[0].price); // default to first variant
-    price = product.variants.length > 1 ? `From $${price}` : `$${price}`;
+    let variants: Array<ProductVariantEdge> = product.variants.edges;
+    let price = formatPrice(variants[0].node.priceV2.amount); // default to first variant
+    price = variants.length > 1 ? `From $${formatPrice(product.priceRange.minVariantPrice.amount)}` : `$${price}`;
 
     return (
-        <Link to={`/shop/product/${product.slug}`}>
+        <Link to={`/shop/product/${product.handle}`}>
             <div className="product-component">
-                <ProductImage src={product.featuredAsset.source} />
+                <ProductImage src={variants[0].node.image.originalSrc} />
                 <div className="info">
-                    <p className="title">{product.name}</p>
+                    <p className="title">{product.title}</p>
                     <p className="price">{price}</p>
                 </div>
             </div>

@@ -1,7 +1,12 @@
-export const formatPrice = (intPrice: number): string => {
-    const priceStr = intPrice.toString();
-    const cents = priceStr.substr(-2);
-    return priceStr.substring(0, priceStr.lastIndexOf(cents)) + `.${cents}`;
+export const formatPrice = (priceStr: string | number): string => {
+    if (typeof priceStr == 'number') {
+        return 'NNN';
+    }
+    
+    let decimalIndex = priceStr.indexOf('.');
+    let cents = priceStr.substr(decimalIndex + 1);
+    cents = cents.length === 1 ? `${cents}0` : cents; // because trailing '0' is deleted in the api
+    return priceStr.substring(0, decimalIndex) + `.${cents}`;
 };
 
 export const validateEmail = (email: string): boolean => {

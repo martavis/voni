@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react';
 import { Link, LinkGetProps } from '@reach/router';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
-import { Order, Customer } from 'types/vendure';
+import { Order, Customer } from 'shopify-storefront-api-typings';
 import { CustomerContext } from 'state/Customer';
 import { LOGOUT } from 'utils/gqlMutation';
 import './Header.scss';
 
 const Header: React.FC = () => {
 	const { cart }: { cart: Order } = useContext(CartContext);
-	const { token, customer, setToken } : { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
+	const { token, customer, setToken }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const isActive = ({ isCurrent }: LinkGetProps) => {
@@ -18,8 +18,8 @@ const Header: React.FC = () => {
 	};
 	
 	let cartCount = null;
-	if (cart && cart.lines) {
-		cartCount = cart.lines.length;
+	if (cart && cart.lineItems) {
+		cartCount = cart.lineItems.edges.length;
 	}
 	let logout = () => { 
 		try {
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
 				<div id="navigationMobile" onClick={toggleMenu}>
 					<div id="navigationDropdown" className="is-invisible">
 						<Link to="/" getProps={isActive}>Home</Link>
-						<Link to="/shop" getProps={isActive}>Shop</Link>
+						{/* <Link to="/shop" getProps={isActive}>Shop</Link> */}
 						{/* <Link to="/about" getProps={isActive}>About</Link> */}
 						{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 						{ 
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
 			</div>
 			<div className="page-links">
 				<Link to="/" getProps={isActive}>Home</Link>
-				<Link to="/shop" getProps={isActive}>Shop</Link>
+				{/* <Link to="/shop" getProps={isActive}>Shop</Link> */}
 				{/* <Link to="/about" getProps={isActive}>About</Link> */}
 				{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 				{ 

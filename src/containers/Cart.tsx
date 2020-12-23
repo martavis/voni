@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
-import { Order } from 'types/vendure';
+import { Order } from 'shopify-storefront-api-typings';
 import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gqlMutation';
 import { formatPrice } from 'utils/functions';
 
@@ -74,7 +74,7 @@ const Cart: DF = () => {
 		<div className="cart-container page-container">
 			<h1 className="page-title">Shopping Cart</h1>
 			<div className="cart-summary">{
-				cart.lines.length > 0 ? (
+				cart.lineItems.edges.length > 0 ? (
 					<div className="cart-table">
 						<div className="headers">
 							<div className="header-name">Product</div>
@@ -83,27 +83,27 @@ const Cart: DF = () => {
 							<div className="header-name">Total</div>
 						</div>
 						<div className="cart-items">{
-							cart.lines.map((line, i) => (
+							cart.lineItems.edges.map((line, i) => (
 								<div key={i} className="item">
 									<div className="item-image-name">
-										<ProductImage src={line.featuredAsset.source} isSmall />
+										<ProductImage src={line.node.variant.image.originalSrc} isSmall />
 										<div className="title-delete">
-											<p>{line.productVariant.name}</p>
-											<div role="button" className="remove-item-button" onClick={() => removeItem(line.id)}>
+											<p>{line.node.variant.title}</p>
+											<div role="button" className="remove-item-button" onClick={() => removeItem(line.node.variant.id)}>
 												<div className="button-text">
 													<span>Remove</span>
 													<div className="icon">
-														<img alt={`remove ${line.productVariant.name}`} src="https://storage.googleapis.com/voni-assets/img/times.png" />
+														<img alt={`remove ${line.node.variant.title}`} src="https://storage.googleapis.com/voni-assets/img/times.png" />
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div className="item-price">${formatPrice(line.unitPrice)}</div>
+									<div className="item-price">${formatPrice(line.node.variant.unitPrice.amount)}</div>
 									<div className="item-quantity">
-										<ItemCounter count={line.quantity} setCount={changeCartCount} lineId={line.id} />
+										<ItemCounter count={line.node.currentQuantity} setCount={changeCartCount} lineId={line.node.variant.id} />
 									</div>
-									<div className="item-total">${formatPrice(line.totalPrice)}</div>
+									<div className="item-total">${formatPrice(line.node.originalTotalPrice.amount)}</div>
 								</div>
 							))
 						}</div>
@@ -117,7 +117,7 @@ const Cart: DF = () => {
 			}</div>
 			<div className="total">
 				<div className="total-title">Items Subtotal</div>
-				<div className="price-text" title={`$${formatPrice(cart.total)}`}>${formatPrice(cart.total)}</div>
+				<div className="price-text" title={`$${formatPrice(cart.currentSubtotalPrice.amount)}`}>${formatPrice(cart.currentSubtotalPrice.amount)}</div>
 			</div>
 			<div className="cart-actions">
 				<Link to="/shop" className="shop">Continue Shopping</Link>
