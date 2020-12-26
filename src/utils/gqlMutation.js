@@ -10,6 +10,9 @@ export const CREATE_CART = gql`
                 subtotalPriceV2 {
                     amount
                 }
+                totalPriceV2 {
+                    amount
+                }
                 lineItems(first: 5) {
                     edges {
                         node {
@@ -45,6 +48,9 @@ export const MODIFY_CART = gql`
                 subtotalPriceV2 {
                     amount
                 }
+                totalPriceV2 {
+                    amount
+                }
                 lineItems(first: 5) {
                     edges {
                         node {
@@ -78,6 +84,9 @@ export const REMOVE_FROM_CART = gql`
             checkout {
                 id
                 subtotalPriceV2 {
+                    amount
+                }
+                totalPriceV2 {
                     amount
                 }
                 lineItems(first: 5) {
