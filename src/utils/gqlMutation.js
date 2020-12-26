@@ -72,6 +72,43 @@ export const MODIFY_CART = gql`
     }
 `;
 
+export const REMOVE_FROM_CART = gql`
+    mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
+        cart: checkoutLineItemsRemove(checkoutId: $checkoutId, lineItemIds: $lineItemIds) {
+            checkout {
+                id
+                subtotalPriceV2 {
+                    amount
+                }
+                lineItems(first: 5) {
+                    edges {
+                        node {
+                            id
+                            title
+                            quantity
+                            variant {
+                                id
+                                title
+                                unitPrice {
+                                    amount
+                                }
+                                priceV2 {
+                                    amount
+                                }
+                                image {
+                                    originalSrc
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
+// ============== OLD v1 ============= //
+
 export const ADD_TO_CART = gql`
     mutation addToCart($productVariantId: ID!, $quantity: Int!) {
         cart: addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
@@ -90,14 +127,14 @@ export const ADJUST_ITEM_QUANTITY = gql`
     ${CART_FRAGMENT}
 `;
 
-export const REMOVE_FROM_CART = gql`
-    mutation removeFromCart($orderLineId: ID!) {
-        cart: removeOrderLine(orderLineId: $orderLineId) {
-            ...Cart
-        }
-    }
-    ${CART_FRAGMENT}
-`;
+// export const REMOVE_FROM_CART = gql`
+//     mutation removeFromCart($orderLineId: ID!) {
+//         cart: removeOrderLine(orderLineId: $orderLineId) {
+//             ...Cart
+//         }
+//     }
+//     ${CART_FRAGMENT}
+// `;
 
 export const SET_SHIPPING_ADDRESS = gql`
     mutation SetShippingAddress($input: CreateAddressInput!) {

@@ -5,10 +5,11 @@ import './ItemCounter.scss';
 type Props = {
     count: number
     setCount: Function
-    lineId?: string
+    lineId?: string,
+    checkoutId?: string
 };
 
-const ItemCounter = ({ count, setCount, lineId }: Props) => {
+const ItemCounter = ({ count, setCount, lineId, checkoutId }: Props) => {
     const handleClick = (additive: number) => (e: SyntheticEvent) => {
         e.preventDefault();
 
@@ -16,9 +17,8 @@ const ItemCounter = ({ count, setCount, lineId }: Props) => {
         newCount = (newCount + additive < 1) ? 1 : newCount + additive;
 
         // updating the cart quantity automatically
-        if (lineId) {
-            console.log(lineId);
-            setCount(lineId, newCount);
+        if (checkoutId) {
+            setCount(checkoutId, newCount, lineId);
         } else {
             setCount(newCount);
         }

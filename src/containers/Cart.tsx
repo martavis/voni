@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
-import { Checkout } from 'shopify-storefront-api-typings';
-import { ADJUST_ITEM_QUANTITY, REMOVE_FROM_CART } from 'utils/gqlMutation';
+import { Checkout, CheckoutLineItemInput } from 'shopify-storefront-api-typings';
+import { MODIFY_CART, REMOVE_FROM_CART } from 'utils/gqlMutation';
 import { formatPrice, calculateQuantityTotal } from 'utils/functions';
 
 import '../assets/styles/cart.scss';
@@ -15,41 +15,54 @@ type DF = React.FC<{ path?: String }>;
 
 const Cart: DF = () => {
 	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
-	const [adjustItemQuantity] = useMutation(ADJUST_ITEM_QUANTITY, {
-		onCompleted: (data) => {
-			if (data) {
-				setCart(data.cart);
+	const [modifyCart] = useMutation(MODIFY_CART, {
+		onCompleted: ({ cart: { checkout } }) => {
+			if (checkout) {
+				setCart(checkout);
 			} else {
 				console.log('nope');
 			}
 		},
 		onError: (error) => {
 			console.error(error);
-			alert('We could not adjust your quantity. Please refresh and try again, or contact us.');
+			alert('We could not change the quantity on your cart. Please refresh and try again, or contact us.');
 		}
 	});
 	
 	const [removeFromCart] = useMutation(REMOVE_FROM_CART, {
-		onCompleted: (data) => {
-			if (data) {
-				setCart(data.cart);
+		onCompleted: ({ cart: { checkout } }) => {
+			if (checkout) {
+				setCart(checkout);
 			} else {
 				console.log('nope');
 			}
 		},
 		onError: (error) => {
 			console.error(error);
-			alert('We could not remove this item from your cart. Please refresh and try again, or contact us.');
+			alert('We could not remove this item to your cart. Please refresh and try again, or contact us.');
 		}
 	});
 
-	const changeCartCount = async (orderLineId: string, quantity: number) => {
+	const changeCartCount = async (checkoutId: string, quantity: number, lineId: string) => {
+		let lineItems: Array<CheckoutLineItemInput> = [];
+		const itemIndexInCart = cart ? cart.lineItems.edges.findIndex(({ node }) => node.variant.id === lineId ) : -1;
+		
+		// restructure cart items, skipping the product with the old quantity
+		cart.lineItems.edges.forEach(({ node }, i) => {
+			if (i !== itemIndexInCart) {
+				lineItems.push({ variantId: node.id, quantity: node.quantity });
+			}
+		});
+
+		// add the new quantity of the product we're adding
+		lineItems.push({variantId: lineId, quantity })
+		
 		try {
-			await adjustItemQuantity({
+			await modifyCart({
 				fetchPolicy: 'no-cache',
 				variables: {
-					orderLineId,
-					quantity
+					lineItems,
+					checkoutId
 				}
 			});
 		} catch(error) {
@@ -105,7 +118,7 @@ const Cart: DF = () => {
 										</div>
 										<div className="item-price">${formatPrice(node.variant.priceV2.amount)}</div>
 										<div className="item-quantity">
-											<ItemCounter count={node.quantity} setCount={changeCartCount} lineId={node.variant.id} />
+											<ItemCounter count={node.quantity} setCount={changeCartCount} lineId={node.variant.id} checkoutId={cart.id} />
 										</div>
 										<div className="item-total">${totalItemPrice}</div>
 									</div>
