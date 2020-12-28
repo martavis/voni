@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from '@reach/router';
 import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
@@ -42,6 +42,12 @@ const Cart: DF = () => {
 			alert('We could not remove this item to your cart. Please refresh and try again, or contact us.');
 		}
 	});
+
+	useEffect(() => {
+		if (!cart || cart.lineItems.edges.length === 0) {
+			setCart(null);
+		}
+	}, [cart]);
 
 	const changeCartCount = async (checkoutId: string, quantity: number, lineId: string) => {
 		let lineItems: Array<CheckoutLineItemInput> = [];

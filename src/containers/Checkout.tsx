@@ -51,20 +51,24 @@ const CheckoutContainer: DF = () => {
             </div>
             <div className="summary checkout-side">
                 <div className="summary-lines summary-section">{
-                    cart.lineItems.edges.map((line: CheckoutLineItemEdge, i: number) => (
-                        <div key={i}>
-                            <div className="summary-left-line">      
-                                <ProductImage src={line.node.variant.image.originalSrc} isSmall />     
+                    cart.lineItems.edges.map(({ node }: CheckoutLineItemEdge, i: number) => {
+                        const title = node.variant.title === 'Default Title' ? node.title : node.variant.title;
+                        
+                        return (
+                            <div key={i}>
+                                <div className="summary-left-line">      
+                                    <ProductImage src={node.variant.image.originalSrc} isSmall />     
+                                    <div>
+                                        <p>{title}</p>
+                                        <p>QTY: &nbsp;{node.quantity}</p>                                
+                                    </div>
+                                </div>
                                 <div>
-                                    <p>{line.node.variant.title}</p>
-                                    <p>QTY: &nbsp;{line.node.quantity}</p>                                
+                                    <p className="summary-line-price">${formatPrice(node.variant.priceV2.amount)} USD</p>                                
                                 </div>
                             </div>
-                            <div>
-                                <p className="summary-line-price">${formatPrice(line.node.variant.priceV2.amount)} USD</p>                                
-                            </div>
-                        </div>
-                    ))
+                        )
+                    })
                 }</div>
                 <div className="promo-code summary-section">
                     <div className="input-clip-path-outside">

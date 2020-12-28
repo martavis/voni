@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import gqlClient from 'utils/gqlClient';
-import { GET_AVAILABLE_COUNTRIES } from 'utils/gqlQuery';
+import { GET_SHOP_DATA } from 'utils/gqlQuery';
 import AsyncSelect from 'react-select/async';
+import { COUNTRIES } from 'utils/constants';
 
 import './CustomCountrySelect.scss';
 
@@ -10,7 +11,7 @@ type Props = {
     value : any
 };
 
-const CustomCountrySelect = ( { onChange, value }: Props ) => {
+const CustomCountrySelect = ({ onChange, value }: Props) => {
     const [countries, setCountries] = useState([]);
     const [inputValue, setInputValue] = useState({
         label: '', value: ''
@@ -28,12 +29,14 @@ const CustomCountrySelect = ( { onChange, value }: Props ) => {
     }, value);
 
     let getAvailableCountries = async () => {
-        const {data: { availableCountries } } = await gqlClient.query({
-            query: GET_AVAILABLE_COUNTRIES,
+        const { data: { shop: { shipsToCountries } } } = await gqlClient.query({
+            query: GET_SHOP_DATA,
             fetchPolicy: 'no-cache'
         });
-        const options = availableCountries.map( function(row : {code: string, name: string}) {
-            return { value : row.code, label : row.name }
+
+        const options = shipsToCountries.map((code) => {
+            const name = COUNTRIES[code];
+            return { value: code, label: name };
         })
         setCountries(options);
     }
@@ -45,9 +48,10 @@ const CustomCountrySelect = ( { onChange, value }: Props ) => {
     };
 
     const filterCountries = (inputValue: string) => {
-        return countries.filter(i =>
-            i.label.toLowerCase().includes(inputValue.toLowerCase())
-        );
+        // return countries.filter(i =>
+        //     i.label.toLowerCase().includes(inputValue.toLowerCase())
+        // );
+        return countries;
     };
 
     let handleChange = (value : any)=> {
@@ -62,6 +66,7 @@ const CustomCountrySelect = ( { onChange, value }: Props ) => {
                     cacheOptions
                     loadOptions={loadOptions}
                     defaultOptions
+                    classNamePrefix="react-select"
                     theme={theme => ({
                         ...theme,
                         borderRadius: 0,

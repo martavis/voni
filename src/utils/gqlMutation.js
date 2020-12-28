@@ -6,114 +6,55 @@ export const CREATE_CART = gql`
     mutation checkoutCreate($input: CheckoutCreateInput!) {
         cart: checkoutCreate(input: $input) {
             checkout {
-                id
-                subtotalPriceV2 {
-                    amount
-                }
-                totalPriceV2 {
-                    amount
-                }
-                lineItems(first: 5) {
-                    edges {
-                        node {
-                            id
-                            title
-                            quantity
-                            variant {
-                                id
-                                title
-                                unitPrice {
-                                    amount
-                                }
-                                priceV2 {
-                                    amount
-                                }
-                                image {
-                                    originalSrc
-                                }
-                            }
-                        }
-                    }
-                }
+                ...Cart
             }
         }
     }
+    ${CART_FRAGMENT}
 `;
 
 export const MODIFY_CART = gql`
     mutation checkoutLineItemsReplace($lineItems: [CheckoutLineItemInput!]!, $checkoutId: ID!) {
         cart: checkoutLineItemsReplace(lineItems: $lineItems, checkoutId: $checkoutId) {
             checkout {
-                id
-                subtotalPriceV2 {
-                    amount
-                }
-                totalPriceV2 {
-                    amount
-                }
-                lineItems(first: 5) {
-                    edges {
-                        node {
-                            id
-                            title
-                            quantity
-                            variant {
-                                id
-                                title
-                                unitPrice {
-                                    amount
-                                }
-                                priceV2 {
-                                    amount
-                                }
-                                image {
-                                    originalSrc
-                                }
-                            }
-                        }
-                    }
-                }
+                ...Cart
             }
         }
     }
+    ${CART_FRAGMENT}
 `;
 
 export const REMOVE_FROM_CART = gql`
     mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
         cart: checkoutLineItemsRemove(checkoutId: $checkoutId, lineItemIds: $lineItemIds) {
             checkout {
-                id
-                subtotalPriceV2 {
-                    amount
-                }
-                totalPriceV2 {
-                    amount
-                }
-                lineItems(first: 5) {
-                    edges {
-                        node {
-                            id
-                            title
-                            quantity
-                            variant {
-                                id
-                                title
-                                unitPrice {
-                                    amount
-                                }
-                                priceV2 {
-                                    amount
-                                }
-                                image {
-                                    originalSrc
-                                }
-                            }
-                        }
-                    }
-                }
+                ...Cart
             }
         }
     }
+    ${CART_FRAGMENT}
+`;
+
+export const SET_CHECKOUT_SHIPPING_ADDRESS = gql`
+    mutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
+        cart: checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+            checkout {
+                ...Cart
+            }
+        }
+    }
+    ${CART_FRAGMENT}
+`;
+
+export const SET_PROFILE_SHIPPING_ADDRESS = gql`
+    mutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
+        cart: checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+            checkout {
+                ...Cart
+            }
+        }
+    }
+    ${CART_FRAGMENT}
 `;
 
 // ============== OLD v1 ============= //
@@ -145,18 +86,18 @@ export const ADJUST_ITEM_QUANTITY = gql`
 //     ${CART_FRAGMENT}
 // `;
 
-export const SET_SHIPPING_ADDRESS = gql`
-    mutation SetShippingAddress($input: CreateAddressInput!) {
-        setOrderShippingAddress(input: $input) {
-            ...Cart
-            shippingAddress {
-                ...OrderAddress
-            }
-        }
-    }
-    ${CART_FRAGMENT}
-    ${ORDER_ADDRESS_FRAGMENT}
-`;
+// export const SET_SHIPPING_ADDRESS = gql`
+//     mutation SetShippingAddress($input: CreateAddressInput!) {
+//         setOrderShippingAddress(input: $input) {
+//             ...Cart
+//             shippingAddress {
+//                 ...OrderAddress
+//             }
+//         }
+//     }
+//     ${CART_FRAGMENT}
+//     ${ORDER_ADDRESS_FRAGMENT}
+// `;
 
 export const SET_SHIPPING_METHOD = gql`
     mutation SetShippingMethod($id: ID!) {

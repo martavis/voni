@@ -22,7 +22,11 @@ const actions = {
 const reducer = (state: any, action: any) => {
     switch (action.type) {
         case actions.SET_CART:
-            localStorage.setItem('cart', JSON.stringify(action.cart));
+            if (action.cart) {
+                localStorage.setItem('cart', JSON.stringify(action.cart));
+            } else {
+                localStorage.removeItem('cart');
+            }
             return { ...state, cart: action.cart };
         default:
             return state;

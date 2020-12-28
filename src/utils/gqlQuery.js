@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { COUNTRY_FRAGMENT, ADDRESS_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from './gqlFragment';
+import { SHOP_POLICY_FRAGMENT, COUNTRY_FRAGMENT, ADDRESS_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from './gqlFragment';
 
 export const GET_ALL_PRODUCTS = gql`
     query {
@@ -49,6 +49,31 @@ export const GET_ALL_PRODUCTS = gql`
     }
 `;
 
+export const GET_SHOP_DATA = gql`
+    query {
+        shop {
+            description
+            moneyFormat
+            name
+            privacyPolicy {
+                ...policy
+            }
+            refundPolicy {
+                ...policy
+            }
+            shippingPolicy {
+                ...policy 
+            }
+            shipsToCountries
+            termsOfService {
+                ...policy
+            }
+        }
+    }
+    ${SHOP_POLICY_FRAGMENT}
+`;
+
+// ============== OLD v1 ============= //
 
 export const GET_ALL_COLLECTIONS = gql`
     query {
