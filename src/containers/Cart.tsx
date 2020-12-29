@@ -4,7 +4,11 @@ import { CartContext } from 'state/Cart';
 import { useMutation } from '@apollo/client';
 import { Checkout, CheckoutLineItemInput } from 'shopify-storefront-api-typings';
 import { MODIFY_CART, REMOVE_FROM_CART } from 'utils/gqlMutation';
-import { formatPrice, calculateQuantityTotal } from 'utils/functions';
+import { 
+	formatPrice, 
+	calculateQuantityTotal,
+	saveNewCart
+} from 'utils/functions';
 
 import '../assets/styles/cart.scss';
 
@@ -16,13 +20,7 @@ type DF = React.FC<{ path?: String }>;
 const Cart: DF = () => {
 	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
 	const [modifyCart] = useMutation(MODIFY_CART, {
-		onCompleted: ({ cart: { checkout } }) => {
-			if (checkout) {
-				setCart(checkout);
-			} else {
-				console.log('nope');
-			}
-		},
+		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
 		onError: (error) => {
 			console.error(error);
 			alert('We could not change the quantity on your cart. Please refresh and try again, or contact us.');
@@ -30,13 +28,7 @@ const Cart: DF = () => {
 	});
 	
 	const [removeFromCart] = useMutation(REMOVE_FROM_CART, {
-		onCompleted: ({ cart: { checkout } }) => {
-			if (checkout) {
-				setCart(checkout);
-			} else {
-				console.log('nope');
-			}
-		},
+		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
 		onError: (error) => {
 			console.error(error);
 			alert('We could not remove this item to your cart. Please refresh and try again, or contact us.');

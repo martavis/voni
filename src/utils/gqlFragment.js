@@ -49,6 +49,9 @@ export const CART_FRAGMENT = gql`
         totalPriceV2 {
             amount
         }
+        totalTaxV2 {
+            amount
+        }
         lineItems(first: 5) {
             edges {
                 node {

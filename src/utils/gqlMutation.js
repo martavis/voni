@@ -40,15 +40,25 @@ export const SET_CHECKOUT_SHIPPING_ADDRESS = gql`
         cart: checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
             checkout {
                 ...Cart
+                availableShippingRates {
+                    ready
+                    shippingRates {
+                        handle
+                        priceV2 {
+                            amount
+                        }
+                        title
+                    }
+                }
             }
         }
     }
     ${CART_FRAGMENT}
 `;
 
-export const SET_PROFILE_SHIPPING_ADDRESS = gql`
-    mutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
-        cart: checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+export const SET_CHECKOUT_EMAIL = gql`
+    mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {
+        cart: checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {
             checkout {
                 ...Cart
             }
@@ -56,6 +66,49 @@ export const SET_PROFILE_SHIPPING_ADDRESS = gql`
     }
     ${CART_FRAGMENT}
 `;
+
+export const SET_SHIPPING_METHOD = gql`
+    mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {
+        cart: checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {
+            checkout {
+                ...Cart
+                availableShippingRates {
+                    ready
+                    shippingRates {
+                        handle
+                        priceV2 {
+                            amount
+                        }
+                        title
+                    }
+                }
+            }
+        }
+    }
+    ${CART_FRAGMENT}
+`;
+
+// export const CREATE_PROFILE_SHIPPING_ADDRESS = gql`
+//     mutation customerAddressCreate($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
+//         profile: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+//             checkout {
+//                 ...Cart
+//             }
+//         }
+//     }
+//     ${CART_FRAGMENT}
+// `;
+
+// export const UPDATE_PROFILE_SHIPPING_ADDRESS = gql`
+//     mutation customerAddressCreate($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
+//         profile: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+//             checkout {
+//                 ...Cart
+//             }
+//         }
+//     }
+//     ${CART_FRAGMENT}
+// `;
 
 // ============== OLD v1 ============= //
 
@@ -99,16 +152,16 @@ export const ADJUST_ITEM_QUANTITY = gql`
 //     ${ORDER_ADDRESS_FRAGMENT}
 // `;
 
-export const SET_SHIPPING_METHOD = gql`
-    mutation SetShippingMethod($id: ID!) {
-        setOrderShippingMethod(shippingMethodId: $id) {
-            ...Cart
-            ...ErrorResult
-        }
-    }
-    ${CART_FRAGMENT}
-    ${ERROR_RESULT_FRAGMENT}
-`;
+// export const SET_SHIPPING_METHOD = gql`
+//     mutation SetShippingMethod($id: ID!) {
+//         setOrderShippingMethod(shippingMethodId: $id) {
+//             ...Cart
+//             ...ErrorResult
+//         }
+//     }
+//     ${CART_FRAGMENT}
+//     ${ERROR_RESULT_FRAGMENT}
+// `;
 
 export const REGISTER_ACCOUNT = gql`
     mutation registerAccount($customerAccount: RegisterCustomerInput!) {

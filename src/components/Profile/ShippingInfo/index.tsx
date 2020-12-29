@@ -125,53 +125,61 @@ const ShippingInfo = ({ isCheckout, isCheckoutPayment, changeValue }: props) => 
     // });  
 
     const handleAddressPart = (key: string, value: string) => {
-        setUAddress({
-            ...uAddress, 
-            [key]: value
-        }); 
-        changeValue(uAddress);
+        const newAddress = { ...uAddress, [key]: value };
+        setUAddress(newAddress); 
+        changeValue(newAddress);
     };
-
-    // const selectCountry = (value: any) => { 
-    //     setUAddress({ 
-    //         ...uAddress,
-    //         country: { 
-    //             code: value.value, 
-    //             name: value.label
-    //         }
-    //     });
-    //     changeValue(uAddress);
-    // };
+    
+    const selectCountry = (value: any) => { 
+        const newAddress = { ...uAddress, country: value.value };
+        setUAddress(newAddress);
+        changeValue(newAddress);
+    };
 
     return (
         <div className="shippingInfo">                     
+            <div className="two-comlumns-responsive">
+                <CustomInput 
+                    placeholder="First Name" 
+                    type="input" 
+                    value={uAddress.firstName} 
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('firstName', event.target.value) } 
+                />  
+                <CustomInput 
+                    placeholder="Last Name" 
+                    type="input" 
+                    value={uAddress.lastName} 
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('lastName', event.target.value) } 
+                />
+			</div>
             <CustomInput 
-                placeholder="Address" type="input" 
+                placeholder="Address" 
+                type="input" 
                 value={uAddress.address1} 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('address1', event.target.value) } 
-            />                
+            />        
             <CustomInput 
                 placeholder="Apartment, Suit, Etc.(Optional)" 
                 type="input" 
                 value={uAddress.address2} 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('address2', event.target.value) } 
-                />    
+            />
             <CustomInput 
                 placeholder="City" 
                 type="input" 
                 value={uAddress.city} 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('city', event.target.value) } 
-                /> 
+            />
             <CustomInput 
                 placeholder="State/Province" 
                 type="input" 
                 value={uAddress.province} 
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('province', event.target.value) } 
-                />  
+            /> 
 			<div className="two-comlumns-responsive">
                 <CustomCountrySelect 
                     value={uAddress.country}  
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('country', event.target.value)}
+                    onChange={(value: any) => selectCountry(value)}
                 />
                 <CustomInput 
                     placeholder="Zip Code" 

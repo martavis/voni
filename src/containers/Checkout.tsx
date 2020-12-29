@@ -85,7 +85,11 @@ const CheckoutContainer: DF = () => {
                     </div>
                     <div>
                         <p className="title">Shipping</p>
-                        <p className="value">Calculated at next step</p>
+                        <p className="value">{cart.shippingLine ? `$${formatPrice(cart.shippingLine.priceV2.amount)}` : 'Calculated at next step'}</p>
+                    </div>
+                    <div>
+                        <p className="title">Taxes</p>
+                        <p className="value">{cart.shippingAddress ? `$${formatPrice(cart.totalTaxV2.amount)}` : 'Calculated at next step'}</p>
                     </div>
                 </div>
                 <div className="total summary-section">

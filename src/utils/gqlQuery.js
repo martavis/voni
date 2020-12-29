@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { SHOP_POLICY_FRAGMENT, COUNTRY_FRAGMENT, ADDRESS_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from './gqlFragment';
+import { CART_FRAGMENT, SHOP_POLICY_FRAGMENT, COUNTRY_FRAGMENT, ADDRESS_FRAGMENT, ORDER_ADDRESS_FRAGMENT } from './gqlFragment';
 
 export const GET_ALL_PRODUCTS = gql`
     query {
@@ -71,6 +71,28 @@ export const GET_SHOP_DATA = gql`
         }
     }
     ${SHOP_POLICY_FRAGMENT}
+`;
+
+export const GET_CHECKOUT = gql`
+    query getCheckoutById($checkoutId: ID!) {
+        node(id: $checkoutId) {
+            id
+            ... on Checkout {
+                ...Cart
+                availableShippingRates {
+                    ready
+                    shippingRates {
+                        handle
+                        priceV2 {
+                            amount
+                        }
+                        title
+                    }
+                }
+            }
+        }
+    }
+    ${CART_FRAGMENT}
 `;
 
 // ============== OLD v1 ============= //

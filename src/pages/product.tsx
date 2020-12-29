@@ -9,7 +9,7 @@ import {
 } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
-import { formatPrice } from 'utils/functions';
+import { formatPrice, saveNewCart } from 'utils/functions';
 import { CREATE_CART, MODIFY_CART } from 'utils/gqlMutation';
 
 import '../assets/styles/single-product.scss';
@@ -23,13 +23,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	// const [selectedVariantImage] = useState(0);
 	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
 	const [createCart] = useMutation(CREATE_CART, {
-		onCompleted: ({ cart: { checkout } }) => {
-			if (checkout) {
-				setCart(checkout);
-			} else {
-				console.log('nope');
-			}
-		},
+		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
 		onError: (error) => {
 			console.error(error);
 			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
@@ -37,13 +31,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	});
 
 	const [modifyCart] = useMutation(MODIFY_CART, {
-		onCompleted: ({ cart: { checkout } }) => {
-			if (checkout) {
-				setCart(checkout);
-			} else {
-				console.log('nope');
-			}
-		},
+		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
 		onError: (error) => {
 			console.error(error);
 			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');

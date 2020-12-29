@@ -13,20 +13,18 @@ type Props = {
 
 const CustomCountrySelect = ({ onChange, value }: Props) => {
     const [countries, setCountries] = useState([]);
-    const [inputValue, setInputValue] = useState({
-        label: '', value: ''
-    });
+    const [inputValue, setInputValue] = useState({ label: '', value: '' });
 
-    useEffect( () => { 
+    useEffect(() => { 
         getAvailableCountries();
     }, []);
 
-    useEffect( () => {
-        setInputValue({
-            label: value.name, 
-            value: value.code
-        });
-    }, value);
+    useEffect(() => {
+        if (value && countries.length > 0) {
+            const { abbr, name } = COUNTRIES.find((c) => c.abbr === value);
+            setInputValue({ value: abbr, label: name });
+        }
+    }, [value, countries]);
 
     let getAvailableCountries = async () => {
         const { data: { shop: { shipsToCountries } } } = await gqlClient.query({
@@ -35,9 +33,10 @@ const CustomCountrySelect = ({ onChange, value }: Props) => {
         });
 
         const options = shipsToCountries.map((code) => {
-            const name = COUNTRIES[code];
-            return { value: code, label: name };
+            const { abbr, name } = COUNTRIES.find((c) => c.abbr === code);
+            return { value: abbr, label: name };
         })
+
         setCountries(options);
     }
 
@@ -48,10 +47,9 @@ const CustomCountrySelect = ({ onChange, value }: Props) => {
     };
 
     const filterCountries = (inputValue: string) => {
-        // return countries.filter(i =>
-        //     i.label.toLowerCase().includes(inputValue.toLowerCase())
-        // );
-        return countries;
+        return countries.filter(i =>
+            i.label.toLowerCase().includes(inputValue.toLowerCase())
+        );
     };
 
     let handleChange = (value : any)=> {

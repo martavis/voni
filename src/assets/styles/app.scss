@@ -28,15 +28,16 @@ body {
 	p, button, label {
 		font-family: 'Bahnschrift';
 	}
-	
     .alert-red { 
         color: red;
     }
-    
     .alert-green { 
         color: green;
-    }
-
+	}
+	button:disabled {
+		opacity: 0.3;
+		pointer-events: none;
+	}
 	#root {
 		& > div {
 			margin: 0;
@@ -124,8 +125,9 @@ body {
 		}		
 	}
 	footer {
-		position: relative;
+		margin-top: 50px;
 		padding: 10px 20px;
+		position: relative;
 		font-family: 'Bahnschrift';
 		box-sizing: border-box;
 		z-index: 0;

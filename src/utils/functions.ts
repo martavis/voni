@@ -24,3 +24,11 @@ export const validateEmail = (email: string): boolean => {
         return true;
     }
 };
+
+export const saveNewCart = (checkout, setCart) => {
+    if (checkout) {
+        setCart(checkout);
+    } else {
+        console.log('nope');
+    }
+};
