@@ -10,7 +10,7 @@ import { validateEmail } from 'utils/functions';
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 
-import '../assets/styles/account-related.scss';
+import '../assets/styles/account.scss';
 
 export default () => {
     const [alertMessage, setAlertMessage] = useState('');
@@ -36,8 +36,8 @@ export default () => {
                 variables: { customerAccessToken: token }
             });
 
-            const { id, firstName, lastName } = customer;
-            setCustomer({ id, email, firstName, lastName });
+            const { id, firstName, lastName, phone } = customer;
+            setCustomer({ id, email, firstName, lastName, phone });
             navigate('/shop');
         };
         
@@ -67,7 +67,7 @@ export default () => {
     };
 
     return (
-        <div className="account page">
+        <div className="account page-form">
             <h1 className="page-title">Log in</h1>       
             <div className="section-custom-border">
                 <div className="account-info"> 

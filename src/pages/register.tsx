@@ -8,7 +8,7 @@ import { validateEmail } from 'utils/functions';
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 
-import '../assets/styles/account-related.scss';
+import '../assets/styles/account.scss';
 
 export default () => {
     const [alertMessage, setAlertMessage] = useState('');
@@ -36,7 +36,7 @@ export default () => {
 		onCompleted: ({ result: { customerAccessToken } }) => {
             const {accessToken, expiresAt } = customerAccessToken;
             setToken(accessToken, new Date(expiresAt));
-            setCustomer({ id: customerId, email, firstName, lastName });
+            setCustomer({ id: customerId, email, firstName, lastName, phone: null });
             navigate('/shop');
 		},
 		onError: (error) => {
@@ -92,7 +92,7 @@ export default () => {
     };
 
     return (
-        <div className="account page">
+        <div className="account page-form">
             <h1 className="page-title">Register</h1>
             <div className="section-custom-border">
                 <div className="account-info"> 

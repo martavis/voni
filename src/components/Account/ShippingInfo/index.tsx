@@ -1,7 +1,7 @@
 import React, { useEffect, useState  } from 'react';
 import gqlClient from 'utils/gqlClient';
 import { useMutation } from '@apollo/client';
-import { UPDATE_ADDRESS, CREATE_ADDRESS } from 'utils/gqlMutation';
+// import { UPDATE_ADDRESS, CREATE_ADDRESS } from 'utils/gqlMutation';
 import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
 import { MailingAddressInput } from 'shopify-storefront-api-typings';
 import './ShippingInfo.scss';
@@ -102,7 +102,7 @@ const ShippingInfo = ({ isCheckout, isCheckoutPayment, changeValue }: props) => 
     // const [updateAddress] = useMutation(UPDATE_ADDRESS, {
 	// 	onCompleted: async (data) => {
     //         if(data) {                
-    //             setAlertMessage('Address update successed.');
+    //             setAlertMessage('Address update successful.');
     //             setAlertClass('alert-green');     
     //         } 
 	// 	},
@@ -114,7 +114,7 @@ const ShippingInfo = ({ isCheckout, isCheckoutPayment, changeValue }: props) => 
     // const [createAddress] = useMutation(CREATE_ADDRESS, {
 	// 	onCompleted: async (data) => {
     //         if(data) {                
-    //             setAlertMessage('Address create successed.');
+    //             setAlertMessage('Address create successful.');
     //             setAlertClass('alert-green');  
     //             console.log(data);   
     //         } 

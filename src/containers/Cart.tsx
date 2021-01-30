@@ -83,7 +83,7 @@ const Cart: DF = () => {
 	};
 
 	return (
-		<div className="cart-container page-container">
+		<div className="cart-container page-form">
 			<h1 className="page-title">Shopping Cart</h1>
 			<div className="cart-summary">{
 				(cart && cart.lineItems.edges.length > 0) ? (

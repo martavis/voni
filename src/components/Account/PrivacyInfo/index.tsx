@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CHANGE_PASSWORD } from 'utils/gqlMutation';
+// import { CHANGE_PASSWORD } from 'utils/gqlMutation';
 
 import './PrivacyInfo.scss';
 
@@ -19,26 +19,26 @@ const PrivacyInfo = () => {
             setAlertMessage("Password dismatch");
             return;
         }        
-        updatePassword({
-            fetchPolicy: 'no-cache',
-            variables: {
-                "old": nPassword, 
-                "new": password
-            }
-        });		
+        // updatePassword({
+        //     fetchPolicy: 'no-cache',
+        //     variables: {
+        //         "old": nPassword, 
+        //         "new": password
+        //     }
+        // });		
     }
 
-    const [updatePassword] = useMutation(CHANGE_PASSWORD, {
-		onCompleted: async (data) => {
-            if(data.updateCustomerPassword.success) {                
-                setAlertMessage('Password update successed.');
-                setAlertClass('alert-green');                  
-            } else { 
-                setAlertMessage(data.updateCustomerPassword.message);
-                setAlertClass('alert-red');
-            }
-		},
-    });  
+    // const [updatePassword] = useMutation(CHANGE_PASSWORD, {
+	// 	onCompleted: async (data) => {
+    //         if(data.updateCustomerPassword.success) {                
+    //             setAlertMessage('Password update successful.');
+    //             setAlertClass('alert-green');                  
+    //         } else { 
+    //             setAlertMessage(data.updateCustomerPassword.message);
+    //             setAlertClass('alert-red');
+    //         }
+	// 	},
+    // });  
     return ( 
         <div className="privacyInfo">
             <CustomInput placeholder="Current Password" type="password" value={nPassword} onChange= 

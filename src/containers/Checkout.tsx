@@ -37,7 +37,7 @@ const CheckoutContainer: DF = () => {
     }, [pathname]);
 
 	return (
-		<div className="checkout-container page-container">
+		<div className="checkout-container page-form">
             <div className="forms checkout-side">
                 <header>
                     <Link to="/cart" data-enabled={true}>Cart</Link>

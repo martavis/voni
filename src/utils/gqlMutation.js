@@ -117,6 +117,25 @@ export const LOGOUT = gql`
     }
 `;
 
+export const UPDATE_CUSTOMER = gql`
+    mutation customerUpdate($customerAccessToken: String!, $customer: CustomerUpdateInput!) {
+        customerUpdate(customerAccessToken: $customerAccessToken, customer: $customer) {
+            customer {
+                id
+            }
+            customerAccessToken {
+                accessToken
+                expiresAt
+            }
+            customerUserErrors {
+                code
+                field
+                message
+            }
+        }
+    }
+`;
+
 // export const CREATE_ACCOUNT_SHIPPING_ADDRESS = gql`
 //     mutation customerAddressCreate($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
 //         account: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
@@ -141,23 +160,23 @@ export const LOGOUT = gql`
 
 // ============== OLD v1 ============= //
 
-export const ADD_TO_CART = gql`
-    mutation addToCart($productVariantId: ID!, $quantity: Int!) {
-        cart: addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
-            ...Cart
-        }
-    }
-    ${CART_FRAGMENT}
-`;
+// export const ADD_TO_CART = gql`
+//     mutation addToCart($productVariantId: ID!, $quantity: Int!) {
+//         cart: addItemToOrder(productVariantId: $productVariantId, quantity: $quantity) {
+//             ...Cart
+//         }
+//     }
+//     ${CART_FRAGMENT}
+// `;
 
-export const ADJUST_ITEM_QUANTITY = gql`
-    mutation adjustItemQuantity($orderLineId: ID!, $quantity: Int) {
-        cart: adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
-            ...Cart
-        }
-    }
-    ${CART_FRAGMENT}
-`;
+// export const ADJUST_ITEM_QUANTITY = gql`
+//     mutation adjustItemQuantity($orderLineId: ID!, $quantity: Int) {
+//         cart: adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
+//             ...Cart
+//         }
+//     }
+//     ${CART_FRAGMENT}
+// `;
 
 // export const REMOVE_FROM_CART = gql`
 //     mutation removeFromCart($orderLineId: ID!) {
@@ -219,45 +238,45 @@ export const ADJUST_ITEM_QUANTITY = gql`
 //     ${LOGOUT_RESULT}
 // `;
 
-export const UPDATE_CUSTOMER_DETAILS = gql`
-    mutation UpdateCustomerDetails($input: UpdateCustomerInput!) {
-        updateCustomer(input: $input) {
-            id
-            firstName
-            lastName
-            emailAddress
-            phoneNumber
-        }
-    }
-`;
+// export const UPDATE_CUSTOMER_DETAILS = gql`
+//     mutation UpdateCustomerDetails($input: UpdateCustomerInput!) {
+//         updateCustomer(input: $input) {
+//             id
+//             firstName
+//             lastName
+//             emailAddress
+//             phoneNumber
+//         }
+//     }
+// `;
 
-export const UPDATE_ADDRESS = gql`
-    mutation UpdateAddress($input: UpdateAddressInput!) {
-        updateCustomerAddress(input: $input) {
-            ...Address
-        }
-    }
-    ${ADDRESS_FRAGMENT}
-`;
+// export const UPDATE_ADDRESS = gql`
+//     mutation UpdateAddress($input: UpdateAddressInput!) {
+//         updateCustomerAddress(input: $input) {
+//             ...Address
+//         }
+//     }
+//     ${ADDRESS_FRAGMENT}
+// `;
 
-export const CREATE_ADDRESS = gql`
-    mutation CreateAddress($input: CreateAddressInput!) {
-        createCustomerAddress(input: $input) {
-            ...Address
-        }
-    }
-    ${ADDRESS_FRAGMENT}
-`;
+// export const CREATE_ADDRESS = gql`
+//     mutation CreateAddress($input: CreateAddressInput!) {
+//         createCustomerAddress(input: $input) {
+//             ...Address
+//         }
+//     }
+//     ${ADDRESS_FRAGMENT}
+// `;
 
-export const CHANGE_PASSWORD = gql`
-    mutation ChangePassword($old: String! $new: String!) {
-        updateCustomerPassword(currentPassword: $old newPassword: $new) {
-            ... on Success {
-                success
-            }
-            ...ErrorResult
-        }
-    }
-    ${ERROR_RESULT_FRAGMENT}
-`;
+// export const CHANGE_PASSWORD = gql`
+//     mutation ChangePassword($old: String! $new: String!) {
+//         updateCustomerPassword(currentPassword: $old newPassword: $new) {
+//             ... on Success {
+//                 success
+//             }
+//             ...ErrorResult
+//         }
+//     }
+//     ${ERROR_RESULT_FRAGMENT}
+// `;
 

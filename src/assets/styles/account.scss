@@ -17,7 +17,10 @@
             &[data-enabled="false"] {
                 font-weight: 300;
                 pointer-events: none;
-            }  
+            }
+            &[data-is-active="true"] {
+                text-decoration: underline;
+            }
             &:not(:last-of-type) {
                 margin-right: 30px;
             }

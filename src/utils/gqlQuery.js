@@ -101,6 +101,7 @@ export const GET_CUSTOMER = gql`
             id
             firstName
             lastName
+            phone
         }
     }
 `;
