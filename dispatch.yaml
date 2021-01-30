@@ -1,0 +1,7 @@
+dispatch:
+  - url: "voni.us/*"
+    service: default
+  - url: "www.voni.us/*"
+    service: default
+  - url: "alpha.voni.us/*"
+    service: alpha

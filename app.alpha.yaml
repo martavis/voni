@@ -1,0 +1,56 @@
+runtime: nodejs12
+service: alpha
+
+handlers:
+- url: /
+  static_files: index.html
+  upload: index.html
+  secure: always
+- url: /about/(.*\.json)$
+  static_files: about/\1
+  upload: about/.*\.json
+  secure: always
+- url: /ambassador/(.*\.json)$
+  static_files: ambassador/\1
+  upload: ambassador/.*\.json
+  secure: always
+- url: /contact/(.*\.json)$
+  static_files: contact/\1
+  upload: contact/.*\.json
+  secure: always
+- url: /login/(.*\.json)$
+  static_files: login/\1
+  upload: login/.*\.json
+  secure: always
+- url: /privacy/(.*\.json)$
+  static_files: privacy/\1
+  upload: privacy/.*\.json
+  secure: always
+- url: /product/(.*\.json)$
+  static_files: product/\1
+  upload: product/.*\.json
+  secure: always
+- url: /register/(.*\.json)$
+  static_files: register/\1
+  upload: register/.*\.json
+  secure: always
+- url: /shop/(.*\.json)$
+  static_files: shop/\1
+  upload: shop/.*\.json
+  secure: always
+- url: /terms/(.*\.json)$
+  static_files: terms/\1
+  upload: terms/.*\.json
+  secure: always
+- url: /post/(.*\.json)$
+  static_files: news/\1
+  upload: news/.*\.json
+  secure: always
+- url: /(.*\.(txt|xml|css|js|json|ico))$
+  static_files: \1
+  upload: (.*)
+  secure: always
+- url: /(.*)
+  static_files: 404.html
+  upload: 404.html
+  secure: always

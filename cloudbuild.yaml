@@ -1,0 +1,20 @@
+steps:
+- name: node:10.16.2
+  entrypoint: npm
+  args: ['install']
+
+- name: node:10.16.2
+  entrypoint: npm
+  args: ['run', 'build']
+  env:
+  - 'APP_ENV=$_APP_ENV'
+
+# copy gcp files into build because we cannot change the source
+# of the files that will be copied into GAE 
+- name: "gcr.io/cloud-builders/gsutil"
+  args: ['cp', 'app.$BRANCH_NAME.yaml', './build']
+
+- name: gcr.io/cloud-builders/gcloud
+  args: ['app', 'deploy', 'build/app.$BRANCH_NAME.yaml']
+
+timeout: '1600s'
