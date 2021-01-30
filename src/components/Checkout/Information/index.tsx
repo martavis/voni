@@ -9,7 +9,7 @@ import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
 import { MailingAddressInput } from 'shopify-storefront-api-typings';
 import { saveNewCart } from 'utils/functions';
 
-import ShippingInfo from 'components/Profile/ShippingInfo';
+import ShippingInfo from 'components/Account/ShippingInfo';
 import CustomInput from 'components/CustomInput';
 import './Information.scss';
 

@@ -8,12 +8,12 @@ import gqlClient  from 'utils/gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Checkout from 'containers/Checkout';
-import Profile from 'containers/Profile';
+import Account from 'containers/Account';
 
 import './assets/styles/app.scss';
 
 // non-static routes
-addPrefetchExcludes(['cart', 'profile', 'profile/shipping', 'profile/payment', 'checkout', 'checkout/shipping', 'checkout/payment']);
+addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment', 'checkout', 'checkout/shipping', 'checkout/payment']);
 
 function App() {
 	return (
@@ -30,9 +30,9 @@ function App() {
 									<Checkout path="checkout"/>
 									<Checkout path="checkout/shipping"/>
 									<Checkout path="checkout/payment"/>
-									<Profile path="profile"/>
-									<Profile path="profile/shipping"/>
-									<Profile path="profile/payment"/>
+									<Account path="account"/>
+									<Account path="account/shipping"/>
+									<Account path="account/payment"/>
 									<Routes default />
 								</Router>
 							</React.Suspense>

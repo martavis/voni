@@ -4,7 +4,7 @@ import { CustomerContext } from 'state/Customer';
 import gqlClient from 'utils/gqlClient';
 import { Link } from '@reach/router';
 
-import ShippingInfo from 'components/Profile/ShippingInfo'
+import ShippingInfo from 'components/Account/ShippingInfo'
 import './Payment.scss';
 
 const CheckoutPayment = () => {	

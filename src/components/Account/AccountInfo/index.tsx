@@ -10,9 +10,9 @@ import CustomButton from 'components/CustomButton';
 
 // import { validateEmail } from 'utils/functions';
 import { CustomerContext } from 'state/Customer';
-import './ProfileInfo.scss';
+import './AccountInfo.scss';
 
-const ProfileInfo = () => {  
+const AccountInfo = () => {  
     const [alertMessage, setAlertMessage] = useState("");
     const [alertClass, setAlertClass] = useState("alert-red"); 
     const {setCustomer} : {customer: Customer, setCustomer: Function} = useContext(CustomerContext);
@@ -37,7 +37,7 @@ const ProfileInfo = () => {
         setUCustomer(activeCustomer);                
     }
 
-    let updateProfileInfo = ( event: React.MouseEvent<HTMLButtonElement> ) => {    
+    let updateAccountInfo = ( event: React.MouseEvent<HTMLButtonElement> ) => {    
         const input = {
             title: uCustomer.title,
             firstName: uCustomer.firstName,
@@ -45,7 +45,7 @@ const ProfileInfo = () => {
             phoneNumber: uCustomer.phoneNumber,
         };
 
-        updateProfile({
+        updateAccount({
             fetchPolicy: 'no-cache',
             variables: {
                 input: input
@@ -53,10 +53,10 @@ const ProfileInfo = () => {
         });		
     }
 
-    const [updateProfile] = useMutation(UPDATE_CUSTOMER_DETAILS, {
+    const [updateAccount] = useMutation(UPDATE_CUSTOMER_DETAILS, {
 		onCompleted: async (data) => {
             if(data.updateCustomer) {                
-                setAlertMessage('Profile update successed.');
+                setAlertMessage('Account update successed.');
                 setAlertClass('alert-green');      
             } 
             setCustomer(data.updateCustomer)
@@ -67,7 +67,7 @@ const ProfileInfo = () => {
     });    
 
     return ( 
-        <div className="profileInfo">
+        <div className="accountInfo">
             <CustomInput placeholder="Title" type="input" value={uCustomer.title} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, title: event.target.value})}} />                 
             <div className="two-comlumns-responsive">
                 <CustomInput placeholder="First Name" type="input" value={uCustomer.firstName} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, firstName: event.target.value})}} />
@@ -75,10 +75,10 @@ const ProfileInfo = () => {
             </div>       
             <CustomInput placeholder="Email" type="input" value={uCustomer.email} enable={false} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, email: event.target.value})}} />
             <CustomInput placeholder="Phone Number" type="input" value={uCustomer.phoneNumber} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setUCustomer({...uCustomer, phoneNumber: event.target.value})}} />
-            <CustomButton buttonText="Update" submit={updateProfileInfo}></CustomButton>
+            <CustomButton buttonText="Update" submit={updateAccountInfo}></CustomButton>
             <p className={alertClass}> {alertMessage} </p>
         </div>
     );
 };
 
-export default ProfileInfo;
+export default AccountInfo;

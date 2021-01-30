@@ -33,7 +33,7 @@ const ShippingInfo = ({ isCheckout, isCheckoutPayment, changeValue }: props) => 
 		zip: ''
     });
 
-    /* ======= ALL COMMENTED CODE IS FOR PROFILE ======= */
+    /* ======= ALL COMMENTED CODE IS FOR ACCOUNT ======= */
 
     // useEffect( () => { 
     //     if(!isCheckoutPayment) { 

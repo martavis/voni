@@ -117,9 +117,9 @@ export const LOGOUT = gql`
     }
 `;
 
-// export const CREATE_PROFILE_SHIPPING_ADDRESS = gql`
+// export const CREATE_ACCOUNT_SHIPPING_ADDRESS = gql`
 //     mutation customerAddressCreate($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
-//         profile: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+//         account: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
 //             checkout {
 //                 ...Cart
 //             }
@@ -128,9 +128,9 @@ export const LOGOUT = gql`
 //     ${CART_FRAGMENT}
 // `;
 
-// export const UPDATE_PROFILE_SHIPPING_ADDRESS = gql`
+// export const UPDATE_ACCOUNT_SHIPPING_ADDRESS = gql`
 //     mutation customerAddressCreate($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
-//         profile: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
+//         account: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
 //             checkout {
 //                 ...Cart
 //             }

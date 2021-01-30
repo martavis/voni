@@ -76,7 +76,7 @@ const Header: React.FC = () => {
 								<Link to="/login" getProps={isActive}>Login</Link>				
 								<Link to="/register" getProps={isActive}>Register</Link>
 							</> : <>
-								<Link to="/profile" getProps={isActive}>{ customer.firstName + ' ' + customer.lastName }</Link>
+								<Link to="/account" getProps={isActive}>{ customer.firstName + ' ' + customer.lastName }</Link>
 								<a onClick={submitLogout}>Log out</a>
 							</>
 						}
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
 						<Link to="/login" getProps={isActive}>Login</Link>				
 						<Link to="/register" getProps={isActive}>Register</Link>
 					</> : <>
-						<Link to="/profile" getProps={isActive}>Account</Link>
+						<Link to="/account" getProps={isActive}>Account</Link>
 						<a onClick={submitLogout}>Logout</a>
 					</>
 				}

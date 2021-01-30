@@ -67,10 +67,10 @@ export default () => {
     };
 
     return (
-        <div className="profile page">
+        <div className="account page">
             <h1 className="page-title">Log in</h1>       
             <div className="section-custom-border">
-                <div className="profile-info"> 
+                <div className="account-info"> 
                     <form onSubmit={submitLogin}>
                         <CustomInput placeholder="Email" type="input" value={email} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setEmail(event.target.value)}/>
                         <CustomInput placeholder="Password" type="password" value={password} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setPassword(event.target.value)}/>                        

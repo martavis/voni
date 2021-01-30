@@ -70,7 +70,7 @@ export default () => (
                     <span className="font-bold">Data about others</span>for whom you purchase an item or gift, such as name, delivery address and phone number. Please do not purchase a gift for someone or share their contact information with us unless you have their permission to do so.
                 </li>
                 <li>
-                    <span className="font-bold">Profile data</span>, such as your username and password that you may set to establish an online account with us and your interests and preferences.
+                    <span className="font-bold">Account data</span>, such as your username and password that you may set to establish an online account with us and your interests and preferences.
                 </li>
                 <li>
                     <span className="font-bold">Communications</span>, such as information you provide when you contact us with questions, feedback, survey responses, or otherwise correspond with us,
@@ -207,7 +207,7 @@ export default () => (
                 In this section, we describe the rights and choices available to all users.
             </p>
             <p>
-                <span className="font-bold">Access or update your account information. </span> If you have registered for an account with us, you may review and update certain personal information in your account profile by logging into the account.
+                <span className="font-bold">Access or update your account information. </span> If you have registered for an account with us, you may review and update certain personal information in your account account by logging into the account.
             </p> 
             <p>
                 <span className="font-bold">Opt out of marketing communications. </span> You may opt out of marketing-related emails by following the opt-out or unsubscribe instructions located at the bottom of the email. You may continue to receive service-related and other non-marketing emails. If you receive marketing text messages from us, you may opt out of receiving further marketing text messages from us by replying STOP to our marketing message.
@@ -222,10 +222,10 @@ export default () => (
                 <span className="font-bold">Do Not Track. </span> Some Internet browsers may be configured to send “Do Not Track” signals to the online services that you visit. We currently do not respond to “Do Not Track” or similar signals. To find out more about “Do Not Track,” please visit http://www.allaboutdnt.com
             </p> 
             <p>
-                <span className="font-bold">Access or update your account information. </span> If you have registered for an account with us, you may review and update certain personal information in your account profile by logging into the account.
+                <span className="font-bold">Access or update your account information. </span> If you have registered for an account with us, you may review and update certain personal information in your account account by logging into the account.
             </p> 
             <p>
-                <span className="font-bold">Choosing not to share your personal information. </span> If you have registered for an account with us, you may review and update certain personal information in your account profile by logging into the account.
+                <span className="font-bold">Choosing not to share your personal information. </span> If you have registered for an account with us, you may review and update certain personal information in your account account by logging into the account.
             </p> 
             <p>
                 <span className="font-bold">Access or update your account information. </span>  If you do not provide information that we need to provide the Service, we may not be able to provide you with the Service or certain features. We will tell you what information you must provide to receive the Service when we request it.

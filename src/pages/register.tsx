@@ -92,10 +92,10 @@ export default () => {
     };
 
     return (
-        <div className="profile page">
+        <div className="account page">
             <h1 className="page-title">Register</h1>
             <div className="section-custom-border">
-                <div className="profile-info"> 
+                <div className="account-info"> 
                     <form onSubmit={register}>
                         <CustomInput placeholder="First Name" value={firstName} type="input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setFirstName(event.target.value);}} />
                         <CustomInput placeholder="Last Name" value={lastName} type="input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setLastName(event.target.value);}} />

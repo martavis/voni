@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.profile-container { 
+.account-container { 
     header {
         padding: 15px 0px;
         @media (max-width: 600px) {
@@ -25,12 +25,12 @@
     }
 }
 
-.profile { 
+.account { 
     p { 
         float: left;    
         margin: 10px 0px;
     }    
-    .profile-info { 
+    .account-info { 
         width: 420px;
     }    
     .section-custom-border { 
