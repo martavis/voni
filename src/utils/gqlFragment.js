@@ -14,6 +14,7 @@ export const CART_FRAGMENT = gql`
         id
         email
         note
+        webUrl
         order {
             id
             email
