@@ -7,13 +7,12 @@ import CustomerProvider from 'state/Customer';
 import gqlClient  from 'utils/gqlClient';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
-import Checkout from 'containers/Checkout';
 import Account from 'containers/Account';
 
 import './assets/styles/app.scss';
 
 // non-static routes
-addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment', 'checkout', 'checkout/shipping', 'checkout/payment']);
+addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment']);
 
 function App() {
 	return (
@@ -27,9 +26,6 @@ function App() {
 							<React.Suspense fallback={<em>Loading...</em>}>
 								<Router>
 									<Cart path="cart" />
-									<Checkout path="checkout"/>
-									<Checkout path="checkout/shipping"/>
-									<Checkout path="checkout/payment"/>
 									<Account path="account"/>
 									<Account path="account/shipping"/>
 									<Account path="account/payment"/>
