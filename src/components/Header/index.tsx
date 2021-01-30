@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, LinkGetProps } from '@reach/router';
+import { Link, LinkGetProps, navigate } from '@reach/router';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { Checkout, Customer } from 'shopify-storefront-api-typings';
@@ -9,24 +9,37 @@ import './Header.scss';
 
 const Header: React.FC = () => {
 	const { cart }: { cart: Checkout } = useContext(CartContext);
-	const { token, customer, setToken }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
+	const { token, customer, setToken, setCustomer }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const isActive = ({ isCurrent }: LinkGetProps) => {
 		// toggleMenu();
-		return isCurrent ? { className: "active" } : {};
+		return isCurrent ? { className: 'active' } : {};
 	};
 	
+	const [logout] = useMutation(LOGOUT, {
+		onCompleted: () => {
+			setToken(null);
+			setCustomer(null);
+			navigate('/login');
+		},
+		onError: (error) => {
+			console.error(error);
+		}
+	}); 
+
 	let cartCount = null;
 	if (cart && cart.lineItems) {
 		cartCount = cart.lineItems.edges.length;
 	}
 
-	let logout = () => { 
+	let beginLogout = () => { 
 		try {
-			logoutAccount({
+			logout({
 				fetchPolicy: 'no-cache',
-				variables: {}
+				variables: {
+					customerAccessToken: token
+				}
             });
 		} catch (error) {
 			console.log(error);
@@ -37,26 +50,12 @@ const Header: React.FC = () => {
 		setShowMobileMenu(!showMobileMenu);
 		if (showMobileMenu) {
 			document.getElementById('content').style.display = 'block';
-			document.getElementsByTagName("footer")[0].style.display = 'block';
+			document.getElementsByTagName('footer')[0].style.display = 'block';
 		} else {
 			document.getElementById('content').style.display = 'none';
-			document.getElementsByTagName("footer")[0].style.display = 'none';
+			document.getElementsByTagName('footer')[0].style.display = 'none';
 		}
 	}
-
-	const [logoutAccount] = useMutation(LOGOUT, {
-		onCompleted: (data) => {
-			if (data) {						                
-				setToken("");
-				window.location.href=("/login");
-			} else {
-				console.log('nope');
-			}
-		},
-		onError: (error) => {
-			console.error(error);
-		}
-    });  
 
     return (
 		<nav className="menu-open">
@@ -68,17 +67,17 @@ const Header: React.FC = () => {
 			{	showMobileMenu ? 
 				<div id="navigationMobile" onClick={toggleMenu}>
 					<div id="navigationDropdown" className="is-invisible">
-						<Link to="/" getProps={isActive}>Home</Link>
-						{/* <Link to="/shop" getProps={isActive}>Shop</Link> */}
+						{/* <Link to="/" getProps={isActive}>Home</Link> */}
+						<Link to="/shop" getProps={isActive}>Shop</Link>
 						{/* <Link to="/about" getProps={isActive}>About</Link> */}
 						{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 						{ 
-							token == null ? <>
+							token === null ? <>
 								<Link to="/login" getProps={isActive}>Login</Link>				
 								<Link to="/register" getProps={isActive}>Register</Link>
 							</> : <>
 								<Link to="/profile" getProps={isActive}>{ customer.firstName + ' ' + customer.lastName }</Link>
-								<a onClick={logout}>Log out</a>
+								<a onClick={beginLogout}>Log out</a>
 							</>
 						}
 					</div>
@@ -91,17 +90,16 @@ const Header: React.FC = () => {
 				<div className="border"></div>
 			</div>
 			<div className="page-links">
-				<Link to="/" getProps={isActive}>Home</Link>
-				{/* <Link to="/shop" getProps={isActive}>Shop</Link> */}
-				{/* <Link to="/about" getProps={isActive}>About</Link> */}
+				{/* <Link to="/" getProps={isActive}>Home</Link> */}
+				<Link to="/shop" getProps={isActive}>Shop</Link>
 				{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 				{ 
-					token == null ? <>
+					token === null ? <>
 						<Link to="/login" getProps={isActive}>Login</Link>				
 						<Link to="/register" getProps={isActive}>Register</Link>
 					</> : <>
-						<Link to="/profile" getProps={isActive}>{ customer.firstName + ' ' + customer.lastName }</Link>
-						<a onClick={logout}>Log out</a>
+						<Link to="/profile" getProps={isActive}>Account</Link>
+						<a onClick={beginLogout}>Logout</a>
 					</>
 				}
 				{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}

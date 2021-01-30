@@ -42,6 +42,8 @@ function App() {
 								{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved 
 							</div>
 							<div className="right">
+								<Link to="/about">About</Link>
+								<div className="footer-border"></div>
 								<Link to="/contact">Contact</Link>
 								<div className="footer-border"></div>
 								<Link to="/terms-of-service">Terms of Service</Link> 	

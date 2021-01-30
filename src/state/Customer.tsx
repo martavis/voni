@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
 import { Customer } from 'shopify-storefront-api-typings';
+import Cookies from 'js-cookie';
 
 type Props = {
     children: ReactNode;
@@ -13,9 +14,9 @@ type InitialStateType = {
 };
 
 const initialState = {
-    customer: JSON.parse(localStorage.getItem('customerStorage') != undefined ? localStorage.getItem('customerStorage') : null) || null,
+    customer: JSON.parse(localStorage.getItem('customer') !== undefined ? localStorage.getItem('customer') : null) || null,
     setCustomer: () => {},    
-    token: localStorage.getItem('tokenStorage') || null,
+    token: Cookies.get('vtok') || null,
     setToken: () => {}
 };
 
@@ -27,10 +28,18 @@ const actions = {
 const reducer = (state: any, action: any) => {
     switch (action.type) {
         case actions.SET_CUSTOMER:
-            localStorage.setItem('customerStorage', JSON.stringify(action.customer));
+            if (action.customer === null) {
+                localStorage.removeItem('customer');
+            } else {
+                localStorage.setItem('customer', JSON.stringify(action.customer));
+            }
             return { ...state, customer: action.customer };
         case actions.SET_TOKEN:
-            localStorage.setItem('tokenStorage', action.token);
+            if (action.token === null) {
+                Cookies.remove('vtok');
+            } else {
+                Cookies.set('vtok', action.token, { expires: action.expires });
+            }
             return { ...state, token: action.token };
         default:
             return state;
@@ -47,8 +56,8 @@ const CustomerProvider = ({ children }: Props) => {
             dispatch({ type: actions.SET_CUSTOMER, customer });
         },
         token: state.token,
-        setToken: (token: String | null) => { 
-            dispatch({ type: actions.SET_TOKEN, token });
+        setToken: (token: String | null, expires: Date | null | undefined) => { 
+            dispatch({ type: actions.SET_TOKEN, token, expires });
         }
     };
 

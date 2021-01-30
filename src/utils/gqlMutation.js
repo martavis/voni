@@ -88,6 +88,35 @@ export const SET_SHIPPING_METHOD = gql`
     ${CART_FRAGMENT}
 `;
 
+export const REGISTER_ACCOUNT = gql`
+    mutation registerAccount($input: CustomerCreateInput!) {
+        result: customerCreate(input: $input) {
+            customer {
+                id
+            }
+        }
+    }
+`;
+
+export const LOGIN = gql`
+    mutation login($input: CustomerAccessTokenCreateInput!) {
+        result: customerAccessTokenCreate(input: $input) {
+            customerAccessToken {
+                accessToken
+                expiresAt
+            }
+        }
+    }
+`;
+
+export const LOGOUT = gql`
+    mutation logout($customerAccessToken: String!) {
+        customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
+            deletedAccessToken
+        }
+    }
+`;
+
 // export const CREATE_PROFILE_SHIPPING_ADDRESS = gql`
 //     mutation customerAddressCreate($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
 //         profile: customerAddressCreate(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
@@ -163,32 +192,32 @@ export const ADJUST_ITEM_QUANTITY = gql`
 //     ${ERROR_RESULT_FRAGMENT}
 // `;
 
-export const REGISTER_ACCOUNT = gql`
-    mutation registerAccount($customerAccount: RegisterCustomerInput!) {
-        registerCustomerAccount(input: $customerAccount) {
-            ...RegisterResult
-        }
-    }
-    ${REGISTER_CUSTOMER_ACCOUNT_RESULT}
-`;
+// export const REGISTER_ACCOUNT = gql`
+//     mutation registerAccount($customerAccount: RegisterCustomerInput!) {
+//         registerCustomerAccount(input: $customerAccount) {
+//             ...RegisterResult
+//         }
+//     }
+//     ${REGISTER_CUSTOMER_ACCOUNT_RESULT}
+// `;
 
-export const LOGIN = gql`
-    mutation login($userName: String!, $password: String!, $rememberMe: Boolean) {
-        login(username: $userName, password: $password, rememberMe: $rememberMe) {     
-            ...LoginResult
-        }
-    }
-    ${NATIVE_AUTHENTICATION_RESULT}
-`;
+// export const LOGIN = gql`
+//     mutation login($userName: String!, $password: String!, $rememberMe: Boolean) {
+//         login(username: $userName, password: $password, rememberMe: $rememberMe) {     
+//             ...LoginResult
+//         }
+//     }
+//     ${NATIVE_AUTHENTICATION_RESULT}
+// `;
 
-export const LOGOUT = gql`
-    mutation {
-        logout {     
-            ...Result
-        }
-    }
-    ${LOGOUT_RESULT}
-`;
+// export const LOGOUT = gql`
+//     mutation {
+//         logout {     
+//             ...Result
+//         }
+//     }
+//     ${LOGOUT_RESULT}
+// `;
 
 export const UPDATE_CUSTOMER_DETAILS = gql`
     mutation UpdateCustomerDetails($input: UpdateCustomerInput!) {

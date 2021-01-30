@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { navigate } from '@reach/router';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from 'utils/gqlMutation';
 import { CustomerContext } from 'state/Customer';
@@ -13,7 +14,7 @@ import CustomButton from 'components/CustomButton';
 import '../assets/styles/account-related.scss';
 
 export default () => {
-    const {setToken, setCustomer}: { token: String, setToken: Function, setCustomer: Function } = useContext(CustomerContext);
+    const {setToken, setCustomer}: { setToken: Function, setCustomer: Function } = useContext(CustomerContext);
 
     const [alertMessage, setAlertMessage] = useState("");
     const [password, setPassword] = useState("");
@@ -43,7 +44,7 @@ export default () => {
             if(data.login.channels) {                
                 await getCustomers();
                 setToken(data.login.channels[0].token);
-                window.location.href = "/profile";
+                navigate('/profile');
             } else { 
                 setAlertMessage("Email or password incorrect.");
             }
