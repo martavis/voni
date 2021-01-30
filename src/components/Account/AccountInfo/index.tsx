@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Customer } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
 import { UPDATE_CUSTOMER } from 'utils/gqlMutation';
-import gqlClient from 'utils/gqlClient';
-
-import CustomInput from 'components/CustomInput';
-import CustomButton from 'components/CustomButton';
-
-import { validateEmail } from 'utils/functions';
 import { CustomerContext } from 'state/Customer';
+import { validateEmail } from 'utils/functions';
+
 import './AccountInfo.scss';
+
+import CustomButton from 'components/CustomButton';
+import CustomInput from 'components/CustomInput';
 
 const AccountInfo = () => {  
     const [alertMessage, setAlertMessage] = useState("");

@@ -102,6 +102,21 @@ export const GET_CUSTOMER = gql`
             firstName
             lastName
             phone
+            addresses(first: 1) {
+                edges {
+                    node {
+                        id
+                        firstName
+                        lastName
+                        address1
+                        address2
+                        city
+                        province
+                        country
+                        zip
+                    }
+                }
+            }
         }
     }
 `;

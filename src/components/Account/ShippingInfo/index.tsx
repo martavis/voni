@@ -1,199 +1,137 @@
-import React, { useEffect, useState  } from 'react';
-import gqlClient from 'utils/gqlClient';
+import React, { useState, useContext } from 'react';
 import { useMutation } from '@apollo/client';
-// import { UPDATE_ADDRESS, CREATE_ADDRESS } from 'utils/gqlMutation';
-import { GET_CUSTOMER_ADDRESSES } from 'utils/gqlQuery';
-import { MailingAddressInput } from 'shopify-storefront-api-typings';
+import { CREATE_ADDRESS, UPDATE_ADDRESS } from 'utils/gqlMutation';
+import { ShippingContext } from 'state/Shipping';
+import { CustomerContext } from 'state/Customer';
+import { MailingAddress } from 'shopify-storefront-api-typings';
+
 import './ShippingInfo.scss';
 
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 import CustomCountrySelect from 'components/CustomCountrySelect';
 
-type props = { 
-    isCheckout : boolean,
-    isCheckoutPayment: boolean,
-    changeValue: Function
-}
-
-const ShippingInfo = ({ isCheckout, isCheckoutPayment, changeValue }: props) => { 
+const ShippingInfo = () => { 
     const [alertMessage, setAlertMessage] = useState("");
     const [alertClass, setAlertClass] = useState("alert-red"); 
     const [isCreate, setIsCreate] = useState(false);
-    const [uAddress, setUAddress] = useState({
-        address1: '', 
-		address2: '',
-        city: '',
-		company: '',
-		country: '',
-		firstName: '',
-		lastName: '',
-		phone: '',
-        province: '',
-		zip: ''
-    });
+    const {token}: { token: String } = useContext(CustomerContext);
+    const {shipping, setShipping} : {shipping: MailingAddress, setShipping: Function} = useContext(ShippingContext);
+    
+    const [customerAddressCreate] = useMutation(CREATE_ADDRESS, {
+		onCompleted: () => {
+            setAlertClass('alert-green');     
+            setAlertMessage('Created address successfully.');
+		},
+		onError: (error) => {
+			console.error(error);
+		}
+    });    
 
-    /* ======= ALL COMMENTED CODE IS FOR ACCOUNT ======= */
+    const [customerAddressUpdate] = useMutation(UPDATE_ADDRESS, {
+		onCompleted: () => {
+            setAlertClass('alert-green');     
+            setAlertMessage('Updated address successfully.');
+		},
+		onError: (error) => {
+			console.error(error);
+		}
+    });  
 
-    // useEffect( () => { 
-    //     if(!isCheckoutPayment) { 
-    //         getCustomerAddress();
-    //     }        
-    // }, []); 
+    const updateShippingInfo = async (e: any) => {    
+        e.preventDefault();
 
-    // let getCustomerAddress = async () => { 
-    //     const {data: data } = await gqlClient.query({
-    //         query: GET_CUSTOMER_ADDRESSES,
-    //         fetchPolicy: 'no-cache'
-    //     });
-    //     if(data.activeCustomer.addresses[0]) { 
-    //         setUAddress(data.activeCustomer.addresses[0]);
-    //         setIsCreate(false);
-    //     } else { 
-    //         setIsCreate(true);
-    //     }
-    // }
+        let params: any = {
+            fetchPolicy: 'no-cache',
+            variables: {
+                customerAccessToken: token,
+                address: {
+                    firstName: shipping.firstName,
+                    lastName: shipping.lastName,
+                    address1: shipping.address1,
+                    address2: shipping.address2,
+                    city: shipping.city,
+                    province: shipping.province,
+                    country: shipping.country,
+                    zip: shipping.zip
+                }
+            }
+        };
 
-    // let updateShippingInfo = async () => {
-    //     if ( !isCreate ) {             
-    //         const input: MailingAddressInput = {
-    //             address1: uAddress.address1,
-    //             address2: uAddress.address2,
-    //             city: uAddress.city,
-    //             company: uAddress.company,
-    //             country: uAddress.country,
-    //             firstName: uAddress.firstName,
-    //             lastName: uAddress.lastName,
-    //             phone: uAddress.phone,
-    //             province: uAddress.province,
-    //             zip: uAddress.zip
-    //         };
-    //         // TODO: Do address validation and update the address via Vendure gql
-    //         // var validate = await addressValidationFunc(input);
-    //         // getShipment(input);
-    //         // if (validate) {                 
-    //         //     updateAddress({
-    //         //         fetchPolicy: 'no-cache',
-    //         //         variables: {
-    //         //             input: input
-    //         //         }
-    //         //     });	
-    //         // } else { 
-    //         //     setAlertMessage("Please input right address !")                
-    //         // }
-    //     } else { 
-    //         const input: CreateAddressInput = {
-    //             streetLine1: uAddress.streetLine1,
-    //             streetLine2: uAddress.streetLine2,
-    //             city: uAddress.city,
-    //             province: uAddress.province,
-    //             postalCode: uAddress.postalCode,
-    //             countryCode: uAddress.country.code
-    //         };
-    //         createAddress({
-    //             fetchPolicy: 'no-cache',
-    //             variables: {
-    //                 input: input
-    //             }
-    //         });	
-    //     }
-    // }
-
-    // const [updateAddress] = useMutation(UPDATE_ADDRESS, {
-	// 	onCompleted: async (data) => {
-    //         if(data) {                
-    //             setAlertMessage('Address update successful.');
-    //             setAlertClass('alert-green');     
-    //         } 
-	// 	},
-	// 	onError: (error) => {
-	// 		console.error(error);
-	// 	}
-    // });    
-
-    // const [createAddress] = useMutation(CREATE_ADDRESS, {
-	// 	onCompleted: async (data) => {
-    //         if(data) {                
-    //             setAlertMessage('Address create successful.');
-    //             setAlertClass('alert-green');  
-    //             console.log(data);   
-    //         } 
-	// 	},
-	// 	onError: (error) => {
-	// 		console.error(error);
-	// 	}
-    // });  
+        if (shipping.id) {
+            params.variables.id = shipping.id;
+            await customerAddressUpdate(params);		
+        } else {
+            await customerAddressCreate(params);		
+        }
+    }
 
     const handleAddressPart = (key: string, value: string) => {
-        const newAddress = { ...uAddress, [key]: value };
-        setUAddress(newAddress); 
-        changeValue(newAddress);
+        const newAddress = { ...shipping, [key]: value };
+        setShipping(newAddress); 
     };
     
     const selectCountry = (value: any) => { 
-        const newAddress = { ...uAddress, country: value.value };
-        setUAddress(newAddress);
-        changeValue(newAddress);
+        const newAddress = { ...shipping, country: value.value };
+        setShipping(newAddress);
     };
 
     return (
-        <div className="shippingInfo">                     
-            <div className="two-comlumns-responsive">
+        <div className="shippingInfo">
+            <form onSubmit={updateShippingInfo}>
+                <div className="two-comlumns-responsive">
+                    <CustomInput 
+                        placeholder="First Name" 
+                        type="input" 
+                        value={shipping.firstName} 
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('firstName', event.target.value) } 
+                    />  
+                    <CustomInput 
+                        placeholder="Last Name" 
+                        type="input" 
+                        value={shipping.lastName} 
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('lastName', event.target.value) } 
+                    />
+                </div>
                 <CustomInput 
-                    placeholder="First Name" 
+                    placeholder="Address" 
                     type="input" 
-                    value={uAddress.firstName} 
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('firstName', event.target.value) } 
-                />  
+                    value={shipping.address1} 
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('address1', event.target.value) } 
+                />        
                 <CustomInput 
-                    placeholder="Last Name" 
+                    placeholder="Apartment, Suit, Etc.(Optional)" 
                     type="input" 
-                    value={uAddress.lastName} 
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('lastName', event.target.value) } 
-                />
-			</div>
-            <CustomInput 
-                placeholder="Address" 
-                type="input" 
-                value={uAddress.address1} 
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('address1', event.target.value) } 
-            />        
-            <CustomInput 
-                placeholder="Apartment, Suit, Etc.(Optional)" 
-                type="input" 
-                value={uAddress.address2} 
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('address2', event.target.value) } 
-            />
-            <CustomInput 
-                placeholder="City" 
-                type="input" 
-                value={uAddress.city} 
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('city', event.target.value) } 
-            />
-            <CustomInput 
-                placeholder="State/Province" 
-                type="input" 
-                value={uAddress.province} 
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('province', event.target.value) } 
-            /> 
-			<div className="two-comlumns-responsive">
-                <CustomCountrySelect 
-                    value={uAddress.country}  
-                    onChange={(value: any) => selectCountry(value)}
+                    value={shipping.address2} 
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('address2', event.target.value) } 
                 />
                 <CustomInput 
-                    placeholder="Zip Code" 
+                    placeholder="City" 
                     type="input" 
-                    value={uAddress.zip} 
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('zip', event.target.value) } 
+                    value={shipping.city} 
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('city', event.target.value) } 
                 />
-			</div>
-            {/* {
-                !isCheckout && !isCheckoutPayment? <>    
-                    <CustomButton buttonText="Update" submit={updateShippingInfo}></CustomButton>
-                    <p className={alertClass}> {alertMessage} </p>
-                </> : ''
-            } */}
+                <CustomInput 
+                    placeholder="State/Province" 
+                    type="input" 
+                    value={shipping.province} 
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('province', event.target.value) } 
+                /> 
+                <div className="two-comlumns-responsive">
+                    <CustomCountrySelect 
+                        value={shipping.country}  
+                        onChange={(value: any) => selectCountry(value)}
+                    />
+                    <CustomInput 
+                        placeholder="Zip Code" 
+                        type="input" 
+                        value={shipping.zip} 
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddressPart('zip', event.target.value) } 
+                    />
+                </div>
+                <CustomButton buttonText="Update" submit={updateShippingInfo}></CustomButton>
+            </form>                  
+            <p className={alertClass}> {alertMessage} </p>
         </div>
     );
 }

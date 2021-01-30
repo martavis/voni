@@ -5,7 +5,9 @@ import gqlClient from 'utils/gqlClient';
 import { LOGIN } from 'utils/gqlMutation';
 import { GET_CUSTOMER } from 'utils/gqlQuery';
 import { CustomerContext } from 'state/Customer';
+import { ShippingContext } from 'state/Shipping';
 import { validateEmail } from 'utils/functions';
+import { MailingAddress } from 'shopify-storefront-api-typings';
 
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
@@ -17,6 +19,7 @@ export default () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');    
     const {token, setToken, setCustomer}: { token: String, setToken: Function, setCustomer: Function } = useContext(CustomerContext);
+    const {setShipping} : {shipping: MailingAddress, setShipping: Function} = useContext(ShippingContext);
 
     const [login] = useMutation(LOGIN, {
 		onCompleted: ({ result: { customerAccessToken } }) => {
@@ -36,8 +39,11 @@ export default () => {
                 variables: { customerAccessToken: token }
             });
 
-            const { id, firstName, lastName, phone } = customer;
+            const { id, firstName, lastName, phone, addresses } = customer;
             setCustomer({ id, email, firstName, lastName, phone });
+
+            const address = addresses.edges.length > 0 ? addresses.edges[0] : {};
+            setShipping(address);
             navigate('/shop');
         };
         

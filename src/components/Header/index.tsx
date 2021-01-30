@@ -4,12 +4,14 @@ import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { Checkout, Customer } from 'shopify-storefront-api-typings';
 import { CustomerContext } from 'state/Customer';
+import { ShippingContext } from 'state/Shipping';
 import { LOGOUT } from 'utils/gqlMutation';
 import './Header.scss';
 
 const Header: React.FC = () => {
 	const { cart }: { cart: Checkout } = useContext(CartContext);
 	const { token, customer, setToken, setCustomer }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
+	const {setShipping} : {setShipping: Function} = useContext(ShippingContext);
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const isActive = ({ isCurrent }: LinkGetProps) => {
@@ -21,6 +23,7 @@ const Header: React.FC = () => {
 		onCompleted: () => {
 			setToken(null);
 			setCustomer(null);
+			setShipping(null);
 			navigate('/login');
 		},
 		onError: (error) => {

@@ -34,59 +34,6 @@ export const REMOVE_FROM_CART = gql`
     ${CART_FRAGMENT}
 `;
 
-export const SET_CHECKOUT_SHIPPING_ADDRESS = gql`
-    mutation checkoutShippingAddressUpdateV2($shippingAddress: MailingAddressInput!, $checkoutId: ID!) {
-        cart: checkoutShippingAddressUpdateV2(shippingAddress: $shippingAddress, checkoutId: $checkoutId) {
-            checkout {
-                ...Cart
-                availableShippingRates {
-                    ready
-                    shippingRates {
-                        handle
-                        priceV2 {
-                            amount
-                        }
-                        title
-                    }
-                }
-            }
-        }
-    }
-    ${CART_FRAGMENT}
-`;
-
-export const SET_CHECKOUT_EMAIL = gql`
-    mutation checkoutEmailUpdateV2($checkoutId: ID!, $email: String!) {
-        cart: checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {
-            checkout {
-                ...Cart
-            }
-        }
-    }
-    ${CART_FRAGMENT}
-`;
-
-export const SET_SHIPPING_METHOD = gql`
-    mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {
-        cart: checkoutShippingLineUpdate(checkoutId: $checkoutId, shippingRateHandle: $shippingRateHandle) {
-            checkout {
-                ...Cart
-                availableShippingRates {
-                    ready
-                    shippingRates {
-                        handle
-                        priceV2 {
-                            amount
-                        }
-                        title
-                    }
-                }
-            }
-        }
-    }
-    ${CART_FRAGMENT}
-`;
-
 export const REGISTER_ACCOUNT = gql`
     mutation registerAccount($input: CustomerCreateInput!) {
         result: customerCreate(input: $input) {
@@ -135,3 +82,22 @@ export const UPDATE_CUSTOMER = gql`
     }
 `;
 
+export const CREATE_ADDRESS = gql`
+    mutation customerAddressCreate($customerAccessToken: String!, $address: MailingAddressInput!) {
+        customerAddressCreate(customerAccessToken: $customerAccessToken, address: $address) {
+            customerAddress {
+                id
+            }
+        }
+    }
+`;
+
+export const UPDATE_ADDRESS = gql`
+    mutation customerAddressUpdate($customerAccessToken: String!, $id: ID!, $address: MailingAddressInput!) {
+        customerAddressUpdate(customerAccessToken: $customerAccessToken, id: $id, address: $address) {
+            customerAddress {
+                id
+            }
+        }
+    }
+`;

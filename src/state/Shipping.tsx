@@ -1,12 +1,12 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
-import { MailingAddressInput } from 'shopify-storefront-api-typings';
+import { MailingAddress } from 'shopify-storefront-api-typings';
 
 type Props = {
     children: ReactNode;
 };
 
 type InitialStateType = {
-    shipping: MailingAddressInput | null,
+    shipping: MailingAddress | null,
     setShipping: Function,
 };
 
@@ -39,7 +39,7 @@ const ShippingProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const value = {
         shipping: state.shipping,
-        setShipping: (shipping: MailingAddressInput | null) => {
+        setShipping: (shipping: MailingAddress | null) => {
             dispatch({ type: actions.SET_SHIPPING, shipping });
         }
     };

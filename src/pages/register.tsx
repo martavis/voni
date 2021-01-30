@@ -2,13 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import { navigate } from '@reach/router';
 import { useMutation } from '@apollo/client';
 import { CustomerContext } from 'state/Customer';
+import { ShippingContext } from 'state/Shipping';
 import { REGISTER_ACCOUNT, LOGIN } from 'utils/gqlMutation';
 import { validateEmail } from 'utils/functions';
+import { MailingAddress } from 'shopify-storefront-api-typings';
+
+import '../assets/styles/account.scss';
 
 import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
-
-import '../assets/styles/account.scss';
 
 export default () => {
     const [alertMessage, setAlertMessage] = useState('');
@@ -20,6 +22,7 @@ export default () => {
     const [customerId, setCustomerId] = useState(null);
     const [alertClass, setAlertClass] = useState('alert-red');
     const {setToken, setCustomer}: { setToken: Function, setCustomer: Function } = useContext(CustomerContext);
+    const {setShipping} : {shipping: MailingAddress, setShipping: Function} = useContext(ShippingContext);
 
     const [registerAccount] = useMutation(REGISTER_ACCOUNT, {
 		onCompleted: ({ result: { customer } }) => {
@@ -37,6 +40,7 @@ export default () => {
             const {accessToken, expiresAt } = customerAccessToken;
             setToken(accessToken, new Date(expiresAt));
             setCustomer({ id: customerId, email, firstName, lastName, phone: null });
+            setShipping({});
             navigate('/shop');
 		},
 		onError: (error) => {
