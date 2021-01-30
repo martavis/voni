@@ -1,28 +1,28 @@
 import React from 'react';
 import { Root, Routes, addPrefetchExcludes } from 'react-static';
 import { Link, Router } from '@reach/router';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
+import gqlClient from 'utils/gqlClient';
 import CartProvider from 'state/Cart';
 import CustomerProvider from 'state/Customer';
 import ShippingProvider from 'state/Shipping';
-import gqlClient  from 'utils/gqlClient';
+
+import './assets/styles/app.scss';
+
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Account from 'containers/Account';
-
-import './assets/styles/app.scss';
 
 // non-static routes
 addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment']);
 
 function App() {
 	return (
-		// @ts-ignore
 		<ApolloProvider client={gqlClient}>
-			<CartProvider>
-				<CustomerProvider>
-					<ShippingProvider>
-						<Root>
+			<Root>
+				<CartProvider>
+					<CustomerProvider>
+						<ShippingProvider>
 							<Header />
 							<div className="content" id="content">
 								<React.Suspense fallback={<em>Loading...</em>}>
@@ -44,15 +44,15 @@ function App() {
 									<div className="footer-border"></div>
 									<Link to="/contact">Contact</Link>
 									<div className="footer-border"></div>
-									<Link to="/terms-of-service">Terms of Service</Link> 	
+									<Link to="/terms">Terms of Service</Link> 	
 									<div className="footer-border"></div>
 									<Link to="/privacy-and-policy">Privacy Policy</Link> 
 								</div>
 							</footer>
-						</Root>
-					</ShippingProvider>
-				</CustomerProvider>
-			</CartProvider>
+						</ShippingProvider>
+					</CustomerProvider>
+				</CartProvider>
+			</Root>
 		</ApolloProvider>
 	)
 };

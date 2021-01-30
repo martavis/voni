@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
+import { isLocalStorageAvailable } from 'utils/functions';
 import { MailingAddress } from 'shopify-storefront-api-typings';
 
 type Props = {
@@ -11,7 +12,7 @@ type InitialStateType = {
 };
 
 const initialState = {
-    shipping: JSON.parse(localStorage.getItem('shipping') !== undefined ? localStorage.getItem('shipping') : null) || null,
+    shipping: isLocalStorageAvailable() && JSON.parse(localStorage.getItem('shipping') !== undefined ? localStorage.getItem('shipping') : null) || null,
     setShipping: () => {},    
 };
 
@@ -23,9 +24,9 @@ const reducer = (state: any, action: any) => {
     switch (action.type) {
         case actions.SET_SHIPPING:
             if (action.shipping === null) {
-                localStorage.removeItem('shipping');
+                isLocalStorageAvailable() && localStorage.removeItem('shipping');
             } else {
-                localStorage.setItem('shipping', JSON.stringify(action.shipping));
+                isLocalStorageAvailable() && localStorage.setItem('shipping', JSON.stringify(action.shipping));
             }
             return { ...state, shipping: action.shipping };
         default:

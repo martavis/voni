@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
+import { isLocalStorageAvailable } from 'utils/functions';
 import { Customer } from 'shopify-storefront-api-typings';
 import Cookies from 'js-cookie';
 
@@ -14,7 +15,7 @@ type InitialStateType = {
 };
 
 const initialState = {
-    customer: JSON.parse(localStorage.getItem('customer') !== undefined ? localStorage.getItem('customer') : null) || null,
+    customer: isLocalStorageAvailable() && JSON.parse(localStorage.getItem('customer') !== undefined ? localStorage.getItem('customer') : null) || null,
     setCustomer: () => {},    
     token: Cookies.get('vtok') || null,
     setToken: () => {}
@@ -29,9 +30,9 @@ const reducer = (state: any, action: any) => {
     switch (action.type) {
         case actions.SET_CUSTOMER:
             if (action.customer === null) {
-                localStorage.removeItem('customer');
+                isLocalStorageAvailable() && localStorage.removeItem('customer');
             } else {
-                localStorage.setItem('customer', JSON.stringify(action.customer));
+                isLocalStorageAvailable() && localStorage.setItem('customer', JSON.stringify(action.customer));
             }
             return { ...state, customer: action.customer };
         case actions.SET_TOKEN:

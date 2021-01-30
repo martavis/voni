@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-import '../assets/styles/terms-of-service.scss';
+import '../assets/styles/terms.scss';
 
 export default () => (
-    <div className="terms-of-service page">
+    <div className="terms page">
       	<h1 className="page-title">Terms of Service</h1>
 		<div className="section-custom-border">			
 			<p>

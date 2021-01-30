@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
 import { useRouteData } from 'react-static';
-import { Link } from '@reach/router';
 import { ProductEdge, ProductConnection } from 'shopify-storefront-api-typings';
 
 import '../assets/styles/home.scss';
@@ -13,7 +12,6 @@ export default () => {
 	const videoRef = createRef<HTMLVideoElement>();
 
 	const { products }: { products: ProductConnection } = useRouteData();
-	console.log(products)
 	useEffect(() => {
 		['pause', 'ended'].forEach(evt => 
 			videoRef.current.addEventListener(evt, () => {
@@ -46,7 +44,6 @@ export default () => {
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean<br />congue cursus efficitur. Pellentesque odio tortor, suscipit nec tortor ut.
 					</p>
-					{/* <Link to="/shop">Shop Now</Link> */}
 					<a href="#products">Shop Now</a>
 				</div>
 			</section>

@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
+import { isLocalStorageAvailable } from 'utils/functions';
 import { Checkout } from 'shopify-storefront-api-typings';
 
 type Props = {
@@ -11,7 +12,7 @@ type InitialStateType = {
 };
 
 const initialState = {
-    cart: JSON.parse(localStorage.getItem('cart')) || null,
+    cart: isLocalStorageAvailable() && JSON.parse(localStorage.getItem('cart')) || null,
     setCart: () => {}
 };
 
@@ -23,9 +24,9 @@ const reducer = (state: any, action: any) => {
     switch (action.type) {
         case actions.SET_CART:
             if (action.cart) {
-                localStorage.setItem('cart', JSON.stringify(action.cart));
+                isLocalStorageAvailable() && localStorage.setItem('cart', JSON.stringify(action.cart));
             } else {
-                localStorage.removeItem('cart');
+                isLocalStorageAvailable() && localStorage.removeItem('cart');
             }
             return { ...state, cart: action.cart };
         default:

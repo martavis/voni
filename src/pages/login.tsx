@@ -42,7 +42,7 @@ export default () => {
             const { id, firstName, lastName, phone, addresses } = customer;
             setCustomer({ id, email, firstName, lastName, phone });
 
-            const address = addresses.edges.length > 0 ? addresses.edges[0] : {};
+            const address = addresses.edges.length > 0 ? addresses.edges[0].node : {};
             setShipping(address);
             navigate('/shop');
         };

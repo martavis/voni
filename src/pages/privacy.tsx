@@ -1,9 +1,9 @@
 import React from 'react';
 
-import '../assets/styles/privacy-and-policy.scss';
+import '../assets/styles/privacy.scss';
 
 export default () => (
-    <div className="privacy-and-policy page">
+    <div className="privacy page">
       	<h1 className="page-title">Privacy and Policy</h1>
 		<div className="section-custom-border">	
             <p>

@@ -3,15 +3,14 @@
   "private": true,
   "scripts": {
     "start": "sh -ac '. ./.env; react-static start'",
-    "stage": "react-static build --staging",
-    "build": "react-static build",
+    "stage": "sh -ac '. ./.env; react-static build --staging'",
+    "build": "sh -ac '. ./.env; react-static build'",
     "bundle": "react-static bundle",
     "export": "react-static export",
     "serve": "serve dist -p 3005 -s"
   },
   "dependencies": {
     "@apollo/client": "^3.3.6",
-    "@apollo/react-hooks": "4.0.0",
     "@reach/router": "1.3.4",
     "@rehooks/local-storage": "2.4.0",
     "@types/isomorphic-fetch": "0.0.35",

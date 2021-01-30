@@ -32,3 +32,7 @@ export const saveNewCart = (checkout, setCart) => {
         console.log('nope');
     }
 };
+
+export const isLocalStorageAvailable = () => {
+    return typeof window === 'object' || typeof window !== 'undefined';
+}

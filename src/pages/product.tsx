@@ -38,6 +38,10 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 		}
 	});
 	
+	if (!product) {
+		return null;
+	}
+
 	const { variants, description }: {variants: ProductVariantConnection, description: string } = product;
 	const options: Array<ProductOption> = product.options.length > 0 && product.options.filter(({ name }) => name !== 'Title'); // Shopify keeps a default for some reason :|
 	let price = formatPrice(variants.edges[selectedVariant].node.priceV2.amount);

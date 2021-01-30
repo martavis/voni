@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { validateEmail } from 'utils/functions';
-import CustomInput from 'components/CustomInput';
-import CustomButton from 'components/CustomButton';
 
 import '../assets/styles/contact.scss';
+
+import CustomInput from 'components/CustomInput';
+import CustomButton from 'components/CustomButton';
 
 export default () => {
     const [alertMessage, setAlertMessage] = useState("");
