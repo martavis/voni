@@ -95,6 +95,16 @@ export const GET_CHECKOUT = gql`
     ${CART_FRAGMENT}
 `;
 
+export const GET_CUSTOMER = gql`
+    query customer($customerAccessToken: String!) {
+        customer(customerAccessToken: $customerAccessToken) {
+            id
+            firstName
+            lastName
+        }
+    }
+`;
+
 // ============== OLD v1 ============= //
 
 export const GET_ALL_COLLECTIONS = gql`

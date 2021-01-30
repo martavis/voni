@@ -36,7 +36,7 @@ export default () => {
 		onCompleted: ({ result: { customerAccessToken } }) => {
             const {accessToken, expiresAt } = customerAccessToken;
             setToken(accessToken, new Date(expiresAt));
-            setCustomer({ email, firstName, lastName });
+            setCustomer({ id: customerId, email, firstName, lastName });
             navigate('/shop');
 		},
 		onError: (error) => {
@@ -49,7 +49,7 @@ export default () => {
             await login({
                 fetchPolicy: 'no-cache',
 				variables: {
-					input : { email, password }
+					input: { email, password }
 				}
             });
         };
@@ -64,7 +64,7 @@ export default () => {
         setAlertClass('alert-red');      
 
         if (!validateEmail(email)) { 
-            setAlertMessage('Please input correct email address.');
+            setAlertMessage('Please add a valid email address address.');
             return;
         }
 

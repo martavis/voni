@@ -19,7 +19,7 @@ export default () => {
             return;
         }
         if (!validateEmail(email)) { 
-            setAlertMessage("Please input correct email address.");
+            setAlertMessage("Please add a valid email address address.");
             return;
         }
         if (message ==""){ 

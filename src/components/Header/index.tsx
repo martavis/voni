@@ -33,7 +33,7 @@ const Header: React.FC = () => {
 		cartCount = cart.lineItems.edges.length;
 	}
 
-	let beginLogout = () => { 
+	let submitLogout = () => { 
 		try {
 			logout({
 				fetchPolicy: 'no-cache',
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
 								<Link to="/register" getProps={isActive}>Register</Link>
 							</> : <>
 								<Link to="/profile" getProps={isActive}>{ customer.firstName + ' ' + customer.lastName }</Link>
-								<a onClick={beginLogout}>Log out</a>
+								<a onClick={submitLogout}>Log out</a>
 							</>
 						}
 					</div>
@@ -99,7 +99,7 @@ const Header: React.FC = () => {
 						<Link to="/register" getProps={isActive}>Register</Link>
 					</> : <>
 						<Link to="/profile" getProps={isActive}>Account</Link>
-						<a onClick={beginLogout}>Logout</a>
+						<a onClick={submitLogout}>Logout</a>
 					</>
 				}
 				{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}

@@ -8,8 +8,8 @@ type Props = {
 };
 
 const CustomButton = ({ buttonText, submit }: Props) => {
-    let buttonClick = ( event: React.MouseEvent<HTMLButtonElement> ) => { 
-        submit();
+    let buttonClick = ( event: React.MouseEvent<HTMLButtonElement> | React.SyntheticEvent ) => { 
+        submit(event);
     }
     return (
         <div className="button-clip-path-outside">
