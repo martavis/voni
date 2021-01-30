@@ -38,8 +38,16 @@ function App() {
 							</React.Suspense>
 						</div>
 						<footer>
-							{new Date().getFullYear()} &trade; Voni Aesthetics - All Rights Reserved &nbsp;||&nbsp;<Link to="/contact"> Contact</Link> &nbsp;||&nbsp;<Link to="/terms-of-service"> Terms of Service</Link> 	
-							&nbsp;||&nbsp;<Link to="/privacy-and-policy"> Privacy Policy</Link> 
+							<div className="left">
+								{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved 
+							</div>
+							<div className="right">
+								<Link to="/contact">Contact</Link>
+								<div className="footer-border"></div>
+								<Link to="/terms-of-service">Terms of Service</Link> 	
+								<div className="footer-border"></div>
+								<Link to="/privacy-and-policy">Privacy Policy</Link> 
+							</div>
 						</footer>
 					</Root>
 				</CustomerProvider>

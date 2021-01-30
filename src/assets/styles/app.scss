@@ -128,14 +128,33 @@ body {
 		margin-top: 50px;
 		padding: 10px 20px;
 		position: relative;
+		font-size: 0.8125em;
 		font-family: 'Bahnschrift';
 		box-sizing: border-box;
 		z-index: 0;
-		text-align: center;		
+		display: flex;	
+		align-items: center;
+		justify-content: space-between;
+		
+		.right {
+			display: flex;	
+			align-items: center;
+			justify-content: flex-end;
+		}
+		.footer-border {
+			margin-left: 10px;
+			margin-right: 10px;
+			width: 1px;
+			height: 17px;
+			background-color: $white;
+			position: relative;
+			top: -1px;
+		}
 		a { 
 			cursor: pointer;	
 			color: #fafafa !important;
 			text-decoration: none;
+			
 			&:hover { 
 				text-decoration: underline;
 			}

@@ -46,7 +46,7 @@
         .product-actions {
             margin-top: 20px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
 
             @media (max-width: 1000px) {
                 display: grid;
@@ -68,7 +68,13 @@
                 }
             }
             .add-to-cart > div {
+                display: flex;
+                align-items: center;
                 cursor: pointer;
+
+                img {
+                    margin-left: 10px;
+                }
             }
             .product-options {
                 display: flex;
