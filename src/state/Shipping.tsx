@@ -1,6 +1,5 @@
 import React, { createContext, useReducer, ReactNode } from 'react';
 import { MailingAddressInput } from 'shopify-storefront-api-typings';
-import Cookies from 'js-cookie';
 
 type Props = {
     children: ReactNode;
