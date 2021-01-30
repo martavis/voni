@@ -107,8 +107,7 @@ const Header: React.FC = () => {
 				}
 				{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}
 				<div className="cart-display">
-					{/* <Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link> */}
-					<a href={cart?.webUrl}><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></a>
+					<Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link>
 					{(cartCount !== null && cartCount > 0) && <div className="cart-count">{cartCount}</div>}
 				</div>
 			</div>

@@ -132,7 +132,8 @@ const Cart: DF = () => {
 						</div>
 						<div className="cart-actions">
 							<Link to="/shop" className="shop">Continue Shopping</Link>
-							<Link to="/checkout" className="checkout">Proceed to Checkout</Link>
+							{/* <Link to="/checkout" className="checkout">Proceed to Checkout</Link> */}
+							<a href={cart.webUrl} className="checkout">Proceed to Checkout</a>
 						</div>
 					</>
 				) : (
