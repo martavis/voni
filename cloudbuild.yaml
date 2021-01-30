@@ -12,9 +12,9 @@ steps:
 # copy gcp files into build because we cannot change the source
 # of the files that will be copied into GAE 
 - name: "gcr.io/cloud-builders/gsutil"
-  args: ['cp', 'app.$BRANCH_NAME.yaml', './build']
+  args: ['cp', 'app.$BRANCH_NAME.yaml', './dist']
 
 - name: gcr.io/cloud-builders/gcloud
-  args: ['app', 'deploy', 'build/app.$BRANCH_NAME.yaml']
+  args: ['app', 'deploy', 'dist/app.$BRANCH_NAME.yaml']
 
 timeout: '1600s'
