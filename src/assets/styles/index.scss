@@ -59,10 +59,11 @@
     }
     .lookbook {
         margin-top: 200px;
-        display: grid;
-        grid-template-columns: 50% 50%;
+        display: flex;
+        justify-content: center;
         align-items: center;
         position: relative;
+
         @media (max-width: 800px) {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -80,8 +81,6 @@
             opacity: 0.15;
         }
         .video-wrapper {
-            display: flex;
-
             .video {
                 padding: 36px 6px;
                 position: relative;
@@ -94,24 +93,12 @@
                         position: relative;
                     }
                 }
-                
-                &::before {
-                    content: '';
+                .border {
                     position: absolute;
-                    top: 22px;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-image: url('https://storage.googleapis.com/voni-assets/img/video-frame.svg');
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    justify-self: center;
-                    @media (max-width: 500px) {
-                        top: 0px;
-                    }
+                    top: 130px;
+                    left: -115px;
+                    transform: rotate(90deg);
+                    transform-origin: center;
                 }
                 .video-overlay {
                     width: 100%;
@@ -132,8 +119,7 @@
             }
         }
         .pdf-wrapper {
-            padding: 60px;
-            justify-self: center;
+            margin-left: 50px;
             a {
                 color: $white;
                 text-decoration: none;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, createRef } from 'react';
 import { useRouteData } from 'react-static';
 import { ProductEdge, ProductConnection } from 'shopify-storefront-api-typings';
 
-import '../assets/styles/home.scss';
+import '../assets/styles/index.scss';
 
 import ProductComponent from 'components/Product';
 
@@ -50,8 +50,9 @@ export default () => {
 			<section className="lookbook">
 				<div className="video-wrapper">
 					<div className="video">
-						<video ref={videoRef} width="512" height="288">
-							<source src="https://storage.googleapis.com/voni-assets/videos/voni-ad.mp4?t=sdk" type="video/mp4" />
+						<img className="border" alt="" src="https://storage.googleapis.com/voni-assets/img/video-frame.svg" />
+						<video ref={videoRef} width="288" height="512">
+							<source src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4?t=sdk" type="video/mp4" />
 							Your browser does not support the video tag.
 						</video>
 						<div className="video-overlay" data-playing={isVideoPlaying} onClick={() => setIsVideoPlaying(true)}>
