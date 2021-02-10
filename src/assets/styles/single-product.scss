@@ -31,14 +31,16 @@
     .details {
         .product-title {
             margin-bottom: 0;
-            font-size: 3.25em;
+            font-size: 3em;
+
             @media (max-width: 400px) {
                 font-size: 2.25em;
             }
         }
         .product-price {
             margin: 0;
-            font-size: 3.5em;
+            font-size: 3em;
+
             @media (max-width: 400px) {
                 font-size: 2.25em;
             }
@@ -52,7 +54,6 @@
                 display: grid;
                 grid-template-columns: repeat(1, 1fr);
             }
-
             & > *:not(:last-child) {
                 margin-right: 4vw;
                 margin-bottom: 20px;
@@ -63,13 +64,15 @@
 
                 & > span {
                     font-family: 'Bahnschrift';
-                    font-size: 1.375em;
+                    font-size: 1.25em;
                     margin-right: 15px;
                 }
             }
             .add-to-cart > div {
                 display: flex;
                 align-items: center;
+                font-family: 'Bahnschrift';
+                font-size: 1.125em;
                 cursor: pointer;
 
                 img {
@@ -119,7 +122,9 @@
             margin-top: 50px;
 
             p {
-                font-size: 1.25em;
+                font-size: 1.0625em;
+                line-height: 1.5;
+                letter-spacing: 0.5px;
             }
         }
     }
