@@ -21,7 +21,7 @@ const CustomCountrySelect = ({ onChange, value }: Props) => {
 
     useEffect(() => {
         if (value && countries.length > 0) {
-            const { abbr, name } = COUNTRIES.find((c) => c.abbr === value);
+            const { abbr, name } = COUNTRIES.find((c) => c.abbr === value || c.name === value);
             setInputValue({ value: abbr, label: name });
         }
     }, [value, countries]);
