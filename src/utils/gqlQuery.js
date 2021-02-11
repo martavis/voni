@@ -121,3 +121,24 @@ export const GET_CUSTOMER = gql`
     }
 `;
 
+export const GET_CUSTOMER_ORDERS = gql`
+    query customer($customerAccessToken: String!) {
+        customer(customerAccessToken: $customerAccessToken) {
+            orders(first: 20) {
+                edges {
+                    node {
+                        orderNumber
+                        customerUrl
+                        financialStatus
+                        fulfillmentStatus
+                        processedAt
+                        totalPriceV2 {
+                            amount
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+

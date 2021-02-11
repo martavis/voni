@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { navigate } from '@reach/router';
 import { useMutation } from '@apollo/client';
+import { CustomerContext } from 'state/Customer';
+import { ShippingContext } from 'state/Shipping';
 import gqlClient from 'utils/gqlClient';
 import { LOGIN } from 'utils/gqlMutation';
 import { GET_CUSTOMER } from 'utils/gqlQuery';
-import { CustomerContext } from 'state/Customer';
-import { ShippingContext } from 'state/Shipping';
 import { validateEmail } from 'utils/functions';
 import { MailingAddress } from 'shopify-storefront-api-typings';
 

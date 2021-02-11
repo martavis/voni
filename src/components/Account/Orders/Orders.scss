@@ -1,0 +1,47 @@
+@import '../../../assets/styles/variables.scss';
+
+.orders {
+    .no-orders {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 1.375em;
+
+        a {
+            margin-left: 3px;
+            margin-right: 3px;
+            color: $white;
+            text-decoration: underline;
+        }
+    }
+    .orders-table {
+        margin-top: 50px;
+        font-family: 'Bahnschrift';
+        font-size: 1.125em;
+
+        .o-header, .o-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            justify-items: center;
+            align-items: center;
+        }
+        .o-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid $white;
+        }
+        a {
+            color: $white;
+        }
+        .o-row {
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            &:hover {
+                background-color: $white;
+
+                * {
+                    color: $black;
+                }
+            }
+        }
+    }
+}

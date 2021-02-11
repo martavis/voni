@@ -1,6 +1,9 @@
 @import './variables.scss';
 
 .checkout-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
     .input-clip-path-outside { 
         -webkit-clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
         clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0px 8px);
@@ -23,6 +26,7 @@
         font-family: 'Bahnschrift' !important;
         margin: 0;
         vertical-align: bottom;
+
         &::before { 
             content: '';
             width: 100%;
@@ -34,12 +38,9 @@
             left: 0;
         }
     }
-    display: grid;
-    grid-template-columns: 50% 50%;
     @media (max-width: 1000px) {
         grid-template-columns: repeat(1, 1fr);
     }
-
     .checkout-side {
         padding-top: 20px;
         padding-bottom: 20px;

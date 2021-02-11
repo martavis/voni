@@ -19,11 +19,11 @@ const Account: DF = () => {
                 <header>
                     <a onClick={() => {setViewMode(0)}} data-is-active={viewMode === 0}>Information</a>
                     <a onClick={() => {setViewMode(1)}} data-is-active={viewMode === 1}>Shipping</a>
-                    <a onClick={() => {setViewMode(2)}} data-is-active={viewMode === 2}>Privacy</a>
-                    <a onClick={() => {setViewMode(3)}} data-is-active={viewMode === 3}>Orders</a>
+                    <a onClick={() => {setViewMode(2)}} data-is-active={viewMode === 2}>Orders</a>
+                    <a onClick={() => {setViewMode(3)}} data-is-active={viewMode === 3}>Password</a>
                 </header>
-                { viewMode == 3 ? <Orders /> : ''}        
-                { viewMode == 2 ? <PrivacyInfo /> : ''}        
+                { viewMode == 3 ? <PrivacyInfo /> : ''}        
+                { viewMode == 2 ? <Orders /> : ''}        
                 { viewMode == 1 ? <ShippingInfo /> : ''}   
                 { viewMode == 0 ? <AccountInfo /> : ''}          
             </div>            
