@@ -23,8 +23,12 @@ export default () => {
 
     const [login] = useMutation(LOGIN, {
 		onCompleted: ({ result: { customerAccessToken } }) => {
-            const {accessToken, expiresAt } = customerAccessToken;
-            setToken(accessToken, new Date(expiresAt));
+            if (customerAccessToken) {
+                const {accessToken, expiresAt } = customerAccessToken;
+                setToken(accessToken, new Date(expiresAt));
+            } else {
+                setAlertMessage('Your login info is incorrect.');
+            }
 		},
 		onError: (error) => {
 			console.error(error);
@@ -48,7 +52,6 @@ export default () => {
         };
         
         if (token) {
-            console.log(token)
             getCustomerInfo();
         }
     }, [token]);

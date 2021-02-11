@@ -16,9 +16,9 @@ const AccountInfo = () => {
     const {token, customer, setCustomer} : {token: String, customer: Customer, setCustomer: Function} = useContext(CustomerContext);
 
     const [customerUpdate] = useMutation(UPDATE_CUSTOMER, {
-        onCompleted: async (data) => {
+        onCompleted: () => {
             setAlertClass('alert-green');      
-            setAlertMessage('Account update successful.');
+            setAlertMessage('Account updated successfully.');
         },
         onError: (error) => {
             console.error(error);
