@@ -14,12 +14,7 @@
 
     .images {
         display: block;
-        // display: grid;
-        // grid-template-columns: 90px auto;
-        // column-gap: 30px;
 
-        // &[data-has-secondary="false"] {
-        // }
         .enlarged {
             height: 450px;
 
@@ -47,7 +42,7 @@
         }
         .product-options {
             .product-option-row {
-                margin-top: 10px;
+                margin-top: 20px;
                 display: flex;
                 align-items: center;
     
