@@ -22,9 +22,9 @@ const CustomInput = ({ placeholder, type, onChange, value, enable }: Props) => {
             { 
                 type == "input" || type == "password"? 
                     enable ? 
-                    <input placeholder={placeholder} type={type} value={value} onChange={changeInputEvent} className="input-clip-path-inside"></input>
+                    <input placeholder={placeholder} type={type} value={value || ''} onChange={changeInputEvent} className="input-clip-path-inside"></input>
                     :
-                    <input placeholder={placeholder} type={type} value={value} onChange={changeInputEvent} className="input-clip-path-inside" disabled></input>
+                    <input placeholder={placeholder} type={type} value={value || ''} onChange={changeInputEvent} className="input-clip-path-inside" disabled></input>
                 : 
                 <textarea placeholder={placeholder} onChange={changeTextareaField} className="input-clip-path-inside"></textarea>
             }
