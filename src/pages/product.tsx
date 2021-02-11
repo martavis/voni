@@ -20,6 +20,10 @@ import ItemCounter from 'components/ItemCounter';
 import ProductImage from 'components/ProductImage';
 
 const SingleProductPage = ({ product }: { product: Product }) => {
+	if (!product) {
+		return null;
+	}
+	
 	const { variants, description }: {variants: ProductVariantConnection, description: string } = product;
 	const options: Array<ProductOption> = product.options.length > 0 && product.options.filter(({ name }) => name !== 'Title'); // Shopify keeps a default for some reason :|
 	
@@ -42,10 +46,6 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
 		}
 	});
-
-	if (!product) {
-		return null;
-	}
 
 	useEffect(() => {
 		const selectedOptions = selectedVariant ? selectedVariant.title.split(' / ') : null;
