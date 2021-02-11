@@ -40,7 +40,7 @@ export default () => {
 					<img alt="" src={`https://storage.googleapis.com/voni-assets/img/welcome-models/model-${imageNum}.png`} />
 				</div>
 				<div className="welcome-message">
-					<h1><span>Say Hello,</span><br />To The Future</h1>
+					<h1>Your Future<br />is Here</h1>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean<br />congue cursus efficitur. Pellentesque odio tortor, suscipit nec tortor ut.
 					</p>
