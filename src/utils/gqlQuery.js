@@ -26,7 +26,7 @@ export const GET_ALL_PRODUCTS = gql`
                             currencyCode
                         }
                     }
-                    variants(first: 10) {
+                    variants(first: 20) {
                         edges {
                             node {
                                 id

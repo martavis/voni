@@ -4,7 +4,7 @@ import '../assets/styles/privacy.scss';
 
 export default () => (
     <div className="privacy page">
-      	<h1 className="page-title">Privacy and Policy</h1>
+      	<h1 className="page-title">Privacy Policy</h1>
 		<div className="section-custom-border">	
             <p>
 				EFFECTIVE DATE: September 1, 2020

@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { withRouteData } from 'react-static';
 import { 
 	Product, 
 	ProductOption, 
 	ProductVariantConnection,
 	Checkout,
-	CheckoutLineItemInput
+	CheckoutLineItemInput,
+	ProductVariant,
+	ProductVariantEdge
 } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { formatPrice, saveNewCart } from 'utils/functions';
-import { CREATE_CART, MODIFY_CART } from 'utils/gqlMutation';
+import { CREATE_CART, ADD_MORE_TO_CART } from 'utils/gqlMutation';
 
 import '../assets/styles/single-product.scss';
 
@@ -18,9 +20,12 @@ import ItemCounter from 'components/ItemCounter';
 import ProductImage from 'components/ProductImage';
 
 const SingleProductPage = ({ product }: { product: Product }) => {
+	const { variants, description }: {variants: ProductVariantConnection, description: string } = product;
+	const options: Array<ProductOption> = product.options.length > 0 && product.options.filter(({ name }) => name !== 'Title'); // Shopify keeps a default for some reason :|
+	
 	const [quantity, setQuantity] = useState<number>(1);
-	const [selectedVariant, setSelectedVariant] = useState(0);
-	// const [selectedVariantImage] = useState(0);
+	const [selectedOptions, setSelectedOptions] = useState<object | null>(null); // because there inifinite options, use 0 as default index for all options
+	const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null); // because there inifinite options, use 0 as default index for all options
 	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
 	const [createCart] = useMutation(CREATE_CART, {
 		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
@@ -30,47 +35,50 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 		}
 	});
 
-	const [modifyCart] = useMutation(MODIFY_CART, {
+	const [addMoreToCart] = useMutation(ADD_MORE_TO_CART, {
 		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
 		onError: (error) => {
 			console.error(error);
 			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
 		}
 	});
-	
+
 	if (!product) {
 		return null;
 	}
 
-	const { variants, description }: {variants: ProductVariantConnection, description: string } = product;
-	const options: Array<ProductOption> = product.options.length > 0 && product.options.filter(({ name }) => name !== 'Title'); // Shopify keeps a default for some reason :|
-	let price = formatPrice(variants.edges[selectedVariant].node.priceV2.amount);
-	
-	const addToCart = async () => {
-		const { id } = variants.edges[selectedVariant].node;
+	useEffect(() => {
+		const selectedOptions = selectedVariant ? selectedVariant.title.split(' / ') : null;
+		let options = {};
+		product.options.forEach(({ name, values }: ProductOption) => {
+			if (selectedOptions) {
+				// match the selected variant with the corresponding option buttons
+				options[name] = selectedOptions.shift();
+			} else {
+				// initialize options object since each product has infinite options
+				options[name] = values[0];
+			}
+		});
 		
-		const itemIndexInCart = cart ? cart.lineItems.edges.findIndex((item) => item.node.variant.id === id ) : -1;
+		setSelectedOptions(options);
+	}, [selectedVariant]);
+
+	// select the variant by the options chosen - options are in the variant title
+	useEffect(() => {
+		if (selectedOptions) {
+			const variantTitle = Object.values(selectedOptions).join(' / ');
+			const variant = variants.edges.find((variant: ProductVariantEdge) => variant.node.title === variantTitle).node;
+			setSelectedVariant(variant);
+		}
+	}, [selectedOptions]);
+
+	const addToCart = async () => {
+		const { id } = selectedVariant;
 		let lineItems: Array<CheckoutLineItemInput> = [{ variantId: id, quantity }];
 		
-		// modify cart
-		if (itemIndexInCart > -1) {
-			lineItems = [];
-			const newQuantity = cart.lineItems.edges[itemIndexInCart].node.quantity + quantity; // add state's quantity
-			
-			// restructure cart items, skipping the product with the old quantity
-			cart.lineItems.edges.forEach(({ node }, i) => {
-				if (i !== itemIndexInCart) {
-					lineItems.push({ variantId: node.id, quantity: node.quantity });
-				}
-			});
-
-			// add the new quantity of the product we're adding
-			lineItems.push({variantId: id, quantity: newQuantity})
-		}
-
 		try {
 			if (cart) {
-				await modifyCart({
+				await addMoreToCart({
 					fetchPolicy: 'no-cache',
 					variables: { 
 						lineItems,
@@ -89,40 +97,45 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 			console.log(error);
 		}
 	};
-	
-	let selectedVariantNode = variants.edges[selectedVariant].node;
-	// let imageToShow = selectedVariantNode;
-	// if (variants[selectedVariant]['assets'][selectedVariantImage]) {
-	// 	imageToShow = variants[selectedVariant]['assets'][selectedVariantImage];
-	// } else if (variants[selectedVariant]['featuredAsset']) {
-	// 	imageToShow = variants[selectedVariant]['featuredAsset'];
-	// }
 
-	const hasSecondaryImages = false;
+	const handleOptionChange = (key: string, value: string) => {
+		let oldOptions = selectedOptions;
+		const newOptions = {
+			...oldOptions,
+			[key]: value
+		};
+
+		setSelectedOptions(newOptions);
+	};
+
+	let price = selectedVariant ? formatPrice(selectedVariant.priceV2.amount) : '';
+	
 	return (
 		<div className="single-product page">
-			<div className="images" data-has-secondary={hasSecondaryImages}>
-				{hasSecondaryImages && <div className="secondary"></div>}
+			<div className="images">
 				<div className="enlarged">
-					<ProductImage src={selectedVariantNode.image.originalSrc} />
+					<ProductImage src={selectedVariant ? selectedVariant.image.originalSrc : ''} />
 				</div>
 			</div>
 			<div className="details">
 				<p className="product-title">{product.title}</p>
 				<p className="product-price">${price}</p>
-				<div className="product-actions">
-					{options.length > 0 && 
-						<div className="product-options">{
-							options.map(({ name }: ProductOption, i: number) => (
+				<div className="product-options">
+					{options.map(({ name, values }: ProductOption, i: number) => (
+						<div key={i} className="product-option-row">
+							<span>{name}</span>
+							{values.map((value: string, k: number) => (
 								<div 
-									key={i}
+									key={k}
 									role="button"
-									className={`option ${selectedVariant === i ? 'active' : ''}`} 
-									onClick={() => setSelectedVariant(i)}
-								>{name}</div>
-							))
-						}</div>
-					}
+									className={`option ${selectedOptions && selectedOptions[name] === value ? 'active' : ''}`} 
+									onClick={() => handleOptionChange(name, value)}
+								>{value}</div>
+							))}
+						</div>
+					))}
+				</div>
+				<div className="product-actions">
 					<div className="quantity">
 						<span>Qty:</span>
 						<ItemCounter count={quantity} setCount={setQuantity} />
@@ -141,14 +154,4 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	)
 };
 
-// TODO: this isn't working...fix it!
-const SingleProductWithData = withRouteData(SingleProductPage);
-
-export default React.memo(SingleProductWithData, (prevProps, nextProps) => {
-	console.log('hey');
-	console.log(nextProps.product.id);
-	if (prevProps.product.id === nextProps.product.id) {
-		return false;
-	}
-	return true;
-});
+export default withRouteData(SingleProductPage);

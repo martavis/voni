@@ -13,13 +13,13 @@
     }
 
     .images {
-        display: grid;
-        grid-template-columns: 90px auto;
-        column-gap: 30px;
+        display: block;
+        // display: grid;
+        // grid-template-columns: 90px auto;
+        // column-gap: 30px;
 
-        &[data-has-secondary="false"] {
-            display: block;
-        }
+        // &[data-has-secondary="false"] {
+        // }
         .enlarged {
             height: 450px;
 
@@ -43,6 +43,52 @@
 
             @media (max-width: 400px) {
                 font-size: 2.25em;
+            }
+        }
+        .product-options {
+            .product-option-row {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+    
+                span {
+                    font-family: 'Bahnschrift';
+                    font-size: 1.25em;
+                    margin-right: 15px;
+                }
+                .option {
+                    padding: 12px;
+                    border: 1px solid $white;
+                    font-family: 'Bahnschrift';
+                    font-size: 1.125em;
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden;
+                    background: none;
+                    transition: 0.08s ease-in;
+                    z-index: 1;
+    
+                    &:not(:last-of-type) {
+                        margin-right: 16px;
+                    }
+                    &:hover, &.active {
+                        color: $black;
+                    }
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        background: $white;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        top: 100%;
+                        z-index: -1;
+                        transition: top 0.09s ease-in;
+                    }
+                    &:hover::before, &.active::before {
+                        top: 0;
+                    }
+                }
             }
         }
         .product-actions {
@@ -77,44 +123,6 @@
 
                 img {
                     margin-left: 10px;
-                }
-            }
-            .product-options {
-                display: flex;
-                align-items: center;
-    
-                .option {
-                    padding: 12px;
-                    border: 1px solid $white;
-                    font-family: 'Bahnschrift';
-                    font-size: 1.125em;
-                    cursor: pointer;
-                    position: relative;
-                    overflow: hidden;
-                    background: none;
-                    transition: 0.08s ease-in;
-                    z-index: 1;
-    
-                    &:not(:last-of-type) {
-                        margin-right: 16px;
-                    }
-                    &:hover, &.active {
-                        color: $black;
-                    }
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        background: $white;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        top: 100%;
-                        z-index: -1;
-                        transition: top 0.09s ease-in;
-                    }
-                    &:hover::before, &.active::before {
-                        top: 0;
-                    }
                 }
             }
         }

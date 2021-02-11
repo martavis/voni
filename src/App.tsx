@@ -46,7 +46,7 @@ function App() {
 									<div className="footer-border"></div>
 									<Link to="/terms">Terms of Service</Link> 	
 									<div className="footer-border"></div>
-									<Link to="/privacy-and-policy">Privacy Policy</Link> 
+									<Link to="/privacy">Privacy Policy</Link> 
 								</div>
 							</footer>
 						</ShippingProvider>

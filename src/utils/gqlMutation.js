@@ -12,6 +12,17 @@ export const CREATE_CART = gql`
     ${CART_FRAGMENT}
 `;
 
+export const ADD_MORE_TO_CART = gql`
+    mutation checkoutLineItemsAdd($lineItems: [CheckoutLineItemInput!]!, $checkoutId: ID!) {
+        cart: checkoutLineItemsAdd(lineItems: $lineItems, checkoutId: $checkoutId) {
+            checkout {
+                ...Cart
+            }
+        }
+    }
+    ${CART_FRAGMENT}
+`;
+
 export const MODIFY_CART = gql`
     mutation checkoutLineItemsReplace($lineItems: [CheckoutLineItemInput!]!, $checkoutId: ID!) {
         cart: checkoutLineItemsReplace(lineItems: $lineItems, checkoutId: $checkoutId) {
