@@ -75,8 +75,11 @@ const Header: React.FC = () => {
 							<Link to="/" getProps={isActive}>Home</Link>
 							<Link to="/shop" getProps={isActive}>Shop</Link>
 							<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
-							{/* <Link to="/about" getProps={isActive}>About</Link> */}
+							<Link to="/about" getProps={isActive}>About</Link>
 							{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
+							<Link to="/contact" getProps={isActive}>Contact</Link>
+							<Link to="/terms" getProps={isActive}>Terms of Service</Link> 
+							<Link to="/privacy" getProps={isActive}>Privacy Policy</Link> 
 							{ 
 								token === null ? <>
 									<Link to="/login" getProps={isActive}>Login</Link>				
