@@ -150,18 +150,17 @@ nav {
             right: -12px;
         }
     }
-}
-@media screen and (max-width: $maxMediumScreen) {
-
-}
-@media screen and (max-width: $maxSmallScreen) {
-    nav {
+    @media screen and (max-width: $maxMediumScreen) {
+    
+    }
+    @media screen and (max-width: $maxSmallScreen) {
         padding: 20px 30px;
-    }
-    .mobile {
-        display: block !important;
-    }
-    .logo, .page-links > a {
-        display: none !important;
+        
+        .mobile {
+            display: block !important;
+        }
+        .logo, .page-links > a {
+            display: none !important;
+        }
     }
 }

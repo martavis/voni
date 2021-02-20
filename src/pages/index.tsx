@@ -43,7 +43,7 @@ export default () => {
 				<div className="welcome-message">
 					<h1>Your Future<br />is Here</h1>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean<br />congue cursus efficitur. Pellentesque odio tortor, suscipit nec tortor ut.
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean&nbsp;<br />congue cursus efficitur. Pellentesque odio tortor, suscipit nec tortor ut.
 					</p>
 					<a href="#products">Shop Now</a>
 				</div>
@@ -64,7 +64,7 @@ export default () => {
 				<div className="pdf-wrapper">
 					<Link to="/lookbook">
 						<h1>Lookbook</h1>
-						<h3>Click to View Now!</h3>
+						<h3>Click to View</h3>
 					</Link>
 				</div>
 			</section>

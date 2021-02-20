@@ -69,11 +69,6 @@ body {
 				margin: 0 auto;
 				padding: 20px 44px;
 				box-sizing: border-box;
-			
-				@media screen and (min-width: 1440px) {
-					padding-left: 0;
-					padding-right: 0;
-				}
 			}
 		}
 	}
@@ -95,10 +90,6 @@ body {
 			font-size: 4em;
 			font-weight: 300;
 			text-align: center;
-
-			@media (max-width: 500px) {
-				font-size: 2.5em;
-            }
 		}
 		.section-custom-border {
 			padding-top: 60px;
@@ -170,5 +161,25 @@ body {
 				text-decoration: underline;
 			}
 		}
+	}
+	@media screen and (max-width: $maxMediumScreen) {
+
+	}
+	@media screen and (max-width: $maxSmallScreen) {
+		#root {
+			.content {
+				padding: 20px !important;
+			}
+			footer {
+				justify-content: center;
+
+				.left {
+					text-align: center;
+				}
+				.right {
+					display: none;
+				}
+			}
+		}	
 	}
 }

@@ -8,11 +8,6 @@
         column-gap: 50px;
         align-items: center;
         
-        @media (max-width: 800px) {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-        }
-
         .model-roll {
             width: 400px;
             height: 580px;
@@ -32,10 +27,6 @@
         .welcome-message {
             margin-left: 50px;
 
-            @media (max-width: 500px) {
-                margin-left: 0;
-                text-align: -webkit-center;
-            }
             h1 {
                 font-size: 7vw;
                 margin: 0;
@@ -65,10 +56,6 @@
         align-items: center;
         position: relative;
 
-        @media (max-width: 800px) {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-        }
         &::before {
             content: 'lookbook';
             position: absolute;
@@ -87,13 +74,6 @@
                 position: relative;
                 overflow: visible;
 
-                @media (max-width: 600px) {
-                    video {
-                        width: 300px;
-                        height: 188px;
-                        position: relative;
-                    }
-                }
                 .border {
                     position: absolute;
                     top: 130px;
@@ -138,9 +118,6 @@
     }
     .featured-items {
         margin-top: 150px;
-        @media (max-width: 800px) {
-            margin-top: 10px;
-        }
         
         h2 {
             margin-bottom: 75px;
@@ -156,6 +133,79 @@
             column-gap: 40px;
             row-gap: 50px;
             box-sizing: border-box;
+        }
+    }
+    @media screen and (max-width: $maxMediumScreen) {
+    
+    }
+    @media screen and (max-width: $maxSmallScreen) {
+        .welcome {
+            display: block;
+            
+            .model-roll {
+                display: none;
+            }
+            .welcome-message {
+                margin-left: 0;
+                text-align: center;
+
+                h1 {
+                    font-size: 3em;
+                    position: relative;
+                    left: -10px;
+                }
+                p {
+                    br {
+                        display: none;
+                    }
+                }
+                a {
+                    position: relative;
+                    left: -10px;
+                }
+            }
+        }
+        .lookbook {
+            margin-top: 50px;
+            display: block;
+            
+            &::before {
+                display: none;
+            }
+            .video-wrapper {
+                padding-bottom: 630px;
+
+                .video {
+                    padding-left: 0;
+                    padding-right: 0;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+
+                    .border {
+                        left: 50%;
+                        transform: translateX(-50%) rotate(90deg);
+                    }
+                }
+            }
+            .pdf-wrapper {
+                margin-left: 0;
+                text-align: center;
+
+                h1 {
+                    font-size: 3em;
+                }
+                h3 {
+                    font-size: 2em;
+                    position: relative;
+                    left: -8px;
+                }
+            }
+        }
+        .featured-items {
+            .item-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     }
 }
