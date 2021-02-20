@@ -15,7 +15,6 @@ const Header: React.FC = () => {
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const isActive = ({ isCurrent }: LinkGetProps) => {
-		// toggleMenu();
 		return isCurrent ? { className: 'active' } : {};
 	};
 	
@@ -50,68 +49,72 @@ const Header: React.FC = () => {
 	}
 
 	let toggleMenu = () => { 
-		setShowMobileMenu(!showMobileMenu);
-		if (showMobileMenu) {
-			document.getElementById('content').style.display = 'block';
-			document.getElementsByTagName('footer')[0].style.display = 'block';
-		} else {
+		const shouldShow = !showMobileMenu;
+		setShowMobileMenu(shouldShow);
+
+		if (shouldShow) {
 			document.getElementById('content').style.display = 'none';
 			document.getElementsByTagName('footer')[0].style.display = 'none';
+		} else {
+			document.getElementById('content').style.display = 'block';
+			document.getElementsByTagName('footer')[0].style.display = 'block';
 		}
 	}
 
     return (
-		<nav className="menu-open">
-			<div id="mobile-nav-button" onClick={toggleMenu}>
-				<span className="menu-icon-bar"></span>
-				<span className="menu-icon-bar"></span>
-				<span className="menu-icon-bar"></span>
-			</div>
-			{	showMobileMenu ? 
-				<div id="navigationMobile" onClick={toggleMenu}>
-					<div id="navigationDropdown" className="is-invisible">
-						{/* <Link to="/" getProps={isActive}>Home</Link> */}
-						<Link to="/shop" getProps={isActive}>Shop</Link>
-						<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
-						{/* <Link to="/about" getProps={isActive}>About</Link> */}
-						{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
-						{ 
-							token === null ? <>
-								<Link to="/login" getProps={isActive}>Login</Link>				
-								<Link to="/register" getProps={isActive}>Register</Link>
-							</> : <>
-								<Link to="/account" getProps={isActive}>{ customer.firstName + ' ' + customer.lastName }</Link>
-								<a onClick={submitLogout}>Log out</a>
-							</>
-						}
+		<nav>
+			<div className="mobile">
+				<div id="mobile-nav-button" onClick={toggleMenu}>
+					<span className="menu-icon-bar"></span>
+					<span className="menu-icon-bar"></span>
+					<span className="menu-icon-bar"></span>
+				</div>
+				{showMobileMenu && 
+					<div id="navigationMobile" onClick={toggleMenu}>
+						<div id="navigationDropdown">
+							<Link to="/" getProps={isActive}>Home</Link>
+							<Link to="/shop" getProps={isActive}>Shop</Link>
+							<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
+							{/* <Link to="/about" getProps={isActive}>About</Link> */}
+							{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
+							{ 
+								token === null ? <>
+									<Link to="/login" getProps={isActive}>Login</Link>				
+									<Link to="/register" getProps={isActive}>Register</Link>
+								</> : <>
+									<Link to="/account" getProps={isActive}>Account</Link>
+									<a onClick={submitLogout}>Log out</a>
+								</>
+							}
+						</div>
 					</div>
-				</div>
-				: 
-				''
-			}
-			<div className="logo">
-				<Link to="/"><img alt="Voni Aesthetics" src="https://storage.googleapis.com/voni-assets/img/logo.svg"/></Link>
-				<div className="border"></div>
-			</div>
-			<div className="page-links">
-				{/* <Link to="/" getProps={isActive}>Home</Link> */}
-				<Link to="/shop" getProps={isActive}>Shop</Link>
-				<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
-				{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
-				{ 
-					token === null ? <>
-						<Link to="/login" getProps={isActive}>Login</Link>				
-						<Link to="/register" getProps={isActive}>Register</Link>
-					</> : <>
-						<Link to="/account" getProps={isActive}>Account</Link>
-						<a onClick={submitLogout}>Logout</a>
-					</>
 				}
-				{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}
-				<div className="cart-display">
-					<Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link>
-					{(cartCount !== null && cartCount > 0) && <div className="cart-count">{cartCount}</div>}
+			</div>
+			<div className="tablet-desktop">
+				<div className="logo">
+					<Link to="/"><img alt="Voni Aesthetics" src="https://storage.googleapis.com/voni-assets/img/logo.svg"/></Link>
+					<div className="border"></div>
 				</div>
+				<div className="page-links">
+					{/* <Link to="/" getProps={isActive}>Home</Link> */}
+					<Link to="/shop" getProps={isActive}>Shop</Link>
+					<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
+					{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
+					{ 
+						token === null ? <>
+							<Link to="/login" getProps={isActive}>Login</Link>				
+							<Link to="/register" getProps={isActive}>Register</Link>
+						</> : <>
+							<Link to="/account" getProps={isActive}>Account</Link>
+							<a onClick={submitLogout}>Logout</a>
+						</>
+					}
+					{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}
+				</div>
+			</div>
+			<div className="cart-display">
+				<Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link>
+				{(cartCount !== null && cartCount > 0) && <div className="cart-count">{cartCount}</div>}
 			</div>
 		</nav>
 	);
