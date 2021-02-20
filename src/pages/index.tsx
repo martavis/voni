@@ -5,6 +5,7 @@ import { ProductEdge, ProductConnection } from 'shopify-storefront-api-typings';
 import '../assets/styles/index.scss';
 
 import ProductComponent from 'components/Product';
+import { Link } from '@reach/router';
 
 export default () => {
 	const [imageNum] = useState(1);
@@ -61,10 +62,10 @@ export default () => {
 					</div>
 				</div>
 				<div className="pdf-wrapper">
-					<a target="_blank" href="https://storage.googleapis.com/voni-assets/pdf/lookbook.pdf">
+					<Link to="/lookbook">
 						<h1>Lookbook</h1>
-						<h3>Download Now!</h3>
-					</a>
+						<h3>Click to View Now!</h3>
+					</Link>
 				</div>
 			</section>
 			<section className="featured-items">

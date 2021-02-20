@@ -72,6 +72,7 @@ const Header: React.FC = () => {
 					<div id="navigationDropdown" className="is-invisible">
 						{/* <Link to="/" getProps={isActive}>Home</Link> */}
 						<Link to="/shop" getProps={isActive}>Shop</Link>
+						<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
 						{/* <Link to="/about" getProps={isActive}>About</Link> */}
 						{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 						{ 
@@ -95,6 +96,7 @@ const Header: React.FC = () => {
 			<div className="page-links">
 				{/* <Link to="/" getProps={isActive}>Home</Link> */}
 				<Link to="/shop" getProps={isActive}>Shop</Link>
+				<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
 				{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 				{ 
 					token === null ? <>
