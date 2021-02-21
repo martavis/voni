@@ -173,6 +173,13 @@ body {
 		#root {
 			.content {
 				padding: 20px !important;
+				
+				.page-form {
+					.section-custom-border {
+						padding-left: 15px;
+						padding-right: 15px;
+					}
+				}
 			}
 			footer {
 				justify-content: center;

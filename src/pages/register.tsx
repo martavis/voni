@@ -96,7 +96,7 @@ export default () => {
     };
 
     return (
-        <div className="account page-form">
+        <div className="register page-form">
             <h1 className="page-title">Register</h1>
             <div className="section-custom-border">
                 <div className="account-info"> 

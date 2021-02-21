@@ -1,12 +1,16 @@
 @import './variables.scss';
 
 .account-container { 
+    .mobile {
+        display: none;
+
+        select {
+            font-size: 1.125em;
+        }
+    }
     header {
         padding: 15px 0px;
-        @media (max-width: 600px) {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
+        
         a {
             cursor: pointer;
             font-size: 1.5em;
@@ -27,8 +31,7 @@
         }
     }
 }
-
-.account { 
+.login, .register { 
     p { 
         float: left;    
         margin: 10px 0px;
@@ -39,5 +42,36 @@
     .section-custom-border { 
         display: flex;
         justify-content: center;
+    }
+}
+@media screen and (max-width: $maxMediumScreen) {
+    .account-container {
+        .mobile {
+            display: block;
+        }
+        .tablet-desktop {
+            display: none;
+        }
+        form {
+            input, .customSelectCountries {
+                font-size: 1em;
+            }
+        }    
+    }
+}
+@media screen and (max-width: $maxXSmallScreen) {
+    .two-comlumns-responsive {
+        display: block !important;
+
+        .customSelectCountries {
+            margin-bottom: 15px;
+        }
+    }
+    .orders {
+        overflow-x: auto;
+
+        .orders-table {
+            min-width: 500px;
+        }
     }
 }
