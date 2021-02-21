@@ -1,10 +1,11 @@
 @import './variables.scss';
 
 .lookbook.page {
-    display: grid;
-    grid-template-columns: 1fr 0.6fr;
-    column-gap: 40px;
-
+    .sections {
+        display: grid;
+        grid-template-columns: 1fr 0.6fr;
+        column-gap: 40px;
+    }
     .view-lookbook {
         .view-lookbook-inner {
             position: relative;
@@ -34,5 +35,22 @@
                 font-weight: 300;
             }
         }
+    }
+    @media (max-width: $maxSmallScreen) {
+        .sections {
+            display: block;
+        }
+        .download-lookbook {
+            margin-top: 50px;
+            justify-content: center;
+
+            a {
+                h1 {
+                    font-size: 1.75em;
+                }
+            }
+        }
+    }
+    @media (max-width: $maxXSmallScreen) {
     }
 }

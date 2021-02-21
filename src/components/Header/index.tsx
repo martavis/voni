@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link, LinkGetProps, navigate } from '@reach/router';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, LinkGetProps, navigate, useLocation } from '@reach/router';
 import { useMutation } from '@apollo/client';
 import { CartContext } from 'state/Cart';
 import { Checkout, Customer } from 'shopify-storefront-api-typings';
@@ -10,13 +10,21 @@ import './Header.scss';
 
 const Header: React.FC = () => {
 	const { cart }: { cart: Checkout } = useContext(CartContext);
-	const { token, customer, setToken, setCustomer }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
+	const { token, setToken, setCustomer }: { token: String, customer: Customer, setToken: Function, setCustomer: Function} = useContext(CustomerContext);	
 	const {setShipping} : {setShipping: Function} = useContext(ShippingContext);
+	const pageLocation = useLocation();
 
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const isActive = ({ isCurrent }: LinkGetProps) => {
 		return isCurrent ? { className: 'active' } : {};
 	};
+
+	// reset mobile menu on page load
+	useEffect(() => {
+		if (pageLocation) {
+			setShowMobileMenu(false);
+		}
+	}, [pageLocation]);
 	
 	const [logout] = useMutation(LOGOUT, {
 		onCompleted: () => {
