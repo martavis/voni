@@ -163,7 +163,7 @@ body {
 		}
 	}
 	@media screen and (max-width: $maxMediumScreen) {
-		.page {
+		.page, .page-form {
 			.page-title {
 				font-size: 2.5em;
 			}

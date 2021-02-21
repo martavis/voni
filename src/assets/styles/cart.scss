@@ -17,6 +17,7 @@
             .header-name {
                 text-align: right;
                 text-transform: uppercase;
+
                 &:nth-of-type(1) {
                     min-width: 300px;
                     text-align: left;
@@ -24,17 +25,12 @@
                 &:nth-of-type(3) {
                     padding-left: 70px;
                 }
-                // &:last-of-type {
-                //     text-align: right;
-                // }
             }
             .header-name, .item-price, .item-total {
                 font-family: 'Bahnschrift';
                 font-size: 1.125em;
                 text-align: right;
-                // justify-self: center;
             }
-            
             .cart-items {
                 .item {
                     .item-image-name {
@@ -140,10 +136,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        @media (max-width: 600px) {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr);
-        }
 
         .total-title {
             font-size: 2.5em;
@@ -175,5 +167,39 @@
                 }
             }
         }    
+    }
+    @media screen and (max-width: $maxXSmallScreen) {
+        .headers, .cart-items .item {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+        .total {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+
+            .total-title {
+                font-size: 2em;
+
+                span {
+                    display: none;
+                }
+            }
+            .price-text {
+                font-size: 2em;
+            }
+        }
+        .cart-actions {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            display: block;
+            
+            a {
+                display: block;
+
+                &:not(:first-of-type) {
+                    margin-top: 20px;
+                }
+            }
+        }
     }
 }
