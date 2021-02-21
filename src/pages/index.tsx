@@ -43,7 +43,7 @@ export default () => {
 				<div className="welcome-message">
 					<h1>Your Future<br />is Here</h1>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean&nbsp;<br />congue cursus efficitur. Pellentesque odio tortor, suscipit nec tortor ut.
+						Astro Collection available now for purchase.
 					</p>
 					<a href="#products">Shop Now</a>
 				</div>
