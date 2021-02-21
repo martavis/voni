@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Root, Routes, addPrefetchExcludes } from 'react-static';
-import { Link, Router } from '@reach/router';
+import { Link, Router, useLocation } from '@reach/router';
 import { ApolloProvider } from '@apollo/client';
 import gqlClient from 'utils/gqlClient';
 import CartProvider from 'state/Cart';
@@ -12,9 +12,16 @@ import './assets/styles/app.scss';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Account from 'containers/Account';
+import { ToastProvider } from 'react-toast-notifications';
 
 // non-static routes
 addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment']);
+
+const CustomToast = ({ children }) => (
+	<div className="custom-toast">
+	  	{children}
+	</div>
+);
 
 function App() {
 	return (
@@ -23,32 +30,35 @@ function App() {
 				<CartProvider>
 					<CustomerProvider>
 						<ShippingProvider>
-							<Header />
-							<div className="content" id="content">
-								<React.Suspense fallback={<em>Loading...</em>}>
-									<Router>
-										<Cart path="cart" />
-										<Account path="account"/>
-										<Account path="account/shipping"/>
-										<Account path="account/payment"/>
-										<Routes default />
-									</Router>
-								</React.Suspense>
-							</div>
-							<footer>
-								<div className="left">
-									{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved 
+							<ToastProvider components={{ Toast: CustomToast }}>
+								<Header />
+								<div className="content" id="content">
+									<React.Suspense fallback={<em>Loading...</em>}>
+										<ScrollToTop />
+										<Router>
+											<Cart path="cart" />
+											<Account path="account"/>
+											<Account path="account/shipping"/>
+											<Account path="account/payment"/>
+											<Routes default />
+										</Router>
+									</React.Suspense>
 								</div>
-								<div className="right">
-									<Link to="/about">About</Link>
-									<div className="footer-border"></div>
-									<Link to="/contact">Contact</Link>
-									<div className="footer-border"></div>
-									<Link to="/terms">Terms of Service</Link> 	
-									<div className="footer-border"></div>
-									<Link to="/privacy">Privacy Policy</Link> 
-								</div>
-							</footer>
+								<footer>
+									<div className="left">
+										{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved 
+									</div>
+									<div className="right">
+										<Link to="/about">About</Link>
+										<div className="footer-border"></div>
+										<Link to="/contact">Contact</Link>
+										<div className="footer-border"></div>
+										<Link to="/terms">Terms of Service</Link> 	
+										<div className="footer-border"></div>
+										<Link to="/privacy">Privacy Policy</Link> 
+									</div>
+								</footer>
+							</ToastProvider>
 						</ShippingProvider>
 					</CustomerProvider>
 				</CartProvider>
@@ -57,16 +67,16 @@ function App() {
 	)
 };
 
-// const ScrollToTop = (): null => {
-// 	const { pathname } = useLocation();
+const ScrollToTop = (): null => {
+	const { pathname } = useLocation();
 
-// 	useEffect(() => {
-// 		if (typeof document !== 'undefined') {
-// 			window.scrollTo(0, 0);
-// 		}
-// 	}, [pathname]);
+	useEffect(() => {
+		if (typeof document !== 'undefined') {
+			window.scrollTo(0, 0);
+		}
+	}, [pathname]);
 
-// 	return null;
-// }
+	return null;
+}
 
 export default App;
