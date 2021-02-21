@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useMutation } from '@apollo/client';
-import { Customer } from 'shopify-storefront-api-typings';
-import { LOGIN, UPDATE_CUSTOMER } from 'utils/gqlMutation';
+import { useToasts } from 'react-toast-notifications';
 import { CustomerContext } from 'state/Customer';
+import { LOGIN, UPDATE_CUSTOMER } from 'utils/gqlMutation';
+import { Customer } from 'shopify-storefront-api-typings';
 
 import './PrivacyInfo.scss';
 
@@ -13,9 +14,8 @@ const PrivacyInfo = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');   
-    const [alertMessage, setAlertMessage] = useState('');
-    const [alertClass, setAlertClass] = useState('alert-red'); 
     const {customer, setToken} : {customer: Customer, setToken: Function} = useContext(CustomerContext);
+    const { addToast } = useToasts();
 
     const [login] = useMutation(LOGIN, {
 		onCompleted: async ({ result: { customerAccessToken } }) => {
@@ -35,27 +35,24 @@ const PrivacyInfo = () => {
 		},
 		onError: (error) => {
 			console.error(error);
-            setAlertClass('alert-red');      
-            setAlertMessage('Your current password is incorrect.');
+            addToast('Your current password is incorrect.', { appearance: 'error' });
 		}
     });
 
     const [customerUpdate] = useMutation(UPDATE_CUSTOMER, {
         onCompleted: ({ customerUpdate: { customerAccessToken, customerUserErrors } }) => {
             if (customerUserErrors && customerUserErrors.length > 0) {
-                setAlertClass('alert-red');      
-                setAlertMessage(customerUserErrors[0].message);
+                addToast(customerUserErrors[0].message, { appearance: 'error' });
             } else if (customerAccessToken) {
                 setToken(customerAccessToken.accessToken, new Date(customerAccessToken.expiresAt));
-                setAlertClass('alert-green');      
-                setAlertMessage('Password updated successfully.');
+                addToast('Password updated successfully.', { appearance: 'success' });
             } else {
-                setAlertClass('alert-red');
-                setAlertMessage('Something went wrong changing your password.');
+                addToast('Something went wrong changing your password. Please try again or contact us.', { appearance: 'error' });
             }
         },
         onError: (error) => {
             console.error(error);
+            addToast('Something went wrong changing your password. Please try again or contact us.', { appearance: 'error' });
         }
     });
 
@@ -63,17 +60,17 @@ const PrivacyInfo = () => {
         e.preventDefault();
 
         if (currentPassword === '') { 
-            setAlertMessage('Please enter your current password.');
+            addToast('Please enter your current password.', { appearance: 'error' });
             return;
         }  
-              
+        
         if (newPassword === '' || confirmPassword === '') { 
-            setAlertMessage('Please enter your new password.');
+            addToast('Please enter your new password.', { appearance: 'error' });
             return;
         }        
 
         if (confirmPassword !== newPassword) { 
-            setAlertMessage('Passwords do not match');
+            addToast('Passwords do not match.', { appearance: 'error' });
             return;
         }
 
@@ -98,7 +95,6 @@ const PrivacyInfo = () => {
                 <CustomInput placeholder="Confirm new password" type="password" value={confirmPassword} onChange=
                     {(event: React.ChangeEvent<HTMLInputElement>) => {setConfirmPassword(event.target.value)} }/>
                 <CustomButton buttonText="Update" submit={submitPassword}></CustomButton>
-                <p className={alertClass}> {alertMessage} </p>
             </form>
         </div>
     )

@@ -12,16 +12,10 @@ import './assets/styles/app.scss';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Account from 'containers/Account';
-import { ToastProvider } from 'react-toast-notifications';
+import { ToastProvider, DefaultToast } from 'react-toast-notifications';
 
 // non-static routes
 addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment']);
-
-const CustomToast = ({ children }) => (
-	<div className="custom-toast">
-	  	{children}
-	</div>
-);
 
 function App() {
 	return (
@@ -30,7 +24,12 @@ function App() {
 				<CartProvider>
 					<CustomerProvider>
 						<ShippingProvider>
-							<ToastProvider components={{ Toast: CustomToast }}>
+							<ToastProvider 
+								autoDismiss={true}
+								autoDismissTimeout={5000}
+								placement="top-center"
+								transitionDuration={300}
+							>
 								<Header />
 								<div className="content" id="content">
 									<React.Suspense fallback={<em>Loading...</em>}>

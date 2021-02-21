@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useToasts } from 'react-toast-notifications';
 import { validateEmail } from 'utils/functions';
 
 import '../assets/styles/contact.scss';
@@ -7,47 +8,46 @@ import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 
 export default () => {
-    const [alertMessage, setAlertMessage] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const [alertClass, setAlertClass] = useState("alert-red");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [isSending, setIsSending] = useState(false);
+    const { addToast } = useToasts();
 
     let sendEmail = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAlertClass("alert-red");
-        if (name == "") { 
-            setAlertMessage("Please input name field.");
+        if (name === '') { 
+            addToast('Please input your name.', { appearance: 'error' });
             return;
         }
         if (!validateEmail(email)) { 
-            setAlertMessage("Please add a valid email address address.");
+            addToast('Please add a valid email address address.', { appearance: 'error' });
             return;
         }
-        if (message ==""){ 
-            setAlertMessage("Please input message field.");
+        if (message === ''){ 
+            addToast('Please add a message.', { appearance: 'error' });
             return;
         }       
-        setAlertMessage('sending now..');
+        
+        setIsSending(true);
+
         const requestOptions = {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json',
             },
-            body : JSON.stringify( {
-                sendToEmail: "info.voni@gmail.com", 
-                userEmail: email, //email input
-                userName: name, //name input
-                userMessage: message //message input
-            } )
+            body : JSON.stringify({
+                sendToEmail: 'info.voni@gmail.com', 
+                userEmail: email,
+                userName: name,
+                userMessage: message
+            })
         };
         fetch('https://us-central1-portfolio-2020-268818.cloudfunctions.net/sendEmailToInfo', requestOptions)            
             .then(response => {
                 if(response.ok == true) { 
-                    setAlertClass("contact-alert-green");
-                    setAlertMessage("Email sent successfully.");
+                    addToast('Email sent successfully.', { appearance: 'success' });
                 } else { 
-                    setAlertClass("alert-red");
-                    setAlertMessage("There was an error to sent email.");
+                    addToast('There was an error sending your email. Please try again or contact us directly at info.voni@gmail.com.', { appearance: 'error' });
                 }
             });
     };
@@ -62,8 +62,7 @@ export default () => {
                         <CustomInput placeholder="EMAIL" type="input" value="" onChange={(event: React.ChangeEvent<HTMLInputElement>) => { setEmail(event.target.value); }} />
                     </div>
                     <CustomInput placeholder="MESSAGE"  value="" type="textarea" onChange={(event: { target: { value: React.SetStateAction<string>; }; }) => {setMessage(event.target.value);}} />
-                    <CustomButton buttonText="SUBMIT" submit={sendEmail} />                    
-                    <p className={alertClass}> {alertMessage} </p>
+                    <CustomButton buttonText="SUBMIT" submit={sendEmail} isDisabled={isSending} />                    
                 </div>
                 <div className="contact-information"> 
                     <div>

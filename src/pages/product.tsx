@@ -10,6 +10,7 @@ import {
 	ProductVariantEdge
 } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
+import { useToasts } from 'react-toast-notifications';
 import { CartContext } from 'state/Cart';
 import { formatPrice, saveNewCart } from 'utils/functions';
 import { CREATE_CART, ADD_MORE_TO_CART } from 'utils/gqlMutation';
@@ -31,19 +32,27 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	const [selectedOptions, setSelectedOptions] = useState<object | null>(null); // because there inifinite options, use 0 as default index for all options
 	const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null); // because there inifinite options, use 0 as default index for all options
 	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
+	const { addToast } = useToasts();
+	
 	const [createCart] = useMutation(CREATE_CART, {
-		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
+		onCompleted: ({ cart: { checkout } }) => {
+			saveNewCart(checkout, setCart);
+			addToast('This item has been added to your cart.', { appearance: 'success' });
+		},
 		onError: (error) => {
 			console.error(error);
-			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
+			addToast('We could not add this item to your cart. Please refresh and try again, or contact us.', { appearance: 'error' });
 		}
 	});
 
 	const [addMoreToCart] = useMutation(ADD_MORE_TO_CART, {
-		onCompleted: ({ cart: { checkout } }) => saveNewCart(checkout, setCart),
+		onCompleted: ({ cart: { checkout } }) => {
+			saveNewCart(checkout, setCart);
+			addToast('This item has been added to your cart.', { appearance: 'success' });
+		},
 		onError: (error) => {
 			console.error(error);
-			alert('We could not add this item to your cart. Please refresh and try again, or contact us.');
+			addToast('We could not add this item to your cart. Please refresh and try again, or contact us.', { appearance: 'error' });
 		}
 	});
 

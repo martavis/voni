@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Customer } from 'shopify-storefront-api-typings';
 import { useMutation } from '@apollo/client';
-import { UPDATE_CUSTOMER } from 'utils/gqlMutation';
+import { useToasts } from 'react-toast-notifications';
 import { CustomerContext } from 'state/Customer';
+import { UPDATE_CUSTOMER } from 'utils/gqlMutation';
 import { validateEmail } from 'utils/functions';
 
 import './AccountInfo.scss';
@@ -11,26 +12,24 @@ import CustomButton from 'components/CustomButton';
 import CustomInput from 'components/CustomInput';
 
 const AccountInfo = () => {  
-    const [alertMessage, setAlertMessage] = useState("");
-    const [alertClass, setAlertClass] = useState("alert-red"); 
     const {token, customer, setCustomer} : {token: String, customer: Customer, setCustomer: Function} = useContext(CustomerContext);
+    const { addToast } = useToasts();
 
     const [customerUpdate] = useMutation(UPDATE_CUSTOMER, {
         onCompleted: () => {
-            setAlertClass('alert-green');      
-            setAlertMessage('Account updated successfully.');
+            addToast('Account updated successfully.', { appearance: 'success' });
         },
         onError: (error) => {
             console.error(error);
+            addToast('Something went wrong updating your account. Please try again or contact us.', { appearance: 'error' });
         }
     });    
 
     const updateAccountInfo = async (e: any) => {    
         e.preventDefault();
-        setAlertClass('alert-red');      
 
         if (!validateEmail(customer.email)) { 
-            setAlertMessage('Please add a valid email address address.');
+            addToast('Please add a valid email address address.', { appearance: 'error' });
             return;
         }
 
@@ -62,7 +61,6 @@ const AccountInfo = () => {
                 </div>
                 <CustomButton buttonText="Update" submit={updateAccountInfo}></CustomButton>
             </form>
-            <p className={alertClass}> {alertMessage} </p>
         </div>
     );
 };

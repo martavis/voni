@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { navigate } from '@reach/router';
 import { useMutation } from '@apollo/client';
+import { useToasts } from 'react-toast-notifications';
 import { CustomerContext } from 'state/Customer';
 import { ShippingContext } from 'state/Shipping';
 import gqlClient from 'utils/gqlClient';
@@ -15,11 +16,11 @@ import CustomButton from 'components/CustomButton';
 import '../assets/styles/account.scss';
 
 export default () => {
-    const [alertMessage, setAlertMessage] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');    
     const {token, setToken, setCustomer}: { token: String, setToken: Function, setCustomer: Function } = useContext(CustomerContext);
     const {setShipping} : {shipping: MailingAddress, setShipping: Function} = useContext(ShippingContext);
+    const { addToast } = useToasts();
 
     const [login] = useMutation(LOGIN, {
 		onCompleted: ({ result: { customerAccessToken } }) => {
@@ -27,7 +28,7 @@ export default () => {
                 const {accessToken, expiresAt } = customerAccessToken;
                 setToken(accessToken, new Date(expiresAt));
             } else {
-                setAlertMessage('Your login info is incorrect.');
+                addToast('Your email or password is incorrect.', { appearance: 'error' });
             }
 		},
 		onError: (error) => {
@@ -60,12 +61,12 @@ export default () => {
         e.preventDefault();
 
         if (password == '') { 
-            setAlertMessage('Please input password field.');
+            addToast('Please enter your password.', { appearance: 'error' });
             return;
         }
 
         if (!validateEmail(email) ) { 
-            setAlertMessage('Please add a valid email address');
+            addToast('Please add a valid email address.', { appearance: 'error' });
             return;
         }      
 
@@ -84,7 +85,6 @@ export default () => {
                         <CustomInput placeholder="Email" type="input" value={email} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setEmail(event.target.value)}/>
                         <CustomInput placeholder="Password" type="password" value={password} onChange={(event: React.ChangeEvent<HTMLInputElement>)=>setPassword(event.target.value)}/>                        
                         <CustomButton buttonText="Submit" submit={submitLogin}/> 
-                        <p className="alert-red"> {alertMessage} </p>
                     </form>
                 </div>      
             </div>

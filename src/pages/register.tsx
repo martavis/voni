@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { navigate } from '@reach/router';
 import { useMutation } from '@apollo/client';
+import { useToasts } from 'react-toast-notifications';
 import { CustomerContext } from 'state/Customer';
 import { ShippingContext } from 'state/Shipping';
 import { REGISTER_ACCOUNT, LOGIN } from 'utils/gqlMutation';
@@ -13,25 +14,23 @@ import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 
 export default () => {
-    const [alertMessage, setAlertMessage] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('');
     const [lastName, setLastName] = useState('');
     const [firstName, setFirstName] = useState('');
     const [customerId, setCustomerId] = useState(null);
-    const [alertClass, setAlertClass] = useState('alert-red');
     const {setToken, setCustomer}: { setToken: Function, setCustomer: Function } = useContext(CustomerContext);
     const {setShipping} : {shipping: MailingAddress, setShipping: Function} = useContext(ShippingContext);
+    const { addToast } = useToasts();
 
     const [registerAccount] = useMutation(REGISTER_ACCOUNT, {
 		onCompleted: ({ result: { customer } }) => {
-            setAlertClass('alert-green');
-            setAlertMessage('loading...');
             setCustomerId(customer.id);
 		},
 		onError: (error) => {
 			console.error(error);
+            addToast('We could not complete your registration. Please contact us.', { appearance: 'error' });
 		}
     });
 
@@ -45,6 +44,7 @@ export default () => {
 		},
 		onError: (error) => {
 			console.error(error);
+            addToast('We could not complete your registration. Please contact us.', { appearance: 'error' });
 		}
     });
     
@@ -65,24 +65,22 @@ export default () => {
 
     let register = async (e) => {
         e.preventDefault();
-        setAlertClass('alert-red');      
 
         if (!validateEmail(email)) { 
-            setAlertMessage('Please add a valid email address address.');
+            addToast('Please add a valid email address address.', { appearance: 'error' });
             return;
         }
 
         if ((password === '') || (confirmPassword === '') || (lastName === '') || (firstName === '')) { 
-            setAlertMessage('Please input all fields.');
+            addToast('Please enter all information.', { appearance: 'error' });
             return;
         }
 
         if (password !== confirmPassword) { 
-            setAlertMessage('Password dismatch!');
+            addToast('The passwords do not match.', { appearance: 'error' });
             return;
         }
         
-        setAlertMessage('register now..');
         try {
 			await registerAccount({
 				fetchPolicy: 'no-cache',
@@ -91,7 +89,7 @@ export default () => {
 				}
             });
 		} catch (error) {
-            setAlertMessage('register error..');
+            addToast('We could not complete your registration. Please contact us.', { appearance: 'error' });
 		}
     };
 
@@ -106,7 +104,6 @@ export default () => {
                         <CustomInput placeholder="Email" value={email} type="input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setEmail(event.target.value);}} />
                         <CustomInput placeholder="Password" value={password} type="password" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setPassword(event.target.value);}} />
                         <CustomInput placeholder="Confirm Password" value={confirmPassword} type="password" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setConfirmPassword(event.target.value);}} />
-                        <p className={alertClass}> {alertMessage} </p>
                         <CustomButton submit={register} buttonText="Submit" />
                     </form>
                 </div>      

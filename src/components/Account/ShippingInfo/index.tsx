@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_ADDRESS, UPDATE_ADDRESS } from 'utils/gqlMutation';
+import { useToasts } from 'react-toast-notifications';
 import { ShippingContext } from 'state/Shipping';
 import { CustomerContext } from 'state/Customer';
+import { CREATE_ADDRESS, UPDATE_ADDRESS } from 'utils/gqlMutation';
 import { MailingAddress } from 'shopify-storefront-api-typings';
 
 import './ShippingInfo.scss';
@@ -12,16 +13,13 @@ import CustomButton from 'components/CustomButton';
 import CustomCountrySelect from 'components/CustomCountrySelect';
 
 const ShippingInfo = () => { 
-    const [alertMessage, setAlertMessage] = useState("");
-    const [alertClass, setAlertClass] = useState("alert-red"); 
-    const [isCreate, setIsCreate] = useState(false);
     const {token}: { token: String } = useContext(CustomerContext);
     const {shipping, setShipping} : {shipping: MailingAddress, setShipping: Function} = useContext(ShippingContext);
+    const { addToast } = useToasts();
     
     const [customerAddressCreate] = useMutation(CREATE_ADDRESS, {
 		onCompleted: () => {
-            setAlertClass('alert-green');     
-            setAlertMessage('Created address successfully.');
+            addToast('Address was added successfully.', { appearance: 'success' });
 		},
 		onError: (error) => {
 			console.error(error);
@@ -30,8 +28,7 @@ const ShippingInfo = () => {
 
     const [customerAddressUpdate] = useMutation(UPDATE_ADDRESS, {
 		onCompleted: () => {
-            setAlertClass('alert-green');     
-            setAlertMessage('Updated address successfully.');
+            addToast('Address was updated successfully.', { appearance: 'success' });
 		},
 		onError: (error) => {
 			console.error(error);
@@ -131,7 +128,6 @@ const ShippingInfo = () => {
                 </div>
                 <CustomButton buttonText="Update" submit={updateShippingInfo}></CustomButton>
             </form>                  
-            <p className={alertClass}> {alertMessage} </p>
         </div>
     );
 }

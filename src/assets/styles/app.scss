@@ -28,15 +28,32 @@ body {
 	p, button, label {
 		font-family: 'Bahnschrift';
 	}
-    .alert-red { 
-        color: red;
-    }
-    .alert-green { 
-        color: green;
-	}
 	button:disabled {
 		opacity: 0.3;
 		pointer-events: none;
+	}
+	.react-toast-notifications__container {
+		.react-toast-notifications__toast {
+			border-radius: 0;
+			box-shadow: inset 0px 0px 0px 0.5px $white;
+		}
+		.react-toast-notifications__toast--success {
+			background-color: lighten($green, 7%);
+			color: $white;
+		}
+		.react-toast-notifications__toast--error {
+			background-color: $redError;
+			color: $white;
+		}
+		.react-toast-notifications__toast__icon-wrapper {
+			display: none;
+		}
+		.react-toast-notifications__toast__content {
+			display: flex;
+			align-items: center;
+			font-family: 'Bahnschrift';
+			font-size: 0.9375em;
+		}
 	}
 	#root {
 		& > div {
