@@ -35,13 +35,18 @@
             column-gap: 40px;
             row-gap: 50px;
             box-sizing: border-box;
-            @media (max-width: 900px) {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            @media (max-width: 700px) {
+        }
+    }
+    @media (max-width: $maxMediumScreen) {
+        .items {
+            .item-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            @media (max-width: 500px) {
+        }
+    }
+    @media (max-width: $maxXSmallScreen) {
+        .items {
+            .item-grid {
                 grid-template-columns: repeat(1, 1fr);
             }
         }
