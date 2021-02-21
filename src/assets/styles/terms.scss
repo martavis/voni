@@ -1,10 +1,11 @@
 @import './variables.scss';
 
 .terms {
-    h3 { 
-        font-weight: 400;
+    .subtitle {
+        font-family: 'Bahnschrift';
+        letter-spacing: 0.5px;
     }   
-    ul{ 
+    ul { 
         font-weight: 400;
         margin: 5px 0px;
         font-family: 'Bahnschrift';
@@ -25,13 +26,16 @@
         font-size: 1.25em;
     }
     p { 
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+        line-height: 1.3125;
     }
     a { 
         text-decoration: none;
         color: white;
         font-weight: 400;
+        
         &:hover { 
             text-decoration: underline;
         }
