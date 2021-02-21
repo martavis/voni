@@ -10,11 +10,11 @@ export default () => (
 				EFFECTIVE DATE: September 1, 2020
 			</p>
             <p>
-                This “Privacy Policy” describes the privacy practices of Voni Aesthetics, and our subsidiaries and affiliates (collectively, “Voni Aesthetics”, “we”, “us”, or “our”) in connection with the www.voni.us website, or other website applications that we own or control and which posts or links to this Privacy Policy (the “Sites”) as well as our retail stores and related services (together with the Sites, the “Service”), and the rights and choices available to individuals with respect to their information.
+                This &ldquo;Privacy Policy&rdquo; describes the privacy practices of Voni Aesthetics, and our subsidiaries and affiliates (collectively, &ldquo;Voni Aesthetics&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) in connection with the www.voni.us website, or other website applications that we own or control and which posts or links to this Privacy Policy (the &ldquo;Sites&rdquo;) as well as our retail stores and related services (together with the Sites, the &ldquo;Service&rdquo;), and the rights and choices available to individuals with respect to their information.
             </p>
-            <span className="font-bold">
+            <h3 className="subtitle font-bold">
                 Table of Contents
-			</span>
+			</h3>
             <ul className="font-bold">                
                 <li>
                     Personal Information We Collect
@@ -50,9 +50,9 @@ export default () => (
                     Cookie Policy
                 </li>
             </ul>
-            <p className="font-large">
+            <h3 className="subtitle">
                 PERSONAL INFORMATION WE COLLECT
-            </p>
+            </h3>
             <span>
                 <span className="font-bold">
                     Personal information you provide to us. 
@@ -86,8 +86,8 @@ export default () => (
                 </li>
             </ul>
             <span>
-                <span className="font-bold">Data from other sources. </span> 
-                We may also collect information about you from:
+                <span className="font-bold">Data from other sources. </span>
+                &nbsp;We may also collect information about you from:
             </span>
             <ul>
                 <li>
@@ -101,7 +101,7 @@ export default () => (
                 </li>
             </ul>
             <p>
-                <span className="font-bold">Information we obtain from third party platforms. </span> If you choose to login to the Sites via a third-party platform, such as Google or Facebook, or otherwise connect your account on the third-party platform or network to your account through the Sites, we may collect information from that platform or network. You may also have the opportunity to provide us with additional information via the third-party platform or network, such as a list of your friends or connections and your email address. You can read more about your privacy choices in the “Your Choices” section.
+                <span className="font-bold">Information we obtain from third party platforms. </span> If you choose to login to the Sites via a third-party platform, such as Google or Facebook, or otherwise connect your account on the third-party platform or network to your account through the Sites, we may collect information from that platform or network. You may also have the opportunity to provide us with additional information via the third-party platform or network, such as a list of your friends or connections and your email address. You can read more about your privacy choices in the &ldquo;Your Choices&rdquo; section.
             </p>
             <span>
                 <span className="font-bold">Automatic collection. </span> We and our service providers may automatically log information about you, your computer or mobile device, and your activity occurring on or through the Sites, such as:
@@ -120,14 +120,14 @@ export default () => (
             <p>
                 <span className="font-bold">Referrals. </span> Users of the Service may have the opportunity to refer friends or other contacts to us. If you are an existing user, you may only submit a referral if you have permission to provide their contact information to us so that we may contact them.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 HOW WE USE YOUR PERSONAL INFORMATION
-            </p>
+            </h3>
             <p>
                 We use your personal information for the following purposes and as otherwise described in this Privacy Policy or at the time of collection:
             </p>
             <span>
-                <span className="font-bold">Service delivery. </span> We may use your personal information to:
+                <span className="font-bold">Service delivery. </span>&nbsp;We may use your personal information to:
             </span>
             <ul>
                 <li>
@@ -170,9 +170,9 @@ export default () => (
             <p>
                 <span className="font-bold">With your consent. </span> In some cases we may specifically ask for your consent to collect, use or share your personal information, such as when required by law.
             </p>              
-            <p className="font-large">
+            <h3 className="subtitle">
                 HOW WE SHARE YOUR PERSONAL INFORMATION
-            </p>
+            </h3>
             <p>
                 We may share your personal information with the following third parties and as otherwise described in this Privacy Policy or at the time of collection:
             </p>  
@@ -200,10 +200,10 @@ export default () => (
             <p>
                 <span className="font-bold">Business transferees. </span> We may sell, transfer, or otherwise share some or all of your personal information in connection with or during negotiation of any merger, financing, acquisition or dissolution, transaction or proceeding involving sale, transfer, divestiture, or disclosure of all or a portion of our business or assets, or in the event of an insolvency, bankruptcy, or receivership.
             </p>  
-            <p className="font-large">
+            <h3 className="subtitle">
                 YOUR CHOICES
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 In this section, we describe the rights and choices available to all users.
             </p>
             <p>
@@ -213,13 +213,13 @@ export default () => (
                 <span className="font-bold">Opt out of marketing communications. </span> You may opt out of marketing-related emails by following the opt-out or unsubscribe instructions located at the bottom of the email. You may continue to receive service-related and other non-marketing emails. If you receive marketing text messages from us, you may opt out of receiving further marketing text messages from us by replying STOP to our marketing message.
             </p> 
             <p>
-                <span className="font-bold">Cookies. </span> Most browsers let you remove and/or stop accepting cookies from the websites you visit. To do this, follow the instructions in your browser’s settings. For more details, see the “Your Choices” section of our Cookie Policy.
+                <span className="font-bold">Cookies. </span> Most browsers let you remove and/or stop accepting cookies from the websites you visit. To do this, follow the instructions in your browser’s settings. For more details, see the &ldquo;Your Choices&rdquo; section of our Cookie Policy.
             </p> 
             <p>
-                <span className="font-bold">Advertising Choices. </span> You may opt-out of interest-based advertising. See the “Your Choices” section of our Cookie Policy for more information.
+                <span className="font-bold">Advertising Choices. </span> You may opt-out of interest-based advertising. See the &ldquo;Your Choices&rdquo; section of our Cookie Policy for more information.
             </p> 
             <p>
-                <span className="font-bold">Do Not Track. </span> Some Internet browsers may be configured to send “Do Not Track” signals to the online services that you visit. We currently do not respond to “Do Not Track” or similar signals. To find out more about “Do Not Track,” please visit http://www.allaboutdnt.com
+                <span className="font-bold">Do Not Track. </span> Some Internet browsers may be configured to send &ldquo;Do Not Track&rdquo; signals to the online services that you visit. We currently do not respond to &ldquo;Do Not Track&rdquo; or similar signals. To find out more about &ldquo;Do Not Track,&rdquo; please visit http://www.allaboutdnt.com
             </p> 
             <p>
                 <span className="font-bold">Access or update your account information. </span> If you have registered for an account with us, you may review and update certain personal information in your account account by logging into the account.
@@ -233,50 +233,50 @@ export default () => (
             <p>
                 <span className="font-bold">Third-party platforms or social media networks. </span> If you choose to create an account through or connect the Service with another third-party platform, you may have the ability to limit the information that we may obtain from the third-party at the time you log in to the Service using the third-party’s authentication service or otherwise connect your account. You may also be able to control your settings through the third-party’s platform or service after you have connected your accounts.
             </p> 
-            <p className="font-large">
+            <h3 className="subtitle">
                 OTHER SITES, MOBILE APPLICATIONS AND SERVICES
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 The Sites may contain links to other websites and online services operated by third parties. These links are not an endorsement of, or representation that we are affiliated with, any third party. In addition, our content may be included on web pages or online services that are not associated with us. We do not control third party websites or online services, and we are not responsible for their actions. Other websites and services follow different rules regarding the collection, use and sharing of your personal information. We encourage you to read the privacy policies of the other websites and online services you use.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 SECURITY PRACTICES
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 The security of your personal information is important to us. We employ a number of organizational, technical and physical safeguards designed to protect the personal information we collect. However, security risk is inherent in all internet and information technologies and we cannot guarantee the security of your personal information.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 INTERNATIONAL DATA TRANSFERS
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 Voni Aesthetics is headquartered in the United States and may have service providers in other countries. Your personal information may be transferred to the United States or other locations outside of your state, province, country, or other governmental jurisdiction where privacy laws may not be as protective as those in your jurisdiction.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 SECURITY PRACTICES
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 The Service is not intended for use by children under 16 years of age, and we do not knowingly collect information about children under age 16 through the Service. If we learn that we have collected personal information of a child without the consent of the child’s parent or guardian as required by law, we will delete it.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 CHANGES TO THIS PRIVACY POLICY
-            </p>
+            </h3>
             <p>
                 We reserve the right to modify this Privacy Policy at any time. If we make material changes to this Privacy Policy, we will notify you by updating the date of this Privacy Policy and posting it on the Sites. If required by law we will also provide notification of changes in another way that we believe is reasonably likely to reach you, such as via e-mail or another manner through the Service.
             </p>
             <p>
                 Any modifications to this Privacy Policy will be effective upon our posting the modified version (or as otherwise indicated at the time of posting). In all cases, your continued use of the Service after the posting of any modified Privacy Policy indicates your acceptance of the terms of the modified Privacy Policy.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 HOW TO CONTACT US
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 Please direct any questions or comments about this Policy or privacy practices to <a href="mailto:legal@voni.us">legal@voni.us</a>
             </p>
-            <p className="font-large">
-                Heading 2
-            </p>
+            <h3 className="subtitle">
+                Cookie Policy
+            </h3>
             <p>
-                <span className="font-bold">Cookie Policy </span> This Cookie Policy explains how Voni Aesthetics (“Voni Aesthetics”, “we”, “us” or “our”) uses cookies and similar technologies in connection with the www.voni.us website and any other website that we own or control and which posts or links to this Cookie Policy (collectively, the “Sites”), along with the Voni Aesthetics mobile application and any other mobile applications that we own or control and which posts or links to this Cookie Policy (collectively, the “Apps”).
+                <span className="font-bold">Cookie Policy </span> This Cookie Policy explains how Voni Aesthetics (&ldquo;Voni Aesthetics&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo; or &ldquo;our&rdquo;) uses cookies and similar technologies in connection with the www.voni.us website and any other website that we own or control and which posts or links to this Cookie Policy (collectively, the &ldquo;Sites&rdquo;), along with the Voni Aesthetics mobile application and any other mobile applications that we own or control and which posts or links to this Cookie Policy (collectively, the &ldquo;Apps&rdquo;).
             </p> 
             <p>
                 <span className="font-bold">What are cookies?</span>
@@ -326,10 +326,10 @@ export default () => (
             <p>
                 We may also use web beacons (which are also known as pixel tags and clear GIFs) on our Sites and in our HTML formatted emails to track the actions of users on our Sites and interactions with our emails. Unlike cookies, which are stored on the hard drive of your computer or mobile device by a website, pixel tags are embedded invisibly on webpages or within HTML formatted emails. Pixel tags are used to demonstrate that a webpage was accessed or that certain content was viewed, typically to measure the success of our marketing campaigns or engagement with our emails and to compile statistics about usage of the Sites, so that we can manage our content more effectively.
             </p> 
-            <p className="font-large">
+            <h3 className="subtitle">
                 YOUR CHOICES
-            </p>
-            <p className="font-large">
+            </h3>
+            <p>
                 Like many companies online, we use services provided by Google, Facebook and others companies that use tracking technology. Your choices for opting out of these companies’ use of your personal information for interest-based advertising include:
             </p>
             <ul>
@@ -370,7 +370,7 @@ export default () => (
                         Network Advertising Initiative: <a href="http://optout.networkadvertising.org/?c=1">http://optout.networkadvertising.org/?c=1</a>
                     </li> 
                     <li>
-                        European users may opt out of receiving targeted advertising on websites through members of the European Interactive Digital Advertising Alliance by clicking <a href="https://www.youradchoices.com/appchoices">here</a>, selecting the user’s country, and then clicking “Choices” (or similarly titled link).
+                        European users may opt out of receiving targeted advertising on websites through members of the European Interactive Digital Advertising Alliance by clicking <a href="https://www.youradchoices.com/appchoices">here</a>, selecting the user’s country, and then clicking &ldquo;Choices&rdquo; (or similarly titled link).
                     </li>
                     <li>
                         Please note that we also may work with companies that offer their own opt-out mechanisms and may not participate in the opt-out mechanisms that we linked above.
@@ -380,19 +380,19 @@ export default () => (
             <p>
                 If you choose to opt-out of targeted advertisements, you will still see advertisements online but they may not be relevant to you. Even if you do choose to opt out, not all companies that serve online behavioral advertising are included in this list, so you may still receive some cookies and tailored advertisements from companies that are not listed.
             </p>        
-            <p className="font-bold">
+            <h3 className="subtitle">
                 CHANGES
-            </p>
+            </h3>
             <p>
                 Information about the cookies we use may be updated from time to time, so please check back on a regular basis for any changes.
             </p>
-            <p className="font-large">
+            <h3 className="subtitle">
                 QUESTIONS
+            </h3>
+            <p>
+                If you have any questions about this Cookie Policy, please contact us by email at <a href="mailto:contact@voni.us">contact@voni.us</a>.
             </p>
-            <p className="font-large">
-                If you have any questions about this Cookie Policy, please contact us by email at contact@voni.us 
-            </p>
-            <p className="font-large">
+            <p>
                 Last modified September 1, 2020
             </p>
         </div>
