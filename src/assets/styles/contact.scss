@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 .contact { 
-    .contact-blurb{
+    .contact-blurb {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         column-gap: 80px;
@@ -9,12 +9,9 @@
         box-sizing: border-box;
         padding-left: 5%;
         padding-right: 5%;
-        @media screen and (max-width: 992px) {
-            grid-template-columns: repeat(1, 1fr); 
-        }
     }          
     .contact-form { 
-        > div:first-child { 
+        .contact-info { 
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             column-gap: 20px;
@@ -22,7 +19,7 @@
             box-sizing: border-box;
             margin-top: 20px;
         }
-        > div { 
+        & > div { 
             margin-top: 10px;
         }
         textarea { 
@@ -30,19 +27,13 @@
         }        
     }
     .contact-information { 
-        > div { 
+        & > div { 
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             column-gap: 40px;
             row-gap: 80px;
             box-sizing: border-box;
             margin-top: 20px; 
-            @media screen and (max-width: 600px) {
-                grid-template-columns: repeat(1, 1fr); 
-                margin-top: 20px; 
-                row-gap: 20px;
-                text-align: center;
-            }
         }
         .info-title { 
             font-size: 1.2em;;
@@ -54,5 +45,18 @@
             margin-top: 3px;
             margin-bottom: 3px;
         }
-    }    
+    }
+    @media screen and (max-width: $maxMediumScreen) {
+        .contact-blurb {
+            padding-bottom: 110px !important;
+            display: block;
+        }
+        .contact-info {
+            margin-top: 0 !important;
+            display: block !important;
+        }
+        .contact-information {
+            display: none;    
+        }
+    }
 }
