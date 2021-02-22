@@ -27,19 +27,37 @@
         }        
     }
     .contact-information { 
-        & > div { 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 40px;
-            row-gap: 80px;
-            box-sizing: border-box;
-            margin-top: 20px; 
+
+        & > div {
+            margin-top: 15px;
         }
         .info-title { 
-            font-size: 1.2em;;
+            font-size: 1.2em;
         }
         .info-description {
-            font-size: 1em;;
+            font-size: 1em;
+
+            a {
+                color: $white;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+                &:not(:first-of-type) {
+                    margin-left: 20px;
+                    position: relative;
+
+                    &::before {
+                        content: '';
+                        width: 1px;
+                        height: 17px;
+                        background-color: $white;
+                        position: absolute;
+                        top: 0;
+                        left: -10px;
+                    }
+                }
+            }
         }
         p {
             margin-top: 3px;

@@ -90,11 +90,11 @@ const Header: React.FC = () => {
 							<Link to="/privacy" getProps={isActive}>Privacy Policy</Link> 
 							{ 
 								token === null ? <>
-									<Link to="/login" getProps={isActive}>Login</Link>				
+									<Link to="/login" getProps={isActive}>Log In</Link>				
 									<Link to="/register" getProps={isActive}>Register</Link>
 								</> : <>
 									<Link to="/account" getProps={isActive}>Account</Link>
-									<a onClick={submitLogout}>Log out</a>
+									<a onClick={submitLogout}>Log Out</a>
 								</>
 							}
 						</div>
@@ -113,11 +113,11 @@ const Header: React.FC = () => {
 					{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
 					{ 
 						token === null ? <>
-							<Link to="/login" getProps={isActive}>Login</Link>				
+							<Link to="/login" getProps={isActive}>Log In</Link>				
 							<Link to="/register" getProps={isActive}>Register</Link>
 						</> : <>
 							<Link to="/account" getProps={isActive}>Account</Link>
-							<a onClick={submitLogout}>Logout</a>
+							<a onClick={submitLogout}>Log Out</a>
 						</>
 					}
 					{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}

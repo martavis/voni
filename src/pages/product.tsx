@@ -1,5 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { withRouteData } from 'react-static';
+import { withRouteData, Head } from 'react-static';
+import { useMutation } from '@apollo/client';
+import { useLocation } from '@reach/router';
+import { useToasts } from 'react-toast-notifications';
+import { CartContext } from 'state/Cart';
+import { formatPrice, saveNewCart } from 'utils/functions';
+import { CREATE_CART, ADD_MORE_TO_CART } from 'utils/gqlMutation';
 import { 
 	Product, 
 	ProductOption, 
@@ -9,11 +15,6 @@ import {
 	ProductVariant,
 	ProductVariantEdge
 } from 'shopify-storefront-api-typings';
-import { useMutation } from '@apollo/client';
-import { useToasts } from 'react-toast-notifications';
-import { CartContext } from 'state/Cart';
-import { formatPrice, saveNewCart } from 'utils/functions';
-import { CREATE_CART, ADD_MORE_TO_CART } from 'utils/gqlMutation';
 
 import '../assets/styles/single-product.scss';
 
@@ -32,8 +33,9 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	const [selectedOptions, setSelectedOptions] = useState<object | null>(null); // because there inifinite options, use 0 as default index for all options
 	const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null); // because there inifinite options, use 0 as default index for all options
 	const { cart, setCart }: { cart: Checkout, setCart: Function } = useContext(CartContext);
+	const { href } = useLocation();
 	const { addToast } = useToasts();
-	
+
 	const [createCart] = useMutation(CREATE_CART, {
 		onCompleted: ({ cart: { checkout } }) => {
 			saveNewCart(checkout, setCart);
@@ -121,6 +123,28 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	
 	return (
 		<div className="single-product page">
+			<Head>
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<title>{product.title} | Voni Aesthetics</title>
+				<meta name="description" content={description} />
+				<meta name="keywords" content="Voni, Aesthetics, clothing, apparel, fashion, accessories"></meta>
+				<meta property="og:title" content={`${product.title} | Voni Aesthetics`} />
+				<meta property="og:description" content={description} />
+				<meta property="og:type" content="website" />
+				<meta property="og:url" content={href} />
+				<meta property="og:image" content={variants.edges[0].node.image.originalSrc} />
+				<meta property="og:image:secure_url" content={variants.edges[0].node.image.originalSrc} />
+				<meta property="og:image:type" content="image/jpeg" />
+				<meta property="og:image:alt" content={product.title} />
+				<link rel="apple-touch-icon" sizes="180x180" href="https://storage.googleapis.com/voni-assets/img/metadata/favicons/apple-touch-icon.png" />
+				<link rel="icon" type="image/png" sizes="32x32" href="https://storage.googleapis.com/voni-assets/img/metadata/favicons/favicon-32x32.png" />
+				<link rel="icon" type="image/png" sizes="16x16" href="https://storage.googleapis.com/voni-assets/img/metadata/favicons/favicon-16x16.png" />
+				<link rel="manifest" href="https://storage.googleapis.com/voni-assets/img/metadata/favicons/site.webmanifest" />
+				<link rel="mask-icon" href="https://storage.googleapis.com/voni-assets/img/metadata/favicons/safari-pinned-tab.svg" color="#3a551a" />
+				<meta name="msapplication-TileColor" content="#00a300" />
+				<meta name="theme-color" content="#ffffff"></meta>
+			</Head>
 			<div className="images">
 				<div className="enlarged">
 					<ProductImage src={selectedVariant ? selectedVariant.image.originalSrc : ''} />

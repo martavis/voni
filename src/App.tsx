@@ -12,7 +12,7 @@ import './assets/styles/app.scss';
 import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Account from 'containers/Account';
-import { ToastProvider, DefaultToast } from 'react-toast-notifications';
+import { ToastProvider } from 'react-toast-notifications';
 
 // non-static routes
 addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment']);
@@ -52,9 +52,9 @@ function App() {
 										<div className="footer-border"></div>
 										<Link to="/contact">Contact</Link>
 										<div className="footer-border"></div>
-										<Link to="/terms">Terms of Service</Link> 	
+										<Link to="/terms">Terms</Link> 	
 										<div className="footer-border"></div>
-										<Link to="/privacy">Privacy Policy</Link> 
+										<Link to="/privacy">Privacy</Link> 
 									</div>
 								</footer>
 							</ToastProvider>
