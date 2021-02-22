@@ -81,7 +81,7 @@ export default () => {
 							Your browser does not support the video tag.
 						</video>
 						<div className="video-overlay" data-playing={isVideoPlaying} onClick={() => setIsVideoPlaying(true)}>
-							<img alt="play" src="https://storage.googleapis.com/voni-assets/img/video-play.svg" />
+							<img alt="play" src="https://storage.googleapis.com/voni-assets/img/video-play-green.svg" />
 						</div>
 					</div>
 				</div>
