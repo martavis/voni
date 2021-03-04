@@ -77,55 +77,96 @@ const Header: React.FC = () => {
 					<span className="menu-icon-bar"></span>
 					<span className="menu-icon-bar"></span>
 				</div>
-				{showMobileMenu && 
+				{showMobileMenu && (
 					<div id="navigationMobile" onClick={toggleMenu}>
 						<div id="navigationDropdown">
-							<Link to="/" getProps={isActive}>Home</Link>
-							<Link to="/shop" getProps={isActive}>Shop</Link>
-							<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
-							<Link to="/about" getProps={isActive}>About</Link>
+							<Link to="/" getProps={isActive}>
+								Home
+							</Link>
+							<Link to="/shop" getProps={isActive}>
+								Shop
+							</Link>
+							<Link to="/lookbook" getProps={isActive}>
+								Lookbook
+							</Link>
+							<Link to="/about" getProps={isActive}>
+								About
+							</Link>
+							<Link to="/faqs">FAQs</Link>
+							<Link to="/shipping">Shipping</Link>
+							<Link to="/returns">Returns</Link>
 							{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
-							<Link to="/contact" getProps={isActive}>Contact</Link>
-							<Link to="/terms" getProps={isActive}>Terms of Service</Link> 
-							<Link to="/privacy" getProps={isActive}>Privacy Policy</Link> 
-							{ 
-								token === null ? <>
-									<Link to="/login" getProps={isActive}>Log In</Link>				
-									<Link to="/register" getProps={isActive}>Register</Link>
-								</> : <>
-									<Link to="/account" getProps={isActive}>Account</Link>
+							<Link to="/contact" getProps={isActive}>
+								Contact
+							</Link>
+							<Link to="/terms" getProps={isActive}>
+								Terms of Service
+							</Link>
+							<Link to="/privacy" getProps={isActive}>
+								Privacy Policy
+							</Link>
+							{token === null ? (
+								<>
+									<Link to="/login" getProps={isActive}>
+										Log In
+									</Link>
+									<Link to="/register" getProps={isActive}>
+										Register
+									</Link>
+								</>
+							) : (
+								<>
+									<Link to="/account" getProps={isActive}>
+										Account
+									</Link>
 									<a onClick={submitLogout}>Log Out</a>
 								</>
-							}
+							)}
 						</div>
 					</div>
-				}
+				)}
 			</div>
 			<div className="tablet-desktop">
 				<div className="logo">
-					<Link to="/"><img alt="Voni Aesthetics" src="https://storage.googleapis.com/voni-assets/img/logo.svg"/></Link>
+					<Link to="/">
+						<img alt="Voni Aesthetics" src="https://storage.googleapis.com/voni-assets/img/logo.svg" />
+					</Link>
 					<div className="border"></div>
 				</div>
 				<div className="page-links">
 					{/* <Link to="/" getProps={isActive}>Home</Link> */}
-					<Link to="/shop" getProps={isActive}>Shop</Link>
-					<Link to="/lookbook" getProps={isActive}>Lookbook</Link>
+					<Link to="/shop" getProps={isActive}>
+						Shop
+					</Link>
+					<Link to="/lookbook" getProps={isActive}>
+						Lookbook
+					</Link>
 					{/* <Link to="/ambassador" getProps={isActive}>Ambassador</Link> */}
-					{ 
-						token === null ? <>
-							<Link to="/login" getProps={isActive}>Log In</Link>				
-							<Link to="/register" getProps={isActive}>Register</Link>
-						</> : <>
-							<Link to="/account" getProps={isActive}>Account</Link>
+					{token === null ? (
+						<>
+							<Link to="/login" getProps={isActive}>
+								Log In
+							</Link>
+							<Link to="/register" getProps={isActive}>
+								Register
+							</Link>
+						</>
+					) : (
+						<>
+							<Link to="/account" getProps={isActive}>
+								Account
+							</Link>
 							<a onClick={submitLogout}>Log Out</a>
 						</>
-					}
+					)}
 					{/* <div className="search-site" role="button"><img alt="Search Products" src="https://storage.googleapis.com/voni-assets/img/search-button.svg" /></div> */}
 				</div>
 			</div>
 			<div className="cart-display">
-				<Link to="/cart"><img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" /></Link>
-				{(cartCount !== null && cartCount > 0) && <div className="cart-count">{cartCount}</div>}
+				<Link to="/cart">
+					<img alt="Shopping Cart" src="https://storage.googleapis.com/voni-assets/img/shopping-cart.svg" />
+				</Link>
+				{cartCount !== null && cartCount > 0 && <div className="cart-count">{cartCount}</div>}
 			</div>
 		</nav>
 	);

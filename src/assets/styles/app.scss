@@ -188,6 +188,12 @@ body {
 	}
 	@media screen and (max-width: $maxSmallScreen) {
 		#root {
+			.page {
+				.section-custom-border {
+					padding-top: 30px;
+					padding-bottom: 30px;
+				}
+			}
 			.content {
 				padding: 20px !important;
 				

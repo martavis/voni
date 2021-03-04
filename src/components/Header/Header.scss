@@ -158,6 +158,11 @@ nav {
         
         .mobile {
             display: block !important;
+            
+            #navigationDropdown {
+                overflow-y: auto;
+                max-height: calc(100vh - 86px);
+            }
         }
         .logo, .page-links > a {
             display: none !important;

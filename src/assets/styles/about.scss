@@ -22,4 +22,9 @@
             font-size: 2em;
         }
     }
+    @media screen and (max-width: $maxSmallScreen) {
+        .section-custom-border {
+            padding: 0;
+        }
+    }
 }
