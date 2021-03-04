@@ -125,7 +125,7 @@ export default () => {
 							preload="auto"
 							playsInline
 							muted
-							src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4">
+							src="https://storage.googleapis.com/voni-assets/videos/voni_ad_1.mp4">
 							Your browser does not support the video tag.
 						</video>
 						{/* <video ref={videoRef} width="288" height="512" preload="metadata" playsInline>
