@@ -9,6 +9,18 @@ handlers:
   static_files: about/\1
   upload: about/.*\.json
   secure: always
+- url: /faqs/(.*\.json)$
+  static_files: faqs/\1
+  upload: faqs/.*\.json
+  secure: always
+- url: /shipping/(.*\.json)$
+  static_files: shipping/\1
+  upload: shipping/.*\.json
+  secure: always
+- url: /returns/(.*\.json)$
+  static_files: returns/\1
+  upload: returns/.*\.json
+  secure: always
 - url: /ambassador/(.*\.json)$
   static_files: ambassador/\1
   upload: ambassador/.*\.json
