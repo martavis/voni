@@ -120,7 +120,7 @@ export default () => {
 						/>
 						<video controls width="288" height="512" preload="metadata" playsInline>
 							<source
-								src="https://storage.googleapis.com/voni-assets/videos/voni_ad_3.mp4"
+								src="https://storage.googleapis.com/voni-assets/videos/voni_ad_2_1_1.mp4"
 								type="video/mp4"
 							/>
 							Your browser does not support the video tag.
