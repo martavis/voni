@@ -118,11 +118,13 @@ export default () => {
 							alt=""
 							src="https://storage.googleapis.com/voni-assets/img/video-frame.svg"
 						/>
-						<video controls width="288" height="512" preload="metadata" playsInline>
-							<source
-								src="https://storage.googleapis.com/voni-assets/videos/voni_ad_2_1_1.mp4"
-								type="video/mp4"
-							/>
+						<video
+							controls
+							width="288"
+							height="512"
+							preload="auto"
+							playsInline
+							src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4">
 							Your browser does not support the video tag.
 						</video>
 						{/* <video ref={videoRef} width="288" height="512" preload="metadata" playsInline>
