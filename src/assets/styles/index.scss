@@ -87,6 +87,12 @@
                     transform: rotate(90deg);
                     transform-origin: center;
                     z-index: 0;
+
+                    // video tag - only an issue in Safari
+                    & + video {
+                        position: relative;
+                        z-index: 1;
+                    }
                 }
                 .video-overlay {
                     width: 100%;
@@ -99,7 +105,7 @@
                     justify-content: center;
                     align-items: center;
                     cursor: pointer;
-                    z-index: 1;
+                    z-index: 2;
 
                     &[data-playing="true"] {
                         display: none;

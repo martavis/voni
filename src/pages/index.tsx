@@ -14,21 +14,30 @@ export default () => {
 
 	const { products }: { products: ProductConnection } = useRouteData();
 	// useEffect(() => {
-	// 	['pause', 'ended'].forEach(evt => 
-	// 		videoRef.current.addEventListener(evt, () => {
-	// 			setIsVideoPlaying(false);
-	// 		}, false)
+	// 	['pause', 'ended'].forEach((evt) =>
+	// 		videoRef.current.addEventListener(
+	// 			evt,
+	// 			() => {
+	// 				setIsVideoPlaying(false);
+	// 			},
+	// 			false
+	// 		)
 	// 	);
 
-	// 	videoRef.current.addEventListener('playing', () => {
-	// 		setIsVideoPlaying(true);
-	// 	}, false)
+	// 	videoRef.current.addEventListener(
+	// 		'playing',
+	// 		() => {
+	// 			setIsVideoPlaying(true);
+	// 		},
+	// 		false
+	// 	);
 	// }, []);
 
 	// useEffect(() => {
 	// 	if (isVideoPlaying) {
 	// 		(videoRef.current.paused || videoRef.current.ended) && videoRef.current.play();
 	// 		videoRef.current.controls = true;
+
 	// 	} else {
 	// 		videoRef.current.controls = false;
 	// 	}
@@ -119,22 +128,20 @@ export default () => {
 							src="https://storage.googleapis.com/voni-assets/img/video-frame.svg"
 						/>
 						<video
-							controls
+							ref={videoRef}
 							width="288"
 							height="512"
-							preload="auto"
+							controls
 							playsInline
-							src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4">
-							Your browser does not support the video tag.
-						</video>
-						{/* <video ref={videoRef} width="288" height="512" preload="metadata" playsInline>
+							preload="auto"
+							poster="https://storage.googleapis.com/voni-assets/img/voni_ad_poster.jpg">
 							<source
 								src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4"
 								type="video/mp4"
 							/>
 							Your browser does not support the video tag.
 						</video>
-						<div
+						{/* <div
 							className="video-overlay"
 							data-playing={isVideoPlaying}
 							onClick={() => setIsVideoPlaying(true)}>
