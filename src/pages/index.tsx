@@ -124,7 +124,6 @@ export default () => {
 							height="512"
 							preload="auto"
 							playsInline
-							muted
 							src="https://storage.googleapis.com/voni-assets/videos/voni_ad_1.mp4">
 							<source
 								src="https://storage.googleapis.com/voni-assets/videos/voni_ad_1_2.mp4"
