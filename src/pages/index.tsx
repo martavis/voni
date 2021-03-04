@@ -13,26 +13,26 @@ export default () => {
 	const videoRef = createRef<HTMLVideoElement>();
 
 	const { products }: { products: ProductConnection } = useRouteData();
-	useEffect(() => {
-		['pause', 'ended'].forEach(evt => 
-			videoRef.current.addEventListener(evt, () => {
-				setIsVideoPlaying(false);
-			}, false)
-		);
+	// useEffect(() => {
+	// 	['pause', 'ended'].forEach(evt => 
+	// 		videoRef.current.addEventListener(evt, () => {
+	// 			setIsVideoPlaying(false);
+	// 		}, false)
+	// 	);
 
-		videoRef.current.addEventListener('playing', () => {
-			setIsVideoPlaying(true);
-		}, false)
-	}, []);
+	// 	videoRef.current.addEventListener('playing', () => {
+	// 		setIsVideoPlaying(true);
+	// 	}, false)
+	// }, []);
 
-	useEffect(() => {
-		if (isVideoPlaying) {
-			(videoRef.current.paused || videoRef.current.ended) && videoRef.current.play();
-			videoRef.current.controls = true;
-		} else {
-			videoRef.current.controls = false;
-		}
-	}, [isVideoPlaying]);
+	// useEffect(() => {
+	// 	if (isVideoPlaying) {
+	// 		(videoRef.current.paused || videoRef.current.ended) && videoRef.current.play();
+	// 		videoRef.current.controls = true;
+	// 	} else {
+	// 		videoRef.current.controls = false;
+	// 	}
+	// }, [isVideoPlaying]);
 
 	return (
 		<div className="home page">
@@ -118,7 +118,14 @@ export default () => {
 							alt=""
 							src="https://storage.googleapis.com/voni-assets/img/video-frame.svg"
 						/>
-						<video ref={videoRef} width="288" height="512" preload="metadata" playsInline>
+						<video controls width="288" height="512" preload="metadata" playsInline>
+							<source
+								src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4"
+								type="video/mp4"
+							/>
+							Your browser does not support the video tag.
+						</video>
+						{/* <video ref={videoRef} width="288" height="512" preload="metadata" playsInline>
 							<source
 								src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4"
 								type="video/mp4"
@@ -130,7 +137,7 @@ export default () => {
 							data-playing={isVideoPlaying}
 							onClick={() => setIsVideoPlaying(true)}>
 							<img alt="play" src="https://storage.googleapis.com/voni-assets/img/video-play-green.svg" />
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div className="pdf-wrapper">
