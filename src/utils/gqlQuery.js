@@ -73,6 +73,20 @@ export const GET_SHOP_DATA = gql`
     ${SHOP_POLICY_FRAGMENT}
 `;
 
+export const GET_PAGE = gql`
+    query($handle: String!) {
+        page: pageByHandle(handle: $handle) {
+            body
+            bodySummary
+            createdAt
+            handle
+            title
+            updatedAt
+            url
+        }
+    }
+`;
+
 export const GET_CHECKOUT = gql`
     query getCheckoutById($checkoutId: ID!) {
         node(id: $checkoutId) {

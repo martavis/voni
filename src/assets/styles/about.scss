@@ -1,9 +1,16 @@
 @import './variables.scss';
 
 .about {
+    .section-custom-border {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
     h2 {
         letter-spacing: 1.5px;
     }
+    li {
+        font-family: 'Bahnschrift';
+    }  
     .need-help {
         margin-top: 100px;
         text-align: center;

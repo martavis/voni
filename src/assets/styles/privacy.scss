@@ -1,7 +1,11 @@
 @import './variables.scss'; 
 
 .privacy { 
-    .subtitle {
+    .section-custom-border {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    h2, h4, b {
         font-family: 'Bahnschrift';
         letter-spacing: 0.5px;
         text-transform: uppercase;

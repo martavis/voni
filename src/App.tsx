@@ -24,37 +24,42 @@ function App() {
 				<CartProvider>
 					<CustomerProvider>
 						<ShippingProvider>
-							<ToastProvider 
+							<ToastProvider
 								autoDismiss={true}
 								autoDismissTimeout={5000}
 								placement="top-center"
-								transitionDuration={300}
-							>
+								transitionDuration={300}>
 								<Header />
 								<div className="content" id="content">
 									<React.Suspense fallback={<em>Loading...</em>}>
 										<ScrollToTop />
 										<Router>
 											<Cart path="cart" />
-											<Account path="account"/>
-											<Account path="account/shipping"/>
-											<Account path="account/payment"/>
+											<Account path="account" />
+											<Account path="account/shipping" />
+											<Account path="account/payment" />
 											<Routes default />
 										</Router>
 									</React.Suspense>
 								</div>
 								<footer>
 									<div className="left">
-										{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved 
+										{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved
 									</div>
 									<div className="right">
 										<Link to="/about">About</Link>
 										<div className="footer-border"></div>
+										<Link to="/faqs">FAQs</Link>
+										<div className="footer-border"></div>
+										<Link to="/shipping">Shipping</Link>
+										<div className="footer-border"></div>
+										<Link to="/returns">Returns</Link>
+										<div className="footer-border"></div>
 										<Link to="/contact">Contact</Link>
 										<div className="footer-border"></div>
-										<Link to="/terms">Terms</Link> 	
+										<Link to="/terms">Terms</Link>
 										<div className="footer-border"></div>
-										<Link to="/privacy">Privacy</Link> 
+										<Link to="/privacy">Privacy</Link>
 									</div>
 								</footer>
 							</ToastProvider>
@@ -63,7 +68,7 @@ function App() {
 				</CartProvider>
 			</Root>
 		</ApolloProvider>
-	)
+	);
 };
 
 const ScrollToTop = (): null => {
