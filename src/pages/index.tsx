@@ -124,6 +124,7 @@ export default () => {
 							height="512"
 							preload="auto"
 							playsInline
+							muted
 							src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4">
 							Your browser does not support the video tag.
 						</video>
