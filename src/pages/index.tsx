@@ -124,11 +124,7 @@ export default () => {
 							height="512"
 							preload="auto"
 							playsInline
-							src="https://storage.googleapis.com/voni-assets/videos/voni_ad.mp4">
-							<source
-								src="https://storage.googleapis.com/voni-assets/videos/voni_ad_1_2.mp4"
-								type="video/mp4"
-							/>
+							src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4">
 							Your browser does not support the video tag.
 						</video>
 						{/* <video ref={videoRef} width="288" height="512" preload="metadata" playsInline>
