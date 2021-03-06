@@ -3,11 +3,8 @@
 .home {
     .welcome {
         margin-top: 30px;
-        // display: grid;
-        // grid-template-columns: 35% 65%;
-        // column-gap: 50px;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 35% 65%;
         align-items: center;
         
         .model-roll {
@@ -22,13 +19,13 @@
             justify-self: center;
 
             img {
-                width: 80%;
+                width: 110%;
                 position: relative;
+                top: -60px;
             }
         }
         .welcome-message {
-            // margin-left: 50px;
-            margin-left: -10px; // temporary
+            margin-left: 50px;
             text-align: center;
 
             h1 {
@@ -45,7 +42,6 @@
                 margin-bottom: 50px;
             }
             a {
-                margin-left: -10px; // temporary
                 font-size: 2.5em;
                 font-weight: 300;
                 color: $white;
@@ -55,8 +51,7 @@
         }
     }
     .lookbook {
-        // margin-top: 200px;
-        margin-top: 300px; // temporary
+        margin-top: 200px;
         display: flex;
         justify-content: center;
         align-items: center;

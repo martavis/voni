@@ -103,12 +103,12 @@ export default () => {
 				<meta name="theme-color" content="#ffffff"></meta>
 			</Head>
 			<section className="welcome">
-				{/* <div className="model-roll">
+				<div className="model-roll">
 					<img
 						alt=""
-						src={`https://storage.googleapis.com/voni-assets/img/welcome-models/model-${imageNum}.png`}
+						src={`https://storage.googleapis.com/voni-assets/img/hero.png`}
 					/>
-				</div> */}
+				</div>
 				<div className="welcome-message">
 					<h1>
 						Your Future&nbsp;
