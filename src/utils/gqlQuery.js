@@ -11,6 +11,14 @@ export const GET_ALL_PRODUCTS = gql`
                     handle
                     description
                     totalInventory
+                    images(first: 15) {
+                        edges {
+                            node {
+                                altText
+                                originalSrc
+                            }
+                        }
+                    }
                     options {
                         id
                         name,

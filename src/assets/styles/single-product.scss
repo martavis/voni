@@ -2,17 +2,22 @@
 
 .single-product {
     display: grid;
-    grid-template-columns: 400px auto;
+    grid-template-columns: 500px auto;
     column-gap: 50px;
 
     .images {
-        display: block;
+        display: grid;
+        grid-template-columns: 0.25fr 0.75fr;
 
-        .enlarged {
+        .enlarged, .previews {
             height: 450px;
-
-            .visual {
-                height: 100%;
+        }
+        .enlarged .visual {
+            height: 100%;
+        }
+        .preview-wrapper {
+            &:not(:last-of-type) {
+                margin-bottom: 20px;
             }
         }
     }
