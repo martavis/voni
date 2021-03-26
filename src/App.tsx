@@ -71,25 +71,62 @@ function App() {
 									<div className="top">
 										<div className="section">
 											<ul>
-												<li><Link to="/sizes">Size Guide</Link></li>
-												<li><Link to="/about">About</Link></li>
-												<li><Link to="/faqs">FAQs</Link></li>
-												<li><Link to="/shipping">Shipping</Link></li>
+												<li>
+													<Link to="/sizes">Size Guide</Link>
+												</li>
+												<li>
+													<Link to="/about">About</Link>
+												</li>
+												<li>
+													<Link to="/faqs">FAQs</Link>
+												</li>
+												<li>
+													<Link to="/shipping">Shipping</Link>
+												</li>
 											</ul>
 										</div>
 										<div className="section">
 											<ul>
-												<li><Link to="/returns">Returns</Link></li>
-												<li><Link to="/terms">Terms</Link></li>
-												<li><Link to="/privacy">Privacy</Link></li>
+												<li>
+													<Link to="/returns">Returns</Link>
+												</li>
+												<li>
+													<Link to="/terms">Terms</Link>
+												</li>
+												<li>
+													<Link to="/privacy">Privacy</Link>
+												</li>
 											</ul>
 										</div>
 										<div className="section">
 											<ul>
-												<li><Link to="/contact">Contact</Link></li>
-												<li><a href="https://www.instagram.com/voniaesthetics/" target="_blank">Instagram</a></li>
-												<li><a href="https://twitter.com/VoniAesthetics" target="_blank">Twitter</a></li>
-												<li><a href="https://www.facebook.com/voniaesthetics" target="_blank">Facebook</a></li>
+												<li>
+													<Link to="/contact">Contact</Link>
+												</li>
+												<li>
+													<a
+														href="https://www.instagram.com/voniaesthetics/"
+														target="_blank"
+														rel="noreferrer noopener">
+														Instagram
+													</a>
+												</li>
+												<li>
+													<a
+														href="https://twitter.com/VoniAesthetics"
+														target="_blank"
+														rel="noreferrer noopener">
+														Twitter
+													</a>
+												</li>
+												<li>
+													<a
+														href="https://www.facebook.com/voniaesthetics"
+														target="_blank"
+														rel="noreferrer noopener">
+														Facebook
+													</a>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -97,16 +134,27 @@ function App() {
 										<div className="inner">
 											<div className="payments">
 												<ul>
-													<li><FaCcAmex /></li>
-													<li><FaCcApplePay /></li>
-													<li><FaCcDiscover /></li>
-													<li><FaCcMastercard /></li>
-													<li><FaCcVisa /></li>
+													<li>
+														<FaCcAmex />
+													</li>
+													<li>
+														<FaCcApplePay />
+													</li>
+													<li>
+														<FaCcDiscover />
+													</li>
+													<li>
+														<FaCcMastercard />
+													</li>
+													<li>
+														<FaCcVisa />
+													</li>
 													<li>and more...</li>
 												</ul>
 											</div>
 											<div className="rights">
-												{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved
+												{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights
+												Reserved
 											</div>
 										</div>
 									</div>
