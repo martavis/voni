@@ -124,8 +124,13 @@
         display: block;
 
         .images {
+            display: block;
+            
             .enlarged {
                 height: 350px;    
+            }
+            .previews {
+                display: none;
             }
         }
         .details {
