@@ -89,6 +89,9 @@ const Header: React.FC = () => {
 							<Link to="/lookbook" getProps={isActive}>
 								Lookbook
 							</Link>
+							<Link to="/sizes" getProps={isActive}>
+								Size Guide
+							</Link>
 							<Link to="/about" getProps={isActive}>
 								About
 							</Link>
