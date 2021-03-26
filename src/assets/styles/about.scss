@@ -22,6 +22,11 @@
             font-size: 2em;
         }
     }
+    .size-guide {
+        img {
+            width: 100%;
+        }
+    }
     @media screen and (max-width: $maxSmallScreen) {
         .section-custom-border {
             padding: 0;

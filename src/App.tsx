@@ -13,6 +13,13 @@ import Header from 'components/Header';
 import Cart from 'containers/Cart';
 import Account from 'containers/Account';
 import { ToastProvider } from 'react-toast-notifications';
+import {
+	FaCcAmex,
+	FaCcApplePay,
+	FaCcDiscover,
+	FaCcMastercard,
+	FaCcVisa
+} from 'react-icons/fa';
 
 // non-static routes
 addPrefetchExcludes(['cart', 'account', 'account/shipping', 'account/payment']);
@@ -43,7 +50,7 @@ function App() {
 									</React.Suspense>
 								</div>
 								<footer>
-									<div className="left">
+									{/* <div className="left">
 										{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved
 									</div>
 									<div className="right">
@@ -60,6 +67,48 @@ function App() {
 										<Link to="/terms">Terms</Link>
 										<div className="footer-border"></div>
 										<Link to="/privacy">Privacy</Link>
+									</div> */}
+									<div className="top">
+										<div className="section">
+											<ul>
+												<li><Link to="/sizes">Size Guide</Link></li>
+												<li><Link to="/about">About</Link></li>
+												<li><Link to="/faqs">FAQs</Link></li>
+												<li><Link to="/shipping">Shipping</Link></li>
+											</ul>
+										</div>
+										<div className="section">
+											<ul>
+												<li><Link to="/returns">Returns</Link></li>
+												<li><Link to="/terms">Terms</Link></li>
+												<li><Link to="/privacy">Privacy</Link></li>
+											</ul>
+										</div>
+										<div className="section">
+											<ul>
+												<li><Link to="/contact">Contact</Link></li>
+												<li><a href="https://www.instagram.com/voniaesthetics/" target="_blank">Instagram</a></li>
+												<li><a href="https://twitter.com/VoniAesthetics" target="_blank">Twitter</a></li>
+												<li><a href="https://www.facebook.com/voniaesthetics" target="_blank">Facebook</a></li>
+											</ul>
+										</div>
+									</div>
+									<div className="bottom">
+										<div className="inner">
+											<div className="payments">
+												<ul>
+													<li><FaCcAmex /></li>
+													<li><FaCcApplePay /></li>
+													<li><FaCcDiscover /></li>
+													<li><FaCcMastercard /></li>
+													<li><FaCcVisa /></li>
+													<li>and more...</li>
+												</ul>
+											</div>
+											<div className="rights">
+												{new Date().getFullYear()} &trade;&nbsp;Voni Aesthetics - All Rights Reserved
+											</div>
+										</div>
 									</div>
 								</footer>
 							</ToastProvider>
