@@ -30,6 +30,8 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 	const [quantity, setQuantity] = useState<number>(1);
 	const [selectedOptions, setSelectedOptions] = useState<any>(null); // because there inifinite options, use 0 as default index for all options
 	const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null); // because there inifinite options, use 0 as default index for all options
+	const [productImages, setProductImages] = useState<Array<string>>([]);
+	const [imageIndex, setImageIndex] = useState<number>(0);
 	const { cart, setCart }: { cart: Checkout; setCart: Function } = useContext(CartContext);
 	const { href } = useLocation();
 	const { addToast } = useToasts();
@@ -95,6 +97,28 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 		}
 	}, [selectedOptions]);
 
+	// for the image carousel
+	useEffect(() => {
+		if (images && images.edges.length > 0) {
+			let allImages = [];
+			images.edges
+				.filter(({ node: { altText } }) => {
+					if (selectedOptions && selectedOptions.Color) {
+						return altText?.includes(selectedOptions.Color);
+					}
+
+					// allow all images (i.e. for the bag)
+					return true;
+				})
+				.map(({ node: { originalSrc } }, i) => allImages.push(originalSrc));
+
+			setProductImages(allImages);
+			setImageIndex(0);
+		}
+
+		return () => {};
+	}, [selectedVariant, images]);
+
 	const addToCart = async () => {
 		const { id } = selectedVariant;
 		let lineItems: Array<CheckoutLineItemInput> = [{ variantId: id, quantity }];
@@ -121,7 +145,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 		}
 	};
 
-	const handleOptionChange = (key: string, value: string) => {
+	const handleOptionChange = (key: string, value: string): void => {
 		let oldOptions = selectedOptions;
 		const newOptions = {
 			...oldOptions,
@@ -129,6 +153,26 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 		};
 
 		setSelectedOptions(newOptions);
+	};
+
+	const setCarousel = (direction: 'prev' | 'next'): void => {
+		let index = imageIndex;
+		let minIndex = 0;
+		let maxIndex = productImages.length - 1;
+
+		if (direction === 'prev') {
+			if (index - 1 < minIndex) {
+				setImageIndex(0);
+			} else {
+				setImageIndex(--index);
+			}
+		} else {
+			if (index + 1 > maxIndex) {
+				setImageIndex(0);
+			} else {
+				setImageIndex(++index);
+			}
+		}
 	};
 
 	let price = selectedVariant ? formatPrice(selectedVariant.priceV2.amount) : '';
@@ -178,29 +222,17 @@ const SingleProductPage = ({ product }: { product: Product }) => {
 				<meta name="msapplication-TileColor" content="#00a300" />
 				<meta name="theme-color" content="#ffffff"></meta>
 			</Head>
-			<div className="images">
-				<div className="previews">
-					{images &&
-						selectedOptions &&
-						images.edges
-							.filter(({ node: { altText } }) => {
-								if (selectedOptions.Color) {
-									return altText?.includes(selectedOptions.Color);
-								}
-
-								// allow all images (i.e. for the bag)
-								return true;
-							})
-							.map(({ node: { originalSrc } }, i) => (
-								<div key={i} className="preview-wrapper">
-									<ProductImage src={originalSrc} isSmall={true} />
-								</div>
-							))}
+			{productImages.length > 0 && (
+				<div className="images">
+					<div className="enlarged">
+						<ProductImage src={productImages[imageIndex]} />
+					</div>
+					<div className="actions">
+						<button onClick={() => setCarousel('prev')}>Previous</button>
+						<button onClick={() => setCarousel('next')}>Next</button>
+					</div>
 				</div>
-				<div className="enlarged">
-					<ProductImage src={selectedVariant ? selectedVariant.image.originalSrc : ''} />
-				</div>
-			</div>
+			)}
 			<div className="details">
 				<p className="product-title">{product.title}</p>
 				<p className="product-price">${price}</p>

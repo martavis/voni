@@ -2,22 +2,40 @@
 
 .single-product {
     display: grid;
-    grid-template-columns: 500px auto;
+    grid-template-columns: 400px auto;
     column-gap: 50px;
 
     .images {
-        display: grid;
-        grid-template-columns: 0.25fr 0.75fr;
+        display: block;
 
-        .enlarged, .previews {
+        .enlarged {
             height: 450px;
+
+            .visual {
+                height: 100%;
+            }
         }
-        .enlarged .visual {
-            height: 100%;
-        }
-        .preview-wrapper {
-            &:not(:last-of-type) {
-                margin-bottom: 20px;
+        .actions {
+            margin-top: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+
+            button {
+                font-size: 1.125em;
+                color: $white;
+                background-color: transparent;
+                border: none;
+                text-transform: uppercase;
+                cursor: pointer;
+
+                &:active {
+                    outline: 1;
+                }
             }
         }
     }
@@ -117,20 +135,17 @@
             }
         }
     }
-    @media screen and (max-width: $maxMediumScreen) {
-        grid-template-columns: 0.5fr 1fr;
-    }
-    @media screen and (max-width: $maxXSmallScreen) {
+    @media screen and (max-width: $maxSmallScreen) {
         display: block;
 
         .images {
-            display: block;
-            
+            margin: 0 auto;
+            min-width: 320px;
+            max-width: 400px;
+
             .enlarged {
+                width: 100%;
                 height: 350px;    
-            }
-            .previews {
-                display: none;
             }
         }
         .details {
